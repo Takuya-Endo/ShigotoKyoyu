@@ -11,34 +11,34 @@
 
   <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #dae3f3;">
-          <a class="navbar-brand ml-3 p-2 text-white font-weight-bold" style="background-color: #8faadc;" href="/">仕事共有</a>
-          <div class="collapse navbar-collapse">
-            <ul class="navbar-nav my-2 ml-auto">
-              <% if user_signed_in? %>
-                <li class="nav-item">
-                  <u><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "mr-3 text-secondary" %></u>
-                </li>
-              <% else %>
-                <li class="nav-item">
-                  <u><%= link_to "\"仕事共有\"について", new_user_registration_path, class: "mr-3 text-secondary" %></u>
-                </li>
-                <li class="nav-item">
-                  <u><%= link_to "新規登録", new_user_registration_path, class: "mr-3 text-secondary" %></u>
-                </li>
-                <li class="nav-item">
-                  <u><%= link_to "ログイン", new_user_registration_path, class: "mr-3 text-secondary" %></u>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        </nav>
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #dae3f3;">
+        <a class="navbar-brand ml-3 p-2 text-white font-weight-bold" style="background-color: #8faadc;" href="/">仕事共有</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav my-2 ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <u><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "mr-3 text-secondary" %></u>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <u><%= link_to "\"仕事共有\"について", new_user_registration_path, class: "mr-3 text-secondary" %></u>
+              </li>
+              <li class="nav-item">
+                <u><%= link_to "新規登録", new_user_registration_path, class: "mr-3 text-secondary" %></u>
+              </li>
+              <li class="nav-item">
+                <u><%= link_to "ログイン", new_user_registration_path, class: "mr-3 text-secondary" %></u>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
     </header>
 
     <%= yield %>
 
     <footer>
-      <div class="bg-dark"></div>
+      <div class="p-4 mt-5" style="background-color: #e7e6e6;"></div>
     </footer>
 
   </body>
