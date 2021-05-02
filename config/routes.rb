@@ -28,4 +28,14 @@ Rails.application.routes.draw do
       #  events GET    /events(.:format)      events#index
     # new_event GET    /events/new(.:format)  events#new
 
+  #complete
+  resources :appointments, except: [:index]
+        #  appointments POST   /appointments(.:format)           appointments#create
+    #   new_appointment GET    /appointments/new(.:format)       appointments#new
+    #  edit_appointment GET    /appointments/:id/edit(.:format)  appointments#edit
+        #   appointment GET    /appointments/:id(.:format)       appointments#show
+                    #   PATCH  /appointments/:id(.:format)       appointments#update
+                    #   PUT    /appointments/:id(.:format)       appointments#update
+                    #   DELETE /appointments/:id(.:format)       appointments#destroy
+
 end
