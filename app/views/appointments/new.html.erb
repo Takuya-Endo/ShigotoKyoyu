@@ -1,3 +1,10 @@
 <h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>にアポイントの予定を追加</h3>
 
-<%= form_with model%>
+<%= form_with model: @event, url: appointments_path, local: true do |f| %>
+  <%= f.label :start_date, "日時" %><%= f.datetime_field :start_date %>
+  <%= f.label :time_span, "所要時間(目安)" %><%= f.time_select :time_span %>
+  <%= f.fields_for :appointment, @event.build_appointment do |g| %>
+    <%= g.text_field :destination %>
+    <%= g.text_field :person_in_charge %>
+  <% end %>
+<% end %>
