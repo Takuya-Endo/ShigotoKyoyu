@@ -17,12 +17,15 @@ Rails.application.routes.draw do
                          # DELETE /users(.:format)                devise/registrations#destroy
                          # POST   /users(.:format)                devise/registrations#create
 
-
   resources :users, param: :current_user, except: [:new, :create, :destroy]
       #   users GET    /users(.:format)                     users#index
     # edit_user GET    /users/:current_user/edit(.:format)  users#edit
         #  user GET    /users/:current_user(.:format)       users#show
             #   PATCH  /users/:current_user(.:format)       users#update
             #   PUT    /users/:current_user(.:format)       users#update
+
+  resources :events, only: [:index, :new]
+      #  events GET    /events(.:format)      events#index
+    # new_event GET    /events/new(.:format)  events#new
 
 end
