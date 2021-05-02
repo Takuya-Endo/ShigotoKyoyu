@@ -1,2 +1,21 @@
-<h1>Appointments#create</h1>
-<p>Find me in app/views/appointments/create.html.erb</p>
+<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>にアポイントの予定を追加</h3>
+
+<div>
+  <span>日時</span><%= @event.start_date %><span>所要時間(目安)</span><%= @event.time_span %>
+</div>
+<div>
+  <span>訪問先</span><%= @appointment.destination %>
+</div>
+<div>
+  <span>担当者</span><%= @appointment.person_in_charge %>
+</div>
+<div>
+  <span>前後の予定</span>
+  <% if @appointment.contact_means == "訪問" %>
+    <span>最寄り駅は、<%= @appointment.nearest_station %>です。移動にかかる前後<%= @appointment.travel_time %>の予定もおさえます。</span>
+  <% else %>
+    <span>オンラインで行います。機材準備と片付けにかかる前後<%= @appointment.preparation_time %>の予定もおさえます。</span>
+  <% end %>
+</div>
+
+<%= link_to "上記内容の仕事を追加", new_event_path %><%= link_to "仕事の追加をキャンセル", "/appointments/#{@event.id}", method: :delete %>

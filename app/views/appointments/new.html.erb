@@ -1,10 +1,19 @@
 <h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>にアポイントの予定を追加</h3>
 
 <%= form_with model: @event, url: appointments_path, local: true do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.label :start_date, "日時" %><%= f.datetime_field :start_date %>
   <%= f.label :time_span, "所要時間(目安)" %><%= f.time_select :time_span %>
   <%= f.fields_for :appointment, @event.build_appointment do |g| %>
-    <%= g.text_field :destination %>
-    <%= g.text_field :person_in_charge %>
+    <%= g.label :destination, "訪問先" %><%= g.text_field :destination %>
+    <%= g.label :person_in_charge, "担当者" %><%= g.text_field :person_in_charge %>
+    <div>
+      <%= g.label :contact_means, "前後の予定" %>
+      <%= g.radio_button :contact_means, "訪問", checked: true %>最寄り駅<%= g.text_field :nearest_station %>
+      <%= g.radio_button :contact_means, "オンライン" %>オンライン
+      <%= g.label :travel_time, "移動時間" %><%= g.time_select :travel_time %>
+      <%= g.label :preparation_time, "準備時間" %><%= g.time_select :preparation_time %>
+    </div>
   <% end %>
+  <%= f.submit '入力内容の確認' %>
 <% end %>
