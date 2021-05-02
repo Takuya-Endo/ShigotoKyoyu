@@ -40,8 +40,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :department
       t.string :position
       t.text :introduction
-      t.timestamps :created_at, null: false
-      t.timestamps :updated_at, null: false
 
       t.timestamps null: false
     end
