@@ -1,0 +1,80 @@
+<h2 class="d-inline-block">新規登録</h2>
+
+<p class="d-inline-block">登録済みの場合は<%= render "devise/shared/links" %>からログイン</p>
+
+<%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="row my-3">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">氏名</div>
+    <div class="col-lg-3"><%= f.label :last_name, "姓", class: "text-secondary" %><%= f.text_field :last_name %></div>
+    <div class="col-lg-3"><%= f.label :first_name, "名", class: "text-secondary" %><%= f.text_field :first_name %></div>
+    <div class="col-lg-2"></div>
+    <div class="col-lg-1"></div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">フリガナ</div>
+    <div class="col-lg-3"><%= f.label :last_name_kana, "セイ", class: "text-secondary" %><%= f.text_field :last_name_kana %></div>
+    <div class="col-lg-3"><%= f.label :first_name_kana, "メイ", class: "text-secondary" %><%= f.text_field :first_name_kana %></div>
+    <div class="col-lg-2"></div>
+    <div class="col-lg-1"></div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;"><%= f.label :department, "所属" %></div>
+    <div class="col-lg-3"><%= f.text_field :department, placeholder: "空欄可" %></div>
+    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;"><%= f.label :position, "役職" %></div>
+    <div class="col-lg-3"><%= f.text_field :position, placeholder: "空欄可" %></div>
+    <div class="col-lg-1"></div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;"><%= f.label :email, "メールアドレス" %></div>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="col-lg-1"></div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-lg-1"></div>
+    <%= f.radio_button :email_is_published, :true, checked: true %>同じチームの参加者に公開 <%= f.radio_button :email_is_published, :false %>非公開
+    <div class="col-lg-1"></div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;"><%= f.label :introduction, "その他" %></div>
+    <%= f.text_area :introduction, placeholder: "空欄可" %>
+    <div class="col-lg-1"></div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+      <% if @minimum_password_length %>
+        <%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %>
+      <% end %>
+    </div>
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <div class="col-lg-1"></div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+      <%= f.label :password_confirmation, "パスワード(確認用)" %>
+    </div>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <div class="col-lg-1"></div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-lg-1"></div>
+    <%= f.submit "上記内容で新規登録" %>
+    <div class="col-lg-1"></div>
+  </div>
+<% end %>
