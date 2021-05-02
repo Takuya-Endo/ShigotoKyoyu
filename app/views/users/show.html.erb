@@ -1,0 +1,16 @@
+<h3><span>【<%= @user.last_name %>さん】個人の登録情報</span>の確認</h3>
+
+<div><span>氏名</span><%= @user.last_name %><%= @user.first_name %></div>
+<div><span>フリガナ</span><%= @user.last_name_kana %><%= @user.first_name_kana %></div>
+<div><span>所属</span><%= @user.department %></div>
+<div><span>役職</span><%= @user.position %></div>
+<div>
+  <span>メールアドレス</span>
+  <% if @user.email_is_published == true %>
+    <span><%= @user.email %>※同じチームの参加者に公開中</span>
+  <% else %>
+    <span>※非公開</span>
+  <% end %>
+</div>
+<div><span>その他</span><%= @user.introduction %></div>
+<%= link_to "編集する", edit_user_path(current_user.id) %>

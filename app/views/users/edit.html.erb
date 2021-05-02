@@ -1,9 +1,6 @@
-<h2 class="d-inline-block">新規登録</h2>
+<h3><span>【<%= @user.last_name %>さん】個人の登録情報</span>の編集</h3>
 
-<p class="d-inline-block">登録済みの場合は<%= render "devise/shared/links" %>からログイン</p>
-
-<%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= form_with model: @user, url: "/users/:current_user", local: true do |f| %>
 
   <div class="row my-3">
     <div class="col-lg-1"></div>
@@ -41,7 +38,7 @@
 
   <div class="row my-3">
     <div class="col-lg-1"></div>
-    <%= f.radio_button :email_is_published, true, checked: true %>同じチームの参加者に公開 <%= f.radio_button :email_is_published, false %>非公開
+    <%= f.radio_button :email_is_published, true %>同じチームの参加者に公開 <%= f.radio_button :email_is_published, false %>非公開
     <div class="col-lg-1"></div>
   </div>
 
@@ -54,27 +51,8 @@
 
   <div class="row my-3">
     <div class="col-lg-1"></div>
-    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
-      <% if @minimum_password_length %>
-        <%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %>
-      <% end %>
-    </div>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.submit "変更を保存する" %><%= link_to "戻る", user_path(current_user.id) %>
     <div class="col-lg-1"></div>
   </div>
 
-  <div class="row my-3">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
-      <%= f.label :password_confirmation, "パスワード(確認用)" %>
-    </div>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    <div class="col-lg-1"></div>
-  </div>
-
-  <div class="row my-3">
-    <div class="col-lg-1"></div>
-    <%= f.submit "上記内容で新規登録" %>
-    <div class="col-lg-1"></div>
-  </div>
 <% end %>
