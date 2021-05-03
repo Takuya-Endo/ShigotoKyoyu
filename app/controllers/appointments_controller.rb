@@ -17,6 +17,9 @@ class AppointmentsController < ApplicationController
   end
 
   def update
+    event = Event.find(params[:id])
+    event.update(event_params)
+    redirect_to new_event_path
   end
 
   def destroy
@@ -28,7 +31,7 @@ class AppointmentsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user_id, :start_date, :time_span, appointment_attributes: [:id, :event_id, :destination, :person_in_charge, :contact_means, :nearest_station, :travel_time, :preparation_time, :created_at, :updated_at])
+    params.require(:event).permit(:user_id, :appointment_id, :start_date, :end_date, :time_span, appointment_attributes: [:id, :event_id, :destination, :person_in_charge, :contact_means, :nearest_station, :travel_time, :preparation_time, :created_at, :updated_at])
   end
 
 end

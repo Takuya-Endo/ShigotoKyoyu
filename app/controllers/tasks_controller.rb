@@ -17,6 +17,9 @@ class TasksController < ApplicationController
   end
 
   def update
+    event = Event.find(params[:id])
+    event.update(event_params)
+    redirect_to new_event_path
   end
 
   def destroy
@@ -28,7 +31,7 @@ class TasksController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user_id, :start_date, :time_span, task_attributes: [:id, :event_id, :deadline_status, :title, :introduction, :created_at, :updated_at])
+    params.require(:event).permit(:user_id, :task_id, :start_date, :end_date, :time_span, task_attributes: [:id, :event_id, :deadline_status, :title, :introduction, :created_at, :updated_at])
   end
 
 end

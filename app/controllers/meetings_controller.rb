@@ -18,6 +18,9 @@ class MeetingsController < ApplicationController
   end
 
   def update
+    event = Event.find(params[:id])
+    event.update(event_params)
+    redirect_to new_event_path
   end
 
   def destroy
@@ -29,7 +32,7 @@ class MeetingsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user_id, :start_date, :time_span, meeting_attributes: [:id, :event_id, :title, :introduction, :created_at, :updated_at])
+    params.require(:event).permit(:user_id, :meeting_id, :start_date, :end_date, :time_span, meeting_attributes: [:id, :event_id, :title, :introduction, :created_at, :updated_at])
   end
 
 

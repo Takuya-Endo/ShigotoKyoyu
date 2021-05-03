@@ -5,13 +5,13 @@
   <%= f.hidden_field :start_date, value: Time.now %>
   <%= f.fields_for :task, @event.build_task do |g| %>
     <%= g.label :title, "仕事の件名" %><%= g.text_field :title %>
-    <%= g.label :introduction, "仕事の内容" %><%= g.text_area :introduction %>
+    <%= g.label :introduction, "仕事の内容" %><%= g.text_area :introduction, placeholder: "空欄可" %>
     <div>
       <%= g.label :deadline_status, "ステータス" %>
-      <%= g.radio_button :deadline_status, 1, checked: true %><%= f.datetime_field :end_date %>締切
-      <%= g.radio_button :deadline_status, 2 %>早急に対応
-      <%= g.radio_button :deadline_status, 3 %>なるべく早めに
-      <%= g.radio_button :deadline_status, 4 %>手が空いたら
+      <%= g.radio_button :deadline_status, :締切あり, checked: true %><%= f.datetime_field :end_date %>締切
+      <%= g.radio_button :deadline_status, :早急に対応 %>早急に対応
+      <%= g.radio_button :deadline_status, :なるべく早めに %>なるべく早めに
+      <%= g.radio_button :deadline_status, :手が空いたら %>手が空いたら
     </div>
   <% end %>
   <%= f.submit '入力内容の確認' %>

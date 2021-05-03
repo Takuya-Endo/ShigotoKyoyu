@@ -5,5 +5,12 @@
 <div>
   <%= calendar(number_of_days: 14) do |date| %>
     <%= date %>
+
+    <% @events.each do |event| %>
+      <div>
+        <%= event.user_id %>
+      </div>
+    <% end %>
+
   <% end %>
 </div>
