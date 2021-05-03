@@ -1,16 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'tasks/show'
-  get 'tasks/new'
-  get 'tasks/create'
-  get 'tasks/edit'
-  get 'tasks/update'
-  get 'tasks/destroy'
-  get 'show/new'
-  get 'show/create'
-  get 'show/edit'
-  get 'show/update'
-  get 'show/destroy'
   devise_for :users
         # new_user_session GET    /users/sign_in(.:format)        devise/sessions#new
             # user_session POST   /users/sign_in(.:format)        devise/sessions#create
@@ -68,5 +57,7 @@ Rails.application.routes.draw do
             #   PATCH  /tasks/:id(.:format)       tasks#update
             #   PUT    /tasks/:id(.:format)       tasks#update
             #   DELETE /tasks/:id(.:format)       tasks#destroy
+
+  get 'homes/about'
 
 end
