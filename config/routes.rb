@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'tasks/show'
+  get 'tasks/new'
+  get 'tasks/create'
+  get 'tasks/edit'
+  get 'tasks/update'
+  get 'tasks/destroy'
   get 'show/new'
   get 'show/create'
   get 'show/edit'
@@ -52,5 +58,15 @@ Rails.application.routes.draw do
                 #   PATCH  /meetings/:id(.:format)       meetings#update
                 #   PUT    /meetings/:id(.:format)       meetings#update
                 #   DELETE /meetings/:id(.:format)       meetings#destroy
+
+  #complete
+  resources :tasks, except: [:index]
+       #  tasks POST   /tasks(.:format)           tasks#create
+    #  new_task GET    /tasks/new(.:format)       tasks#new
+    # edit_task GET    /tasks/:id/edit(.:format)  tasks#edit
+        #  task GET    /tasks/:id(.:format)       tasks#show
+            #   PATCH  /tasks/:id(.:format)       tasks#update
+            #   PUT    /tasks/:id(.:format)       tasks#update
+            #   DELETE /tasks/:id(.:format)       tasks#destroy
 
 end
