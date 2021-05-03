@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_id: 1
+  title: MyString
+  intrduction: MyText
+  created_at: 2021-05-02 23:28:47
+  updated_at: 2021-05-02 23:28:47
+
+two:
+  event_id: 1
+  title: MyString
+  intrduction: MyText
+  created_at: 2021-05-02 23:28:47
+  updated_at: 2021-05-02 23:28:47

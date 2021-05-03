@@ -1,0 +1,12 @@
+<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>にチームMTGの予定を追加</h3>
+
+<%= form_with model: @event, url: meetings_path, local: true do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.label :start_date, "日時" %><%= f.datetime_field :start_date %>
+  <%= f.label :time_span, "所要時間(目安)" %><%= f.time_select :time_span %>
+  <%= f.fields_for :meeting, @event.build_meeting do |g| %>
+    <%= g.label :title, "チームMTGに件名" %><%= g.text_field :title %>
+    <%= g.label :introduction, "チームMTGの内容" %><%= g.text_area :introduction, placeholder: "空欄可" %>
+  <% end %>
+  <%= f.submit '入力内容の確認' %>
+<% end %>

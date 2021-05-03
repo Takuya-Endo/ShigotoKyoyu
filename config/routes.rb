@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'show/new'
+  get 'show/create'
+  get 'show/edit'
+  get 'show/update'
+  get 'show/destroy'
   devise_for :users
         # new_user_session GET    /users/sign_in(.:format)        devise/sessions#new
             # user_session POST   /users/sign_in(.:format)        devise/sessions#create
@@ -37,5 +42,15 @@ Rails.application.routes.draw do
                     #   PATCH  /appointments/:id(.:format)       appointments#update
                     #   PUT    /appointments/:id(.:format)       appointments#update
                     #   DELETE /appointments/:id(.:format)       appointments#destroy
+
+  #complete
+  resources :meetings, except: [:index]
+        #  meetings POST   /meetings(.:format)           meetings#create
+    #   new_meeting GET    /meetings/new(.:format)       meetings#new
+    #  edit_meeting GET    /meetings/:id/edit(.:format)  meetings#edit
+        #   meeting GET    /meetings/:id(.:format)       meetings#show
+                #   PATCH  /meetings/:id(.:format)       meetings#update
+                #   PUT    /meetings/:id(.:format)       meetings#update
+                #   DELETE /meetings/:id(.:format)       meetings#destroy
 
 end

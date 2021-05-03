@@ -1,0 +1,13 @@
+<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>にチームMTGの予定を追加</h3>
+
+<div>
+  <span>日時</span><%= @event.start_date %><span>所要時間(目安)</span><%= @event.time_span %>
+</div>
+<div>
+  <span>チームMTGの件名</span><%= @meeting.title %>
+</div>
+<div>
+  <span>チームMTGの内容</span><%= @meeting.introduction %>
+</div>
+
+<%= link_to "上記内容の仕事を追加", new_event_path %><%= link_to "仕事の追加をキャンセル", "/meetings/#{@event.id}", method: :delete %>
