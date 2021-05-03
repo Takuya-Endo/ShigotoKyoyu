@@ -1,6 +1,9 @@
-<h1>カレンダー</h1>
+<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span></h3>
 
+<%= link_to "新しい仕事の予定を追加", new_event_path %>
 
-<%= calendar(number_of_days: 10) do |date| %>
-  <%= date %>
-<% end %>
+<div>
+  <%= calendar(number_of_days: 14) do |date| %>
+    <%= date %>
+  <% end %>
+</div>

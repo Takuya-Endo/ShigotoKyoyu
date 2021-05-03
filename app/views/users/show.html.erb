@@ -13,4 +13,4 @@
   <% end %>
 </div>
 <div><span>その他</span><%= @user.introduction %></div>
-<%= link_to "編集する", edit_user_path(current_user.id) %>
+<%= link_to "編集する", "/users/:current_user/edit" %>

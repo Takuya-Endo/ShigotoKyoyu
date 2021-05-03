@@ -35,8 +35,8 @@ Rails.application.routes.draw do
             #   PATCH  /users/:current_user(.:format)       users#update
             #   PUT    /users/:current_user(.:format)       users#update
 
-  resources :events, only: [:index, :new]
-      #  events GET    /events(.:format)      events#index
+  root to: 'events#index'
+  resources :events, only: [:new]
     # new_event GET    /events/new(.:format)  events#new
 
   #complete
