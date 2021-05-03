@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
 
+  get 'tasks/show'
+  get 'tasks/new'
+  get 'tasks/create'
+  get 'tasks/edit'
+  get 'tasks/update'
+  get 'tasks/destroy'
+  get 'show/new'
+  get 'show/create'
+  get 'show/edit'
+  get 'show/update'
+  get 'show/destroy'
   devise_for :users
         # new_user_session GET    /users/sign_in(.:format)        devise/sessions#new
             # user_session POST   /users/sign_in(.:format)        devise/sessions#create
@@ -17,12 +28,45 @@ Rails.application.routes.draw do
                          # DELETE /users(.:format)                devise/registrations#destroy
                          # POST   /users(.:format)                devise/registrations#create
 
-
   resources :users, param: :current_user, except: [:new, :create, :destroy]
       #   users GET    /users(.:format)                     users#index
     # edit_user GET    /users/:current_user/edit(.:format)  users#edit
         #  user GET    /users/:current_user(.:format)       users#show
             #   PATCH  /users/:current_user(.:format)       users#update
             #   PUT    /users/:current_user(.:format)       users#update
+
+  resources :events, only: [:index, :new]
+      #  events GET    /events(.:format)      events#index
+    # new_event GET    /events/new(.:format)  events#new
+
+  #complete
+  resources :appointments, except: [:index]
+        #  appointments POST   /appointments(.:format)           appointments#create
+    #   new_appointment GET    /appointments/new(.:format)       appointments#new
+    #  edit_appointment GET    /appointments/:id/edit(.:format)  appointments#edit
+        #   appointment GET    /appointments/:id(.:format)       appointments#show
+                    #   PATCH  /appointments/:id(.:format)       appointments#update
+                    #   PUT    /appointments/:id(.:format)       appointments#update
+                    #   DELETE /appointments/:id(.:format)       appointments#destroy
+
+  #complete
+  resources :meetings, except: [:index]
+        #  meetings POST   /meetings(.:format)           meetings#create
+    #   new_meeting GET    /meetings/new(.:format)       meetings#new
+    #  edit_meeting GET    /meetings/:id/edit(.:format)  meetings#edit
+        #   meeting GET    /meetings/:id(.:format)       meetings#show
+                #   PATCH  /meetings/:id(.:format)       meetings#update
+                #   PUT    /meetings/:id(.:format)       meetings#update
+                #   DELETE /meetings/:id(.:format)       meetings#destroy
+
+  #complete
+  resources :tasks, except: [:index]
+       #  tasks POST   /tasks(.:format)           tasks#create
+    #  new_task GET    /tasks/new(.:format)       tasks#new
+    # edit_task GET    /tasks/:id/edit(.:format)  tasks#edit
+        #  task GET    /tasks/:id(.:format)       tasks#show
+            #   PATCH  /tasks/:id(.:format)       tasks#update
+            #   PUT    /tasks/:id(.:format)       tasks#update
+            #   DELETE /tasks/:id(.:format)       tasks#destroy
 
 end

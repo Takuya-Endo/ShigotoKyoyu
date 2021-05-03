@@ -1,0 +1,13 @@
+<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>にその他の仕事の予定を追加</h3>
+
+<div>
+  <span>仕事の件名</span><%= @task.destination %>
+</div>
+<div>
+  <span>仕事の内容</span><%= @task.person_in_charge %>
+</div>
+<div>
+  <span>ステータス</span><%= @task.deadline_status %>
+</div>
+
+<%= link_to "上記内容の仕事を追加", new_event_path %><%= link_to "仕事の追加をキャンセル", "/tasks/#{@event.id}", method: :delete %>

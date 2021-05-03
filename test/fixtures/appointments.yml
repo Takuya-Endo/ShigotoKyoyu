@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  destination: MyString
+  person_in_charge: MyString
+  nearest_station: MyString
+  preparation_time: 2021-05-02 13:20:51
+  created_at: 2021-05-02 13:20:51
+  updated_at: 2021-05-02 13:20:51
+
+two:
+  destination: MyString
+  person_in_charge: MyString
+  nearest_station: MyString
+  preparation_time: 2021-05-02 13:20:51
+  created_at: 2021-05-02 13:20:51
+  updated_at: 2021-05-02 13:20:51
