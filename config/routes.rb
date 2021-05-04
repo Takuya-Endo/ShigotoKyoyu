@@ -67,6 +67,9 @@ Rails.application.routes.draw do
 
   get 'homes/about'
 
+  get '/teams/search_box/:id' => 'teams#search_box'
+  post '/teams/search/:id' => 'teams#search'
+  post '/teams/invit' => 'teams#invit'
   resources :teams
         # teams GET    /teams(.:format)           teams#index
             #   POST   /teams(.:format)           teams#create

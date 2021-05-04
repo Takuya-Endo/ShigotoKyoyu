@@ -41,10 +41,35 @@ class TeamsController < ApplicationController
     redirect_to teams_path
   end
 
+  def search_box
+    @team = Team.find(params[:id])
+  end
+
+  def search
+    @team = Team.find(params[:id])
+    @users = User.all
+    if params[:search].present?
+      @team_members = TeamMember.where(team_id: @team.id)
+      @user = @users.find_by(email: params[:search])
+    else
+    end
+  end
+
+  def invit
+    team_member = TeamMember.new(team_member_params)
+    team_member.save
+    @team = Team.find(team_member.team_id)
+    redirect_to users_path(team_id: @team.id)
+  end
+
   private
 
   def team_params
     params.require(:team).permit(:team_name, :number_of_people, :created_at, :updated_at)
+  end
+
+  def team_member_params
+    params.require(:team_member).permit(:user_id, :team_id, :privilege, :join_status, :created_at, :updated_at)
   end
 
 end
