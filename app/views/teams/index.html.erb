@@ -1,1 +1,19 @@
 <h3><span>【<%= current_user.last_name %>さん】が参加中のチーム一覧</span></h3>
+
+<table>
+  <tr>
+    <th>チーム名</th><th>参加人数</th><th>管理者権限</th><th></th><th></th><th></th>
+  </tr>
+  <% @teams.each do |team| %>
+    <tr>
+      <td><%= team.team_name %></td>
+      <td><%= team.number_of_people %></td>
+      <td></td>
+      <td>表示</td>
+      <td>編集</td>
+      <td>退出</td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "新しいチームを作成", new_team_path %>

@@ -1,2 +1,7 @@
-<h1>Teams#new</h1>
-<p>Find me in app/views/teams/new.html.erb</p>
+<h3>新しいチームを作成</h3>
+
+<%= form_with model: @team, url: '/teams', local: true do |f| %>
+  <%= f.label :team_name, "チーム名" %><%= f.text_field :team_name %>チーム
+  <%= f.hidden_field :number_of_people, value: 1 %>
+  <%= f.submit 'チーム作成' %>
+<% end %>
