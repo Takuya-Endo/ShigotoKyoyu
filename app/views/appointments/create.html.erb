@@ -20,6 +20,12 @@
 
 <%= form_with model: @event, url: "/appointments/#{@event.id}", loval: true do |f| %>
   <%= f.hidden_field :appointment_id, value: @appointment.id %>
+
+  <%#= f.text_field :start_date, value: @event.start_date %>
+  <%#= f.text_field :time_span, value: @event.time_span %>
+  <%= f.hidden_field :end_date, value: @event.start_date + (@event.time_span.hour * 60 * 60) + (@event.time_span.min * 60) + (@event.time_span.sec) %>
+
+  <%#= f.hidden_field :end_date, value: @event.start_date + @event.time_span %>
   <%= f.submit '上記内容の仕事を追加' %>
 <% end %>
 
