@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -15,6 +15,8 @@ class UsersController < ApplicationController
   end
 
   def index
+    @team = Team.find(params[:team_id])
+    @team_members = TeamMember.where(team_id: @team.id)
   end
 
   private

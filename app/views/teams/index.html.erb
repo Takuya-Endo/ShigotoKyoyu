@@ -10,7 +10,7 @@
       <td><%= team.number_of_people %></td>
       <td></td>
       <td>表示</td>
-      <td>編集</td>
+      <td><%= link_to "編集", users_path(team_id: team.id) %></td>
       <td>退出</td>
     </tr>
   <% end %>

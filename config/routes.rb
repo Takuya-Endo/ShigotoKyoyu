@@ -24,12 +24,12 @@ Rails.application.routes.draw do
                          # DELETE /users(.:format)                devise/registrations#destroy
                          # POST   /users(.:format)                devise/registrations#create
 
-  resources :users, param: :current_user, except: [:new, :create, :destroy]
-      #   users GET    /users(.:format)                     users#index
-    # edit_user GET    /users/:current_user/edit(.:format)  users#edit
-        #  user GET    /users/:current_user(.:format)       users#show
-            #   PATCH  /users/:current_user(.:format)       users#update
-            #   PUT    /users/:current_user(.:format)       users#update
+  resources :users, except: [:new, :create, :destroy]
+        # users GET    /users(.:format)           users#index
+    # edit_user GET    /users/:id/edit(.:format)  users#edit
+        #  user GET    /users/:id(.:format)       users#show
+            #   PATCH  /users/:id(.:format)       users#update
+            #   PUT    /users/:id(.:format)       users#update
 
   root to: 'events#index'
   resources :events, only: [:new]

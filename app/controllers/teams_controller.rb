@@ -14,6 +14,14 @@ class TeamsController < ApplicationController
   def create
     team = Team.new(team_params)
     team.save
+
+    team_member = TeamMember.new
+    team_member.user_id = current_user.id
+    team_member.team_id = team.id
+    team_member.privilege = 1
+    team_member.join_status = 1
+    team_member.save
+
     redirect_to teams_path
   end
 
