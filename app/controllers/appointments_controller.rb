@@ -1,5 +1,8 @@
 class AppointmentsController < ApplicationController
+
   def show
+    @appointment = Appointment.find(params[:id])
+    @event = Event.find(@appointment.event_id)
   end
 
   def new
@@ -14,18 +17,25 @@ class AppointmentsController < ApplicationController
   end
 
   def edit
+    @appointment = Appointment.find(params[:id])
+    @event = Event.find(@appointment.event_id)
   end
 
   def update
-    event = Event.find(params[:id])
+    appointment = Appointment.find(params[:id])
+    event = Event.find(appointment.event_id)
     event.update(event_params)
-    redirect_to new_event_path
+    redirect_to root_path
   end
 
   def destroy
-    event = Event.find(params[:id])
+    appointment = Appointment.find(params[:id])
+    event = Event.find(appointment.event_id)
     event.destroy
-    redirect_to new_appointment_path
+    redirect_to root_path
+  end
+
+  def complete
   end
 
   private

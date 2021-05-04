@@ -1,5 +1,8 @@
 class TasksController < ApplicationController
+
   def show
+    @task = Task.find(params[:id])
+    @event = Event.find(@task.event_id)
   end
 
   def new
@@ -14,18 +17,24 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task = Task.find(params[:id])
+    @event = Event.find(@task.event_id)
   end
 
   def update
-    event = Event.find(params[:id])
+    task = Task.find(params[:id])
+    event = Event.find(task.event_id)
     event.update(event_params)
-    redirect_to new_event_path
+    redirect_to root_path
   end
 
   def destroy
     event = Event.find(params[:id])
     event.destroy
     redirect_to new_task_path
+  end
+  
+  def complete
   end
 
   private

@@ -1,6 +1,8 @@
 class MeetingsController < ApplicationController
 
   def show
+    @meeting = Meeting.find(params[:id])
+    @event = Event.find(@meeting.event_id)
   end
 
   def new
@@ -15,18 +17,24 @@ class MeetingsController < ApplicationController
   end
 
   def edit
+    @meeting = Meeting.find(params[:id])
+    @event = Event.find(@meeting.event_id)
   end
 
   def update
-    event = Event.find(params[:id])
+    meeting = Meeting.find(params[:id])
+    event = Event.find(meeting.event_id)
     event.update(event_params)
-    redirect_to new_event_path
+    redirect_to root_path
   end
 
   def destroy
     event = Event.find(params[:id])
     event.destroy
     redirect_to new_meeting_path
+  end
+
+  def complete
   end
 
   private

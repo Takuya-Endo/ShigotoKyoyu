@@ -9,7 +9,7 @@
     <% events.each do |event| %>
       <% if event.appointment_id.present? %>
         <% appointment = Appointment.find(event.appointment_id) %>
-        <%= appointment.destination %>
+        <%= link_to appointment.destination, appointment_path(appointment.id) %>
       <% end %>
     <% end %>
 
