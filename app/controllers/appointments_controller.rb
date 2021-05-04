@@ -24,7 +24,7 @@ class AppointmentsController < ApplicationController
   def update
     appointment = Appointment.find(params[:id])
     event = Event.find(appointment.event_id)
-    event.update(event_params)
+    event.update(update_event_params)
     redirect_to root_path
   end
 
@@ -41,7 +41,11 @@ class AppointmentsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user_id, :appointment_id, :start_date, :end_date, :time_span, appointment_attributes: [:id, :event_id, :destination, :person_in_charge, :contact_means, :nearest_station, :travel_time, :preparation_time, :created_at, :updated_at])
+    params.require(:event).permit(:user_id, :appointment_id, :start_date, :end_date, :time_span, appointment_attributes: [:event_id, :destination, :person_in_charge, :contact_means, :nearest_station, :travel_time, :preparation_time, :created_at, :updated_at])
+  end
+
+  def update_event_params
+    params.require(:event).permit(:user_id, :appointment_id, :start_date, :end_date, :time_span, appointment_attributes: [:_destroy, :id, :event_id, :destination, :person_in_charge, :contact_means, :nearest_station, :travel_time, :preparation_time, :created_at, :updated_at])
   end
 
 end

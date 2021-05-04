@@ -10,7 +10,7 @@
   <span>チームMTGの内容</span><%= @meeting.introduction %>
 </div>
 
-<%= form_with model: @event, url: "/meetings/#{@meeting.id}", loval: true do |f| %>
+<%= form_with model: @event, url: "/meetings/#{@meeting.id}", local: true do |f| %>
   <%= f.hidden_field :meeting_id, value: @meeting.id %>
   <%= f.submit '上記内容の仕事を追加' %>
 <% end %>
