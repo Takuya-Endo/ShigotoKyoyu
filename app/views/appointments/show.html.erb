@@ -1,2 +1,23 @@
-<h1>Appointments#show</h1>
-<p>Find me in app/views/appointments/show.html.erb</p>
+<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>のアポイントの予定を確認</h3>
+
+<div>
+  <span>日時</span><%= @event.start_date %><span>所要時間(目安)</span><%= @event.time_span %>
+</div>
+<div>
+  <span>訪問先</span><%= @appointment.destination %>
+</div>
+<div>
+  <span>担当者</span><%= @appointment.person_in_charge %>
+</div>
+<div>
+  <span>前後の予定</span>
+  <% if @appointment.contact_means == "訪問" %>
+    <span>最寄り駅は、<%= @appointment.nearest_station %>です。移動にかかる前後<%= @appointment.travel_time %>の予定もおさえます。</span>
+  <% else %>
+    <span>オンラインで行います。機材準備と片付けにかかる前後<%= @appointment.preparation_time %>の予定もおさえます。</span>
+  <% end %>
+</div>
+
+<%= link_to "編集", edit_appointment_path(@appointment.id) %>
+<%= link_to "完了", "/appointments/complete" %>
+<%= link_to "削除", "/appointments/#{@appointment.id}", method: :delete, "data-confirm" => "一度削除した予定は復元できません。この予定をカレンダーから削除しますか？" %>

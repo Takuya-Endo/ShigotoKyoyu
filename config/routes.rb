@@ -1,16 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'tasks/show'
-  get 'tasks/new'
-  get 'tasks/create'
-  get 'tasks/edit'
-  get 'tasks/update'
-  get 'tasks/destroy'
-  get 'show/new'
-  get 'show/create'
-  get 'show/edit'
-  get 'show/update'
-  get 'show/destroy'
   devise_for :users
         # new_user_session GET    /users/sign_in(.:format)        devise/sessions#new
             # user_session POST   /users/sign_in(.:format)        devise/sessions#create
@@ -35,11 +24,11 @@ Rails.application.routes.draw do
             #   PATCH  /users/:current_user(.:format)       users#update
             #   PUT    /users/:current_user(.:format)       users#update
 
-  resources :events, only: [:index, :new]
-      #  events GET    /events(.:format)      events#index
+  root to: 'events#index'
+  resources :events, only: [:new]
     # new_event GET    /events/new(.:format)  events#new
 
-  #complete
+  get '/appointments/complete' => 'appointments#complete'
   resources :appointments, except: [:index]
         #  appointments POST   /appointments(.:format)           appointments#create
     #   new_appointment GET    /appointments/new(.:format)       appointments#new
@@ -49,7 +38,7 @@ Rails.application.routes.draw do
                     #   PUT    /appointments/:id(.:format)       appointments#update
                     #   DELETE /appointments/:id(.:format)       appointments#destroy
 
-  #complete
+  get '/meetings/complete' => 'meetings#complete'
   resources :meetings, except: [:index]
         #  meetings POST   /meetings(.:format)           meetings#create
     #   new_meeting GET    /meetings/new(.:format)       meetings#new
@@ -59,7 +48,7 @@ Rails.application.routes.draw do
                 #   PUT    /meetings/:id(.:format)       meetings#update
                 #   DELETE /meetings/:id(.:format)       meetings#destroy
 
-  #complete
+  get '/meetings/complete' => 'meetings#complete'
   resources :tasks, except: [:index]
        #  tasks POST   /tasks(.:format)           tasks#create
     #  new_task GET    /tasks/new(.:format)       tasks#new
@@ -68,5 +57,7 @@ Rails.application.routes.draw do
             #   PATCH  /tasks/:id(.:format)       tasks#update
             #   PUT    /tasks/:id(.:format)       tasks#update
             #   DELETE /tasks/:id(.:format)       tasks#destroy
+
+  get 'homes/about'
 
 end

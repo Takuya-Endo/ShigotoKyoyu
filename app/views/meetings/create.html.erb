@@ -10,4 +10,9 @@
   <span>チームMTGの内容</span><%= @meeting.introduction %>
 </div>
 
-<%= link_to "上記内容の仕事を追加", new_event_path %><%= link_to "仕事の追加をキャンセル", "/meetings/#{@event.id}", method: :delete %>
+<%= form_with model: @event, url: "/meetings/#{@meeting.id}", local: true do |f| %>
+  <%= f.hidden_field :meeting_id, value: @meeting.id %>
+  <%= f.submit '上記内容の仕事を追加' %>
+<% end %>
+
+<%= link_to "仕事の追加をキャンセル", "/meetings/#{@meeting.id}", method: :delete %>

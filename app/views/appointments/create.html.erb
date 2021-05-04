@@ -18,4 +18,10 @@
   <% end %>
 </div>
 
-<%= link_to "上記内容の仕事を追加", new_event_path %><%= link_to "仕事の追加をキャンセル", "/appointments/#{@event.id}", method: :delete %>
+<%= form_with model: @event, url: "/appointments/#{@appointment.id}", local: true do |f| %>
+  <%= f.hidden_field :appointment_id, value: @appointment.id %>
+  <%= f.hidden_field :end_date, value: @event.start_date + (@event.time_span.hour * 60 * 60) + (@event.time_span.min * 60) + (@event.time_span.sec) %>
+  <%= f.submit '上記内容の仕事を追加' %>
+<% end %>
+
+<%= link_to "仕事の追加をキャンセル", "/appointments/#{@appointment.id}", method: :delete %>

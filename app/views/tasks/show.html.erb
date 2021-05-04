@@ -1,2 +1,20 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>の予定を確認</h3>
+
+<div>
+  <span>仕事の件名</span><%= @task.title %>
+</div>
+<div>
+  <span>仕事の内容</span><%= @task.introduction %>
+</div>
+<div>
+  <span>ステータス</span><%= @task.deadline_status %>
+</div>
+
+<%= form_with model: @event, url: "/tasks/#{@task.id}", loval: true do |f| %>
+  <%= f.hidden_field :task_id, value: @task.id %>
+  <%= f.submit '上記内容の仕事を追加' %>
+<% end %>
+
+<%= link_to "編集", edit_task_path(@task.id) %>
+<%= link_to "完了", "/tasks/complete" %>
+<%= link_to "削除", "/tasks/#{@task.id}", method: :delete, "data-confirm" => "一度削除した予定は復元できません。この予定をカレンダーから削除しますか？" %>

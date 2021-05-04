@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_03_003019) do
+ActiveRecord::Schema.define(version: 2021_05_04_115902) do
 
   create_table "appointments", force: :cascade do |t|
     t.string "event_id", null: false
@@ -51,6 +51,22 @@ ActiveRecord::Schema.define(version: 2021_05_03_003019) do
     t.integer "deadline_status", null: false
     t.string "title", null: false
     t.text "introduction"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "team_members", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "team_id", null: false
+    t.integer "privilege", null: false
+    t.integer "join_status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "team_name", null: false
+    t.integer "numper_of_people", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
