@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  get 'teams/index'
+  get 'teams/show'
+  get 'teams/new'
+  get 'teams/create'
+  get 'teams/edit'
+  get 'teams/update'
+  get 'teams/destroy'
   devise_for :users
         # new_user_session GET    /users/sign_in(.:format)        devise/sessions#new
             # user_session POST   /users/sign_in(.:format)        devise/sessions#create
@@ -59,5 +66,15 @@ Rails.application.routes.draw do
             #   DELETE /tasks/:id(.:format)       tasks#destroy
 
   get 'homes/about'
+
+  resources :teams
+        # teams GET    /teams(.:format)           teams#index
+            #   POST   /teams(.:format)           teams#create
+    #  new_team GET    /teams/new(.:format)       teams#new
+    # edit_team GET    /teams/:id/edit(.:format)  teams#edit
+        #  team GET    /teams/:id(.:format)       teams#show
+            #   PATCH  /teams/:id(.:format)       teams#update
+            #   PUT    /teams/:id(.:format)       teams#update
+            #   DELETE /teams/:id(.:format)       teams#destroy
 
 end

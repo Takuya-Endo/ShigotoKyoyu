@@ -17,6 +17,12 @@
           <ul class="navbar-nav my-2 ml-auto">
             <% if user_signed_in? %>
               <li class="nav-item">
+                <u><%= link_to "個人の仕事", root_path, class: "mr-3 text-secondary" %></u>
+              </li>
+              <li class="nav-item">
+                <u><%= link_to "チームの仕事", teams_path, class: "mr-3 text-secondary" %></u>
+              </li>
+              <li class="nav-item">
                 <u><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "mr-3 text-secondary" %></u>
               </li>
             <% else %>
