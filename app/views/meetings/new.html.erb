@@ -1,5 +1,12 @@
 <h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>にチームMTGの予定を追加</h3>
 
+<% if @event.errors.any? %>
+  <%= @event.errors.count %>件のエラーが発生しました。
+  <% @event.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
 <%= form_with model: @event, url: meetings_path, local: true do |f| %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.label :start_date, "日時" %><%= f.datetime_field :start_date %>

@@ -15,8 +15,13 @@ class TasksController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.save
-    @task = Task.find_by(event_id: @event.id)
+    if @event.save(context: :task_create)
+      @task = Task.find_by(event_id: @event.id)
+    else
+      user = User.find(current_user.id)
+      @teams = user.teams
+      render :new
+    end
   end
 
   def edit

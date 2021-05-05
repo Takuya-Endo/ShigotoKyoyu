@@ -15,8 +15,13 @@ class AppointmentsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.save
-    @appointment = Appointment.find_by(event_id: @event.id)
+    if @event.save(context: :appointment_create)
+      @appointment = Appointment.find_by(event_id: @event.id)
+    else
+      user = User.find(current_user.id)
+      @teams = user.teams
+      render :new
+    end
   end
 
   def edit

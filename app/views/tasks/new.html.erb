@@ -1,5 +1,12 @@
 <h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>にその他の仕事の予定を追加</h3>
 
+<% if @event.errors.any? %>
+  <%= @event.errors.count %>件のエラーが発生しました。
+  <% @event.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
 <%= form_with model: @event, url: tasks_path, local: true do |f| %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :start_date, value: Time.now %>
@@ -15,11 +22,10 @@
     </div>
   <% end %>
 
-  <%= f.label :team_id, "参加者" %>
-  <%= f.radio_button :team_id, "", checked: true %>個人の仕事（自分のみ）
-  <%= f.radio_button :team_id, 0 %>チームの仕事
-  <!--バリデーションチェック-->
-    <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
+  <%= f.label :participant, "参加者" %>
+  <%= f.radio_button :participant, :個人, checked: true %>個人の仕事（自分のみ）
+  <%= f.radio_button :participant, :チーム %>チームの仕事
+  <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
 
   <%= f.submit '入力内容の確認' %>
 <% end %>

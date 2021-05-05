@@ -15,8 +15,13 @@ class MeetingsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.save
-    @meeting = Meeting.find_by(event_id: @event.id)
+    if @event.save(context: :meeting_create)
+      @meeting = Meeting.find_by(event_id: @event.id)
+    else
+      user = User.find(current_user.id)
+      @teams = user.teams
+      render :new
+    end
   end
 
   def edit
