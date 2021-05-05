@@ -8,12 +8,10 @@
 </div>
 <div>
   <span>ステータス</span><%= @task.deadline_status %>
+  <% if @task.deadline_status == "締切あり" %>
+    <%= @event.end_date %>締切
+  <% end %>
 </div>
-
-<%= form_with model: @event, url: "/tasks/#{@task.id}", loval: true do |f| %>
-  <%= f.hidden_field :task_id, value: @task.id %>
-  <%= f.submit '上記内容の仕事を追加' %>
-<% end %>
 
 <%= link_to "編集", edit_task_path(@task.id) %>
 <%= link_to "完了", "/tasks/complete" %>

@@ -7,10 +7,22 @@
     <%= date %>
 
     <% events.each do |event| %>
+
       <% if event.appointment_id.present? %>
         <% appointment = Appointment.find(event.appointment_id) %>
         <%= link_to appointment.destination, appointment_path(appointment.id) %>
       <% end %>
+
+      <% if event.meeting_id.present? %>
+        <% meeting = Meeting.find(event.meeting_id) %>
+        <%= link_to meeting.title, meeting_path(meeting.id) %>
+      <% end %>
+
+      <% if event.task_id.present? %>
+        <% task = Task.find(event.task_id) %>
+        <%= link_to task.title, task_path(task.id) %>
+      <% end %>
+
     <% end %>
 
   <% end %>
@@ -21,11 +33,23 @@
     <%= date %>
 
     <% events.each do |event| %>
-        <% if event.appointment_id.present? %>
-          <% appointment = Appointment.find(event.appointment_id) %>
-          <%= appointment.destination %>
-        <% end %>
+
+      <% if event.appointment_id.present? %>
+        <% appointment = Appointment.find(event.appointment_id) %>
+        <%= appointment.destination %>
       <% end %>
+
+      <% if event.meeting_id.present? %>
+        <% meeting = Meeting.find(event.meeting_id) %>
+        <%= meeting.title %>
+      <% end %>
+
+      <% if event.task_id.present? %>
+        <% task = Task.find(event.task_id) %>
+        <%= task.title %>
+      <% end %>
+
+    <% end %>
 
   <% end %>
 </div>

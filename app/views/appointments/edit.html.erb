@@ -1,9 +1,17 @@
 <h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>にアポイントの予定を編集</h3>
 
+<% if @event.errors.any? %>
+  <%= @event.errors.count %>件のエラーが発生しました。
+  <% @event.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
 <%= form_with model: @event, url: "/appointments/#{@appointment.id}", local: true do |f| %>
+
   <%= f.label :start_date, "日時" %><%= f.datetime_field :start_date %>
   <%= f.label :time_span, "所要時間(目安)" %><%= f.time_select :time_span %>
-  <%= f.fields_for :appointment, @appointment do |g| %>
+  <%= f.fields_for :appointment do |g| %>
     <%= g.label :destination, "訪問先" %><%= g.text_field :destination %>
     <%= g.label :person_in_charge, "担当者" %><%= g.text_field :person_in_charge %>
     <div>
@@ -14,5 +22,11 @@
       <%= g.label :preparation_time, "準備時間" %><%= g.time_select :preparation_time %>
     </div>
   <% end %>
+
+  <%= f.label :participant, "参加者" %>
+  <%= f.radio_button :participant, :個人, checked: true %>自分のみ訪問
+  <%= f.radio_button :participant, :チーム %>チームで訪問
+  <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
+
   <%= f.submit '更新' %>
 <% end %>

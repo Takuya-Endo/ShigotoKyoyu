@@ -8,6 +8,9 @@
 </div>
 <div>
   <span>ステータス</span><%= @task.deadline_status %>
+  <% if @task.deadline_status == "締切あり" %>
+    <%= @event.end_date %>締切
+  <% end %>
 </div>
 <div>
   <span>参加者</span>
@@ -21,6 +24,11 @@
 
 <%= form_with model: @event, url: "/tasks/#{@task.id}", local: true do |f| %>
   <%= f.hidden_field :task_id, value: @task.id %>
+
+  <% unless @event.end_date.present? %>
+    <%= f.hidden_field :end_date, value: @event.start_date.since(3.years) %>
+  <% end %>
+
   <%= f.submit '上記内容の仕事を追加' %>
 <% end %>
 

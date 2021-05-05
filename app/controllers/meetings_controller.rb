@@ -25,6 +25,9 @@ class MeetingsController < ApplicationController
   end
 
   def edit
+    user = User.find(current_user.id)
+    @teams = user.teams
+
     @meeting = Meeting.find(params[:id])
     @event = Event.find(@meeting.event_id)
   end
@@ -32,14 +35,20 @@ class MeetingsController < ApplicationController
   def update
     meeting = Meeting.find(params[:id])
     event = Event.find(meeting.event_id)
-    event.update(update_event_params)
-    redirect_to root_path
+    if event.update(update_event_params)
+      redirect_to root_path
+    else
+      user = User.find(current_user.id)
+      @teams = user.teams
+      render :edit
+    end
   end
 
   def destroy
-    event = Event.find(params[:id])
+    meeting = Meeting.find(params[:id])
+    event = Event.find(meeting.event_id)
     event.destroy
-    redirect_to new_meeting_path
+    redirect_to root_path
   end
 
   def complete
@@ -48,11 +57,11 @@ class MeetingsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user_id, :team_id, :meeting_id, :start_date, :end_date, :time_span, meeting_attributes: [:event_id, :title, :introduction, :created_at, :updated_at])
+    params.require(:event).permit(:user_id, :team_id, :appointment_id, :meeting_id, :task_id, :start_date, :end_date, :time_span, :completed, meeting_attributes: [:event_id, :title, :introduction, :participant, :created_at, :updated_at])
   end
 
   def update_event_params
-    params.require(:event).permit(:user_id, :team_id, :meeting_id, :start_date, :end_date, :time_span, meeting_attributes: [:_destroy, :id, :event_id, :title, :introduction, :created_at, :updated_at])
+    params.require(:event).permit(:user_id, :team_id, :appointment_id, :meeting_id, :task_id, :start_date, :end_date, :time_span, :completed, meeting_attributes: [:_destroy, :id, :event_id, :title, :introduction, :participant, :created_at, :updated_at])
   end
 
 end
