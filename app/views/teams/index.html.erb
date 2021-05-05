@@ -15,10 +15,11 @@
       <td><%= link_to "表示", team_path(team.id) %></td>
       <td>
         <% if team_member.privilege == "○" %>
-          <%= link_to "編集", users_path(team_id: team.id) %></td>
+          <%= link_to "編集", users_path(team_id: team.id) %>
         <% else %>
           <span>―</span>
         <% end %>
+      </td>
       <td>退出</td>
     </tr>
   <% end %>

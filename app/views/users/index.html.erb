@@ -9,7 +9,7 @@
     <tr>
       <td><%= user.last_name %><%= user.first_name%></td>
       <td><%= link_to "表示", user_path(user.id) %></td>
-      <td><%= team_member.privilege %></td>
+      <td><%= team_member.privilege %><%= link_to "変更", change_privilege_confirm_path(team_id: @team.id, user_id: user.id) %></td>
       <td>削除</td>
     </tr>
   <% end %>

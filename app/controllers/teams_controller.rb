@@ -65,6 +65,13 @@ class TeamsController < ApplicationController
     redirect_to users_path(team_id: @team.id)
   end
 
+  def change_privilege_confirm
+    @team = Team.find(params[:team_id])
+    @user = User.find(params[:user_id])
+    @team_members = TeamMember.where(user_id: @user.id)
+    @team_member = @team_members.find_by(team_id: @team.id)
+  end
+
   private
 
   def team_params
