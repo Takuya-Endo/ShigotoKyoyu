@@ -14,5 +14,5 @@
 </div>
 
 <%= link_to "編集", edit_task_path(@task.id) %>
-<%= link_to "完了", "/tasks/complete" %>
+<%= link_to "完了", "/tasks/complete/#{@task.id}" %>
 <%= link_to "削除", "/tasks/#{@task.id}", method: :delete, "data-confirm" => "一度削除した予定は復元できません。この予定をカレンダーから削除しますか？" %>

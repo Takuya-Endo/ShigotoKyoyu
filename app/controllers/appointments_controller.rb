@@ -52,6 +52,8 @@ class AppointmentsController < ApplicationController
   end
 
   def complete
+    @appointment = Appointment.find(params[:id])
+    @event = Event.find(@appointment.event_id)
   end
 
   private

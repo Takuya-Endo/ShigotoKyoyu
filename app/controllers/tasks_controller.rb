@@ -52,6 +52,8 @@ class TasksController < ApplicationController
   end
 
   def complete
+    @task = Task.find(params[:id])
+    @event = Event.find(@task.event_id)
   end
 
   private

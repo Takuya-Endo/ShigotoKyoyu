@@ -52,6 +52,8 @@ class MeetingsController < ApplicationController
   end
 
   def complete
+    @meeting = Meeting.find(params[:id])
+    @event = Event.find(@meeting.event_id)
   end
 
   private

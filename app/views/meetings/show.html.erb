@@ -11,5 +11,5 @@
 </div>
 
 <%= link_to "編集", edit_meeting_path(@meeting.id) %>
-<%= link_to "完了", "/meetings/complete" %>
+<%= link_to "完了", "/meetings/complete/#{@meeting.id}" %>
 <%= link_to "削除", "/meetings/#{@meeting.id}", method: :delete, "data-confirm" => "一度削除した予定は復元できません。この予定をカレンダーから削除しますか？" %>

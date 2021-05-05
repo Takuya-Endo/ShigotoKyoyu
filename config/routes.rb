@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   resources :events, only: [:new]
     # new_event GET    /events/new(.:format)  events#new
 
-  get '/appointments/complete' => 'appointments#complete'
+  get '/appointments/complete/:id' => 'appointments#complete'
   resources :appointments, except: [:index]
         #  appointments POST   /appointments(.:format)           appointments#create
     #   new_appointment GET    /appointments/new(.:format)       appointments#new
@@ -45,7 +45,7 @@ Rails.application.routes.draw do
                     #   PUT    /appointments/:id(.:format)       appointments#update
                     #   DELETE /appointments/:id(.:format)       appointments#destroy
 
-  get '/meetings/complete' => 'meetings#complete'
+  get '/meetings/complete/:id' => 'meetings#complete'
   resources :meetings, except: [:index]
         #  meetings POST   /meetings(.:format)           meetings#create
     #   new_meeting GET    /meetings/new(.:format)       meetings#new
@@ -55,7 +55,7 @@ Rails.application.routes.draw do
                 #   PUT    /meetings/:id(.:format)       meetings#update
                 #   DELETE /meetings/:id(.:format)       meetings#destroy
 
-  get '/meetings/complete' => 'meetings#complete'
+  get '/meetings/complete/:id' => 'meetings#complete'
   resources :tasks, except: [:index]
        #  tasks POST   /tasks(.:format)           tasks#create
     #  new_task GET    /tasks/new(.:format)       tasks#new
