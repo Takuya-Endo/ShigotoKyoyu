@@ -9,6 +9,10 @@
 <div>
   <span>チームMTGの内容</span><%= @meeting.introduction %>
 </div>
+<div>
+  <% team = Team.find(@event.team_id) %>
+  <span>参加者</span>【<%= team.team_name %>】チーム
+</div>
 
 <%= form_with model: @event, url: "/meetings/#{@meeting.id}", local: true do |f| %>
   <%= f.hidden_field :meeting_id, value: @meeting.id %>

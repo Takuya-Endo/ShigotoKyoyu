@@ -6,6 +6,9 @@ class TasksController < ApplicationController
   end
 
   def new
+    user = User.find(current_user.id)
+    @teams = user.teams
+
     @event = Event.new
     @event.build_task
   end
@@ -40,11 +43,11 @@ class TasksController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user_id, :task_id, :start_date, :end_date, :time_span, task_attributes: [:event_id, :deadline_status, :title, :introduction, :created_at, :updated_at])
+    params.require(:event).permit(:user_id, :team_id, :task_id, :start_date, :end_date, :time_span, task_attributes: [:event_id, :deadline_status, :title, :introduction, :created_at, :updated_at])
   end
 
   def update_event_params
-    params.require(:event).permit(:user_id, :task_id, :start_date, :end_date, :time_span, task_attributes: [:_destroy, :id, :event_id, :deadline_status, :title, :introduction, :created_at, :updated_at])
+    params.require(:event).permit(:user_id, :team_id, :task_id, :start_date, :end_date, :time_span, task_attributes: [:_destroy, :id, :event_id, :deadline_status, :title, :introduction, :created_at, :updated_at])
   end
 
 

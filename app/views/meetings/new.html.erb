@@ -8,5 +8,6 @@
     <%= g.label :title, "チームMTGに件名" %><%= g.text_field :title %>
     <%= g.label :introduction, "チームMTGの内容" %><%= g.text_area :introduction, placeholder: "空欄可" %>
   <% end %>
+  <%= f.label :team_id, "参加者" %><%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
   <%= f.submit '入力内容の確認' %>
 <% end %>

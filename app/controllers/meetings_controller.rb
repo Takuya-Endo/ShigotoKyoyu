@@ -6,6 +6,9 @@ class MeetingsController < ApplicationController
   end
 
   def new
+    user = User.find(current_user.id)
+    @teams = user.teams
+
     @event = Event.new
     @event.build_meeting
   end
@@ -40,11 +43,11 @@ class MeetingsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user_id, :meeting_id, :start_date, :end_date, :time_span, meeting_attributes: [:event_id, :title, :introduction, :created_at, :updated_at])
+    params.require(:event).permit(:user_id, :team_id, :meeting_id, :start_date, :end_date, :time_span, meeting_attributes: [:event_id, :title, :introduction, :created_at, :updated_at])
   end
 
   def update_event_params
-    params.require(:event).permit(:user_id, :meeting_id, :start_date, :end_date, :time_span, meeting_attributes: [:_destroy, :id, :event_id, :title, :introduction, :created_at, :updated_at])
+    params.require(:event).permit(:user_id, :team_id, :meeting_id, :start_date, :end_date, :time_span, meeting_attributes: [:_destroy, :id, :event_id, :title, :introduction, :created_at, :updated_at])
   end
 
 end

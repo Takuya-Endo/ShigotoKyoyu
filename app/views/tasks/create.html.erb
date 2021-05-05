@@ -9,6 +9,15 @@
 <div>
   <span>ステータス</span><%= @task.deadline_status %>
 </div>
+<div>
+  <span>参加者</span>
+  <% if @event.team_id.present? %>
+    <% team = Team.find(@event.team_id) %>
+    <span>【<%= team.team_name %>】チームの仕事</span>
+  <% else %>
+    <span>【<%= current_user.last_name %>さん】個人の仕事（自分のみ）</span>
+  <% end %>
+</div>
 
 <%= form_with model: @event, url: "/tasks/#{@task.id}", local: true do |f| %>
   <%= f.hidden_field :task_id, value: @task.id %>

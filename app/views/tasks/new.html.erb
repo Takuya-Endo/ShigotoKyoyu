@@ -14,5 +14,12 @@
       <%= g.radio_button :deadline_status, :手が空いたら %>手が空いたら
     </div>
   <% end %>
+
+  <%= f.label :team_id, "参加者" %>
+  <%= f.radio_button :team_id, "", checked: true %>個人の仕事（自分のみ）
+  <%= f.radio_button :team_id, 0 %>チームの仕事
+  <!--バリデーションチェック-->
+    <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
+
   <%= f.submit '入力内容の確認' %>
 <% end %>
