@@ -1,10 +1,13 @@
 class TeamsController < ApplicationController
 
   def index
-    @teams = Team.all
+    user = User.find(current_user.id)
+    @teams = user.teams
+    @team_members = TeamMember.where(user_id: current_user.id)
   end
 
   def show
+    @team = Team.find(params[:id])
   end
 
   def new

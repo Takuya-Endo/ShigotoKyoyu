@@ -8,9 +8,17 @@
     <tr>
       <td><%= team.team_name %></td>
       <td><%= team.number_of_people %></td>
-      <td></td>
-      <td>表示</td>
-      <td><%= link_to "編集", users_path(team_id: team.id) %></td>
+      <td>
+        <% team_member = @team_members.find_by(team_id: team.id) %>
+        <%= team_member.privilege %>
+      </td>
+      <td><%= link_to "表示", team_path(team.id) %></td>
+      <td>
+        <% if team_member.privilege == "○" %>
+          <%= link_to "編集", users_path(team_id: team.id) %></td>
+        <% else %>
+          <span>―</span>
+        <% end %>
       <td>退出</td>
     </tr>
   <% end %>
