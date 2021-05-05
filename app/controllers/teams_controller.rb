@@ -72,6 +72,12 @@ class TeamsController < ApplicationController
     @team_member = @team_members.find_by(team_id: @team.id)
   end
 
+  def change_privilege_update
+    team_member = TeamMember.find(params[:id])
+    team_member.update(team_member_params)
+    redirect_to teams_path
+  end
+
   private
 
   def team_params

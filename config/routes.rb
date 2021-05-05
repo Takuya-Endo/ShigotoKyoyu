@@ -71,6 +71,7 @@ Rails.application.routes.draw do
   post '/teams/search/:id' => 'teams#search'
   post '/teams/invit' => 'teams#invit'
   get '/teams/change_privilege_confirm' => 'teams#change_privilege_confirm', as: :change_privilege_confirm
+  patch '/teams/change_privilege_update/:id' => 'teams#change_privilege_update'
   resources :teams
         # teams GET    /teams(.:format)           teams#index
             #   POST   /teams(.:format)           teams#create
