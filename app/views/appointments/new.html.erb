@@ -15,5 +15,11 @@
       <%= g.label :preparation_time, "準備時間" %><%= g.time_select :preparation_time %>
     </div>
   <% end %>
+
+  <%= f.label :team_id, "参加者" %><%= f.time_select :time_span %>
+  <%= f.radio_button :team_id, "", checked: true %>自分のみ訪問
+  <%= f.radio_button :team_id, "" %>チームで訪問
+  <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
+
   <%= f.submit '入力内容の確認' %>
 <% end %>

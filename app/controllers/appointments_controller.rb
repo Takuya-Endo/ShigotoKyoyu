@@ -6,6 +6,9 @@ class AppointmentsController < ApplicationController
   end
 
   def new
+    user = User.find(current_user.id)
+    @teams = user.teams
+
     @event = Event.new
     @event.build_appointment
   end
