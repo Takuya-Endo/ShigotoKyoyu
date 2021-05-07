@@ -3,7 +3,7 @@
   <% if @team_members.find_by(user_id: @user.id).present? %>
 
     <p>検索されたメールアドレスは既に【<%= @team.team_name %>】チームに参加しています。</p>
-    <%= link_to "再検索", "/teams/search_box/#{@team.id}" %>
+    <%= link_to "再検索", "/team_members/search_box/#{@team.id}" %>
     <%= link_to "キャンセル", teams_path %>
 
   <% else %>
@@ -26,7 +26,7 @@
 
     <% @team_member = TeamMember.new %>
 
-    <%= form_with model: @team_member, url: "/teams/invit", local: true do |f| %>
+    <%= form_with model: @team_member, url: "/team_members/invit", local: true do |f| %>
       <%= f.hidden_field :user_id, value: @user.id %>
       <%= f.hidden_field :team_id, value: @team.id %>
       <%= f.hidden_field :privilege, value: :× %>
@@ -40,7 +40,7 @@
 <% else %>
 
   <p>検索されたメールアドレスは存在しませんでした。</p>
-  <%= link_to "再検索", "/teams/search_box/#{@team.id}" %>
+  <%= link_to "再検索", "/team_members/search_box/#{@team.id}" %>
   <%= link_to "キャンセル", teams_path %>
 
 <% end %>

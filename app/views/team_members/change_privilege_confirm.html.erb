@@ -5,7 +5,7 @@
 <% if @team_member.privilege == "○" %>
 
   <span>○：権限あり</span>から<span>×：権限なし</span>に変更しますか？
-  <%= form_with model: @team_member, url: "/teams/change_privilege_update/#{@team_member.id}", local: true do |f| %>
+  <%= form_with model: @team_member, url: "/team_members/change_privilege_update/#{@team_member.id}", local: true do |f| %>
     <%= f.hidden_field :privilege, value: "×" %>
     <%= f.submit '変更する' %>
   <% end %>
@@ -14,7 +14,7 @@
 <% else %>
 
   <span>×：権限なし</span>から<span>○：権限あり</span>に変更しますか？
-  <%= form_with model: @team_member, url: "/teams/change_privilege_update/#{@team_member.id}", local: true do |f| %>
+  <%= form_with model: @team_member, url: "/team_members/change_privilege_update/#{@team_member.id}", local: true do |f| %>
     <%= f.hidden_field :privilege, value: "○" %>
     <%= f.submit '変更する' %>
   <% end %>

@@ -1,12 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'teams/index'
-  get 'teams/show'
-  get 'teams/new'
-  get 'teams/create'
-  get 'teams/edit'
-  get 'teams/update'
-  get 'teams/destroy'
   devise_for :users
         # new_user_session GET    /users/sign_in(.:format)        devise/sessions#new
             # user_session POST   /users/sign_in(.:format)        devise/sessions#create
@@ -67,11 +60,6 @@ Rails.application.routes.draw do
 
   get 'homes/about'
 
-  get '/teams/search_box/:id' => 'teams#search_box'
-  post '/teams/search/:id' => 'teams#search'
-  post '/teams/invit' => 'teams#invit'
-  get '/teams/change_privilege_confirm' => 'teams#change_privilege_confirm', as: :change_privilege_confirm
-  patch '/teams/change_privilege_update/:id' => 'teams#change_privilege_update'
   resources :teams
         # teams GET    /teams(.:format)           teams#index
             #   POST   /teams(.:format)           teams#create
@@ -81,5 +69,13 @@ Rails.application.routes.draw do
             #   PATCH  /teams/:id(.:format)       teams#update
             #   PUT    /teams/:id(.:format)       teams#update
             #   DELETE /teams/:id(.:format)       teams#destroy
+
+  get '/team_members/search_box/:id' => 'team_members#search_box'
+  post '/team_members/search/:id' => 'team_members#search'
+  post '/team_members/invit' => 'team_members#invit'
+  get '/team_members/change_privilege_confirm' => 'team_members#change_privilege_confirm', as: :change_privilege_confirm
+  patch '/team_members/change_privilege_update/:id' => 'team_members#change_privilege_update'
+  resources :team_members, only: [:destroy]
+  #   team_member DELETE /team_members/:id(.:format) team_members#destroy
 
 end
