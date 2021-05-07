@@ -4,15 +4,15 @@
   <span>日時</span><%= @event.start_date %><span>所要時間(目安)</span><%= @event.time_span %>
 </div>
 <div>
-  <span>訪問先</span><%= @appointment.destination %>
+  <span>チームMTGの件名</span><%= @meeting.title %>
 </div>
 <div>
-  <span>担当者</span><%= @appointment.person_in_charge %>
+  <span>チームMTGの内容</span><%= @meeting.introduction %>
 </div>
 
-<%= form_with model: @event, url: "/appointments/#{@appointment.id}", local: true do |f| %>
+<%= form_with model: @event, url: "/meetings/#{@meeting.id}", local: true do |f| %>
   <%= f.hidden_field :completed, value: true %>
   <%= f.submit '上記の仕事を対応完了済にする' %>
 <% end %>
 
-<%= link_to "戻る", appointment_path(@appointment.id) %>
+<%= link_to "戻る", meeting_path(@meeting.id) %>

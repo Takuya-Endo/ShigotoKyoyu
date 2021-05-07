@@ -1,2 +1,19 @@
-<h1>Show#edit</h1>
-<p>Find me in app/views/show/edit.html.erb</p>
+<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>のチームMTGの予定を編集</h3>
+
+<% if @event.errors.any? %>
+  <%= @event.errors.count %>件のエラーが発生しました。
+  <% @event.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<%= form_with model: @event, url: "/meetings/#{@meeting.id}", local: true do |f| %>
+  <%= f.label :start_date, "日時" %><%= f.datetime_field :start_date %>
+  <%= f.label :time_span, "所要時間(目安)" %><%= f.time_select :time_span %>
+  <%= f.fields_for :meeting do |g| %>
+    <%= g.label :title, "チームMTGに件名" %><%= g.text_field :title %>
+    <%= g.label :introduction, "チームMTGの内容" %><%= g.text_area :introduction, placeholder: "空欄可" %>
+  <% end %>
+  <%= f.label :team_id, "参加者" %><%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
+  <%= f.submit '更新' %>
+<% end %>

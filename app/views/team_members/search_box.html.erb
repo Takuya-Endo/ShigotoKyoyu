@@ -1,0 +1,8 @@
+<h3>【<%= current_user.last_name %>さん】が参加中している<span>【<%= @team.team_name %>】チーム</span>に新しい参加者を招待</h3>
+
+<p>招待する参加者のメールアドレスで検索してください。</p>
+
+<%= form_with url: "/team_members/search/#{@team.id}", local: true do |f| %>
+  <%= f.label :search, "メールアドレス" %><%= f.email_field :search %>
+  <%= f.submit '新しい参加者を検索' %>
+<% end %>

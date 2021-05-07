@@ -13,4 +13,7 @@
   <% end %>
 </div>
 <div><span>その他</span><%= @user.introduction %></div>
-<%= link_to "編集する", "/users/:current_user/edit" %>
+
+<% if current_user.id == @user.id %>
+  <%= link_to "編集する", "/users/:current_user/edit" %>
+<% end %>

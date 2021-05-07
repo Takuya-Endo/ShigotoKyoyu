@@ -1,0 +1,49 @@
+<h3><span>【<%= current_user.last_name %>さん】が参加中のチーム一覧</span></h3>
+
+<table>
+  <tr>
+    <th>チーム名</th><th>参加人数</th><th>管理者権限</th><th></th><th></th><th></th>
+  </tr>
+  <% @teams.each do |team| %>
+
+    <% team_member = @team_members.find_by(team_id: team.id) %>
+
+    <% if team_member.join_status == "参加済" %>
+
+      <tr>
+        <td><%= team.team_name %></td>
+        <td><%= team.number_of_people %></td>
+        <td><%= team_member.privilege %></td>
+        <td><%= link_to "表示", team_path(team.id) %></td>
+        <td>
+          <% if team_member.privilege == "○" %>
+            <%= link_to "編集", users_path(team_id: team.id) %>
+          <% else %>
+            <span>―</span>
+          <% end %>
+        </td>
+        <td><%= link_to "退出", "/team_members/#{team_member.id}", method: :delete, "data-confirm" => "このチームから退出しますか？" %></td>
+      </tr>
+
+    <% else %>
+
+      <tr>
+          <td><%= team.team_name %></td>
+          <td><%= team.number_of_people %></td>
+          <td>―（招待中）</td>
+          <td>―（招待中）</td>
+          <td>―（招待中）</td>
+          <td>
+            <%= form_with model: team_member, url: "/team_members/change_privilege_update/#{team_member.id}", local: true do |f| %>
+              <%= f.hidden_field :join_status, value: "参加済" %>
+              <%= f.submit '参加' %>
+            <% end %>
+          </td>
+        </tr>
+
+      <% end %>
+
+  <% end %>
+</table>
+
+<%= link_to "新しいチームを作成", new_team_path %>

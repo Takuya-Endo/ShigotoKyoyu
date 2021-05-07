@@ -1,0 +1,21 @@
+<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>の完了処理</h3>
+
+<div>
+  <span>仕事の件名</span><%= @task.title %>
+</div>
+<div>
+  <span>仕事の内容</span><%= @task.introduction %>
+</div>
+<div>
+  <span>ステータス</span><%= @task.deadline_status %>
+  <% if @task.deadline_status == "締切あり" %>
+    <%= @event.end_date %>締切
+  <% end %>
+</div>
+
+<%= form_with model: @event, url: "/tasks/#{@task.id}", local: true do |f| %>
+  <%= f.hidden_field :completed, value: true %>
+  <%= f.submit '上記の仕事を対応完了済にする' %>
+<% end %>
+
+<%= link_to "戻る", task_path(@task.id) %>

@@ -1,2 +1,32 @@
-<h1>Tasks#edit</h1>
-<p>Find me in app/views/tasks/edit.html.erb</p>
+<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>の予定を編集</h3>
+
+<% if @event.errors.any? %>
+  <%= @event.errors.count %>件のエラーが発生しました。
+  <% @event.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<%= form_with model: @event, url: "/tasks/#{@task.id}", local: true do |f| %>
+  <%= f.fields_for :task do |g| %>
+    <%= g.label :title, "仕事の件名" %><%= g.text_field :title %>
+    <%= g.label :introduction, "仕事の内容" %><%= g.text_area :introduction, placeholder: "空欄可" %>
+    <div>
+      <%= g.label :deadline_status, "ステータス" %>
+      <%= g.radio_button :deadline_status, :締切あり %>
+  <% end %>
+  <%= f.datetime_field :end_date %>締切
+  <%= f.fields_for :task do |g| %>
+      <%= g.radio_button :deadline_status, :早急に対応 %>早急に対応
+      <%= g.radio_button :deadline_status, :なるべく早めに %>なるべく早めに
+      <%= g.radio_button :deadline_status, :手が空いたら %>手が空いたら
+    </div>
+  <% end %>
+
+  <%= f.label :participant, "参加者" %>
+  <%= f.radio_button :participant, :個人 %>個人の仕事（自分のみ）
+  <%= f.radio_button :participant, :チーム %>チームの仕事
+  <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
+
+  <%= f.submit '更新' %>
+<% end %>

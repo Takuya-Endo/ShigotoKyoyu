@@ -9,9 +9,14 @@
 <div>
   <span>チームMTGの内容</span><%= @meeting.introduction %>
 </div>
+<div>
+  <% team = Team.find(@event.team_id) %>
+  <span>参加者</span>【<%= team.team_name %>】チーム
+</div>
 
 <%= form_with model: @event, url: "/meetings/#{@meeting.id}", local: true do |f| %>
   <%= f.hidden_field :meeting_id, value: @meeting.id %>
+  <%= f.hidden_field :end_date, value: @event.start_date + (@event.time_span.hour * 60 * 60) + (@event.time_span.min * 60) + (@event.time_span.sec) %>
   <%= f.submit '上記内容の仕事を追加' %>
 <% end %>
 

@@ -1,0 +1,23 @@
+<h3>【<%= current_user.last_name %>さん】が参加している<span>【<%= @team.team_name %>】チーム</span>の管理者権限の変更</h3>
+
+<p><%= @user.last_name %><%= @user.first_name %>さんの管理者権限を</p>
+
+<% if @team_member.privilege == "○" %>
+
+  <span>○：権限あり</span>から<span>×：権限なし</span>に変更しますか？
+  <%= form_with model: @team_member, url: "/team_members/change_privilege_update/#{@team_member.id}", local: true do |f| %>
+    <%= f.hidden_field :privilege, value: "×" %>
+    <%= f.submit '変更する' %>
+  <% end %>
+  <%= link_to "変更しない", users_path(team_id: @team.id) %>
+
+<% else %>
+
+  <span>×：権限なし</span>から<span>○：権限あり</span>に変更しますか？
+  <%= form_with model: @team_member, url: "/team_members/change_privilege_update/#{@team_member.id}", local: true do |f| %>
+    <%= f.hidden_field :privilege, value: "○" %>
+    <%= f.submit '変更する' %>
+  <% end %>
+  <%= link_to "変更しない", users_path(team_id: @team.id) %>
+
+<% end %>

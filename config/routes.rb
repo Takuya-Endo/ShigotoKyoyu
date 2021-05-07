@@ -17,18 +17,18 @@ Rails.application.routes.draw do
                          # DELETE /users(.:format)                devise/registrations#destroy
                          # POST   /users(.:format)                devise/registrations#create
 
-  resources :users, param: :current_user, except: [:new, :create, :destroy]
-      #   users GET    /users(.:format)                     users#index
-    # edit_user GET    /users/:current_user/edit(.:format)  users#edit
-        #  user GET    /users/:current_user(.:format)       users#show
-            #   PATCH  /users/:current_user(.:format)       users#update
-            #   PUT    /users/:current_user(.:format)       users#update
+  resources :users, except: [:new, :create, :destroy]
+        # users GET    /users(.:format)           users#index
+    # edit_user GET    /users/:id/edit(.:format)  users#edit
+        #  user GET    /users/:id(.:format)       users#show
+            #   PATCH  /users/:id(.:format)       users#update
+            #   PUT    /users/:id(.:format)       users#update
 
   root to: 'events#index'
   resources :events, only: [:new]
     # new_event GET    /events/new(.:format)  events#new
 
-  get '/appointments/complete' => 'appointments#complete'
+  get '/appointments/complete/:id' => 'appointments#complete'
   resources :appointments, except: [:index]
         #  appointments POST   /appointments(.:format)           appointments#create
     #   new_appointment GET    /appointments/new(.:format)       appointments#new
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
                     #   PUT    /appointments/:id(.:format)       appointments#update
                     #   DELETE /appointments/:id(.:format)       appointments#destroy
 
-  get '/meetings/complete' => 'meetings#complete'
+  get '/meetings/complete/:id' => 'meetings#complete'
   resources :meetings, except: [:index]
         #  meetings POST   /meetings(.:format)           meetings#create
     #   new_meeting GET    /meetings/new(.:format)       meetings#new
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
                 #   PUT    /meetings/:id(.:format)       meetings#update
                 #   DELETE /meetings/:id(.:format)       meetings#destroy
 
-  get '/meetings/complete' => 'meetings#complete'
+  get '/meetings/complete/:id' => 'meetings#complete'
   resources :tasks, except: [:index]
        #  tasks POST   /tasks(.:format)           tasks#create
     #  new_task GET    /tasks/new(.:format)       tasks#new
@@ -59,5 +59,23 @@ Rails.application.routes.draw do
             #   DELETE /tasks/:id(.:format)       tasks#destroy
 
   get 'homes/about'
+
+  resources :teams
+        # teams GET    /teams(.:format)           teams#index
+            #   POST   /teams(.:format)           teams#create
+    #  new_team GET    /teams/new(.:format)       teams#new
+    # edit_team GET    /teams/:id/edit(.:format)  teams#edit
+        #  team GET    /teams/:id(.:format)       teams#show
+            #   PATCH  /teams/:id(.:format)       teams#update
+            #   PUT    /teams/:id(.:format)       teams#update
+            #   DELETE /teams/:id(.:format)       teams#destroy
+
+  get '/team_members/search_box/:id' => 'team_members#search_box'
+  post '/team_members/search/:id' => 'team_members#search'
+  post '/team_members/invit' => 'team_members#invit'
+  get '/team_members/change_privilege_confirm' => 'team_members#change_privilege_confirm', as: :change_privilege_confirm
+  patch '/team_members/change_privilege_update/:id' => 'team_members#change_privilege_update'
+  resources :team_members, only: [:destroy]
+  #   team_member DELETE /team_members/:id(.:format) team_members#destroy
 
 end

@@ -1,2 +1,31 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h3>【<%= current_user.last_name %>さん】が参加している<span>【<%= @team.team_name %>】チーム</span>の編集</h3>
+
+<table>
+  <tr>
+    <th>【<%= @team.team_name %>】チーム参加者</th><th>参加者プロフィール</th><th>管理者権限</th><th>退出処理</th>
+  </tr>
+  <% @team_members.each do |team_member| %>
+    <% user = User.find(team_member.user_id) %>
+    <tr>
+      <td>
+        <% if team_member.join_status == "参加済" %>
+          <%= user.last_name %><%= user.first_name%>
+        <% else %>
+          <%= user.last_name %><%= user.first_name%>（※招待中）
+        <% end %>
+      </td>
+      <td><%= link_to "表示", user_path(user.id) %></td>
+      <td><%= team_member.privilege %><%= link_to "変更", change_privilege_confirm_path(team_id: @team.id, user_id: user.id) %></td>
+      <td>
+        <% if team_member.user_id == current_user.id %>
+          <%= link_to "退出", "/team_members/#{team_member.id}", method: :delete, "data-confirm" => "このチームから退出しますか？" %>
+        <% else %>
+          <%= link_to "削除", "/team_members/#{team_member.id}", method: :delete, "data-confirm" => "この参加者をチームから削除しますか？" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "新しい参加者を招待", "/team_members/search_box/#{@team.id}" %>
+<%= link_to "チーム名の変更・削除", edit_team_path(@team.id) %>

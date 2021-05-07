@@ -1,0 +1,46 @@
+<% if @user.present? %>
+
+  <% if @team_members.find_by(user_id: @user.id).present? %>
+
+    <p>検索されたメールアドレスは既に【<%= @team.team_name %>】チームに参加しています。</p>
+    <%= link_to "再検索", "/team_members/search_box/#{@team.id}" %>
+    <%= link_to "キャンセル", teams_path %>
+
+  <% else %>
+
+    <h3>【<%= current_user.last_name %>さん】が参加している<span>【<%= @team.team_name %>】チーム</span>に新しい参加者を招待</h3>
+
+    <div><span>氏名</span><%= @user.last_name %><%= @user.first_name %></div>
+    <div><span>フリガナ</span><%= @user.last_name_kana %><%= @user.first_name_kana %></div>
+    <div><span>所属</span><%= @user.department %></div>
+    <div><span>役職</span><%= @user.position %></div>
+    <div>
+      <span>メールアドレス</span>
+      <% if @user.email_is_published == true %>
+        <span><%= @user.email %>※同じチームの参加者に公開中</span>
+      <% else %>
+        <span>※非公開</span>
+      <% end %>
+    </div>
+    <div><span>その他</span><%= @user.introduction %></div>
+
+    <% @team_member = TeamMember.new %>
+
+    <%= form_with model: @team_member, url: "/team_members/invit", local: true do |f| %>
+      <%= f.hidden_field :user_id, value: @user.id %>
+      <%= f.hidden_field :team_id, value: @team.id %>
+      <%= f.hidden_field :privilege, value: :× %>
+      <%= f.hidden_field :join_status, value: :招待中 %>
+      <%= f.submit '上記の参加者を招待' %>
+    <% end %>
+    <%= link_to "キャンセル", teams_path %>
+
+  <% end %>
+
+<% else %>
+
+  <p>検索されたメールアドレスは存在しませんでした。</p>
+  <%= link_to "再検索", "/team_members/search_box/#{@team.id}" %>
+  <%= link_to "キャンセル", teams_path %>
+
+<% end %>

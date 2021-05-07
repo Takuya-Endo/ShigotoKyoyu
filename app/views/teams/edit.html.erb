@@ -1,0 +1,9 @@
+<h3>【<%= current_user.last_name %>さん】が参加している<span>【<%= @team.team_name %>】チーム</span>の編集</h3>
+
+<%= form_with model: @team, url: "/teams/#{@team.id}", local: true do |f| %>
+  <span>チーム名を　　<%= f.text_field :team_name %>　　に変更</span>
+  <%= f.submit '変更する' %>
+<% end %>
+
+<span>【<%= @team.team_name %>】チーム　　を削除する</span>
+<%= link_to "削除する", "/teams/#{@team.id}", method: :delete, "data-confirm" => "参加者全員からこのチームを削除します。一度削除したチームは復元できません。削除しますか。" %>
