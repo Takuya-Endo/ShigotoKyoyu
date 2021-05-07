@@ -11,7 +11,7 @@
         <% week = ["月","火","水","木","金","土","日"] %>
         <% date_range.slice(0, 14).each do |day| %>
           <% weekday = day.strftime("%u").to_i %>
-          <th><%= day.strftime("%-m/%-d(#{week[weekday - 1]})の仕事") %></th>
+          <th><%= day.strftime("%Y年%-m月%-d日(#{week[weekday - 1]})の仕事") %></th>
         <% end %>
       </tr>
     </thead>

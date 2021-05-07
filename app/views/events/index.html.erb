@@ -4,7 +4,7 @@
 
 <div>
   <%= calendar(number_of_days: 1, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
-    <%= date %>
+    <% date %>
 
     <% events.each do |event| %>
 
@@ -30,7 +30,7 @@
 
 <div>
   <%= week_calendar(number_of_weeks: 2, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
-    <%= date %>
+    <% date %>
 
     <% events.each do |event| %>
 
