@@ -3,8 +3,9 @@
 <%= link_to "新しい仕事の予定を追加", new_event_path %>
 
 <div>
-  <%= calendar(number_of_days: 1, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
-    <%= date %>
+  <%#= calendar(number_of_days: 1, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
+  <%= calendar(start_date_param: :main_date, number_of_days: 1, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
+    <% date %>
 
     <% events.each do |event| %>
 
@@ -29,8 +30,8 @@
 </div>
 
 <div>
-  <%= week_calendar(number_of_weeks: 2, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
-    <%= date %>
+  <%= week_calendar(start_date_param: :main_date, number_of_weeks: 2, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
+    <% date %>
 
     <% events.each do |event| %>
 
