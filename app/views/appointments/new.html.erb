@@ -1,4 +1,16 @@
-<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>にアポイントの予定を追加</h3>
+<div class="row">
+  <div class="col-4 col-lg-4 my-3">
+    <div class="row">
+      <div class="col-2 col-lg-2"></div>
+      <%= link_to root_path, class: "btncol-10 col-lg-10 py-1 border border-primary", style: "text-decoration: none;" do %>
+        <h5 class="text-secondary text-center m-0">【<%= current_user.last_name %>さん】個人の仕事</h5>
+      <% end %>
+    </div>
+  </div>
+  <p class="col-8 col-lg-8 my-3 text-secondary d-flex align-items-center">
+    にアポイントの予定を追加
+  </p>
+</div>
 
 <% if @event.errors.any? %>
   <%= @event.errors.count %>件のエラーが発生しました。
@@ -7,13 +19,80 @@
   <% end %>
 <% end %>
 
-<%= form_with model: @event, url: appointments_path, local: true do |f| %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.label :start_date, "日時" %><%= f.datetime_field :start_date %>
-  <%= f.label :time_span, "所要時間(目安)" %><%= f.time_select :time_span %>
-  <%= f.fields_for :appointment, @event.build_appointment do |g| %>
-    <%= g.label :destination, "訪問先" %><%= g.text_field :destination %>
-    <%= g.label :person_in_charge, "担当者" %><%= g.text_field :person_in_charge %>
+
+<div class="row">
+  <div class="col-1 col-lg-1"></div>
+  <div class="col-10 col-lg-10">
+
+    <%= form_with model: @event, url: appointments_path, local: true do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <div class="row my-3">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+          <%= f.label :start_date, "日時" %>
+        </div>
+        <div class="col-7 col-lg-3">
+          <div class="row">
+            <div class="col-1 col-lg-1 p-0"></div>
+            <%= f.datetime_field :start_date, class: "col-11 col-lg-11 form-control" %>
+          </div>
+        </div>
+        <div class="col-12 my-2 d-lg-none"></div>
+        <div class="col-5 col-lg-3">
+          <div class="row">
+            <div class="d-col-none col-lg-1 p-0"></div>
+            <div class="col-12 col-lg-11 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+              <%= f.label :time_span, "所要時間(目安)" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-7 col-lg-3">
+          <div class="row">
+            <div class="col-1 col-lg-1 p-0"></div>
+            <%= f.time_select :time_span, class: "col-11 col-lg-11 form-control" %>
+          </div>
+        </div>
+      </div>
+
+      <%= f.fields_for :appointment, @event.build_appointment do |g| %>
+
+        <div class="row my-3">
+          <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
+            <div class="row">
+              <%= g.label :destination, "訪問先", class: "col-12 col-lg-12 pb-2 form-label", style: "background-color: #e7e6e6;" %>
+              <div class="col-12 col-lg-12 my-2"></div>
+            </div>
+          </div>
+          <div class="col-7 col-lg-9">
+            <div class="row">
+              <div class="col-12 col-lg-12">
+                <%= g.text_field :destination, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-3">
+          <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
+            <div class="row">
+              <%= g.label :person_in_charge, "担当者", class: "col-12 col-lg-12 pb-2 form-label", style: "background-color: #e7e6e6;" %>
+              <div class="col-12 col-lg-12 my-2"></div>
+            </div>
+          </div>
+          <div class="col-7 col-lg-9">
+            <div class="row">
+              <div class="col-12 col-lg-12">
+                <%= g.text_field :person_in_charge, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
     <div>
       <%= g.label :contact_means, "前後の予定" %>
       <%= g.radio_button :contact_means, "訪問", checked: true %>最寄り駅<%= g.text_field :nearest_station %>
@@ -23,10 +102,21 @@
     </div>
   <% end %>
 
+
+
+
+
   <%= f.label :participant, "参加者" %>
   <%= f.radio_button :participant, :個人, checked: true %>自分のみ訪問
   <%= f.radio_button :participant, :チーム %>チームで訪問
   <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
 
   <%= f.submit '入力内容の確認' %>
-<% end %>
+
+
+
+    <% end %>
+
+  </div>
+  <div class="col-1 col-lg-1"></div>
+</div>
