@@ -1,0 +1,42 @@
+<div class="simple-calendar">
+  <div class="calendar-heading">
+    <%= link_to t('simple_calendar.previous', default: '前週'), calendar.url_for_previous_view %>
+    <%# if calendar.number_of_weeks == 1 %>
+      <!--<span class="calendar-title"><%#= t('simple_calendar.week', default: 'Week') %> <%#= calendar.week_number %></span>-->
+    <%# else %>
+      <!--<span class="calendar-title"><%#= t('simple_calendar.week', default: 'Week') %> <%#= calendar.week_number %> - <%#= calendar.end_week %></span>-->
+    <%# end %>
+
+    <span><%= calendar.week_number %> - <%= calendar.end_week %></span>
+
+    <%= link_to t('simple_calendar.next', default: '次週'), calendar.url_for_next_view %>
+  </div>
+
+  <table class="table table-striped" style="table-layout:fixed;">
+    <thead>
+      <tr>
+        <% week = ["月","火","水","木","金","土","日"] %>
+        <% date_range.slice(0, 14).each do |day| %>
+          <% weekday = day.strftime("%u").to_i %>
+          <th><%= link_to day.strftime("%-m/%-d(#{week[weekday - 1]})"), root_path(main_date: day) %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(14) do |week| %>
+        <tr>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
+                <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
+              <% else %>
+                <% passed_block.call day, sorted_events.fetch(day, []) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
