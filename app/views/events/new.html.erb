@@ -1,5 +1,25 @@
-<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>に新しい仕事の予定を追加</h3>
+<div class="row">
+  <div class="col-4 col-lg-4 my-3">
+    <div class="row">
+      <div class="col-2 col-lg-2"></div>
+      <h5 class="col-10 col-lg-10 py-1 text-secondary text-center border border-primary">【<%= current_user.last_name %>さん】個人の仕事</h5>
+    </div>
+  </div>
+  <p class="col-8 col-lg-8 my-3 text-secondary d-flex align-items-center">
+    に新しい仕事の予定を追加
+  </p>
+</div>
 
-<%= link_to "アポイントの予定を追加", new_appointment_path %>
-<%= link_to "チームMTGの予定を追加", new_meeting_path %>
-<%= link_to "その他の仕事の予定を追加", new_task_path %>
+<div class="row">
+  <div class="col-1 col-lg-1 my-5"></div>
+    <div class="col-10 col-lg-10 mb-5">
+      <div class="row">
+        <div class="d-flex flex-lg-row flex-column justify-content-around col-12 col-lg-12">
+          <%= link_to "アポイントの予定を追加", new_appointment_path, class: "btn btn-lg text-white mt-5" , style: "background-color: #8faadc; border-radius: 0;" %>
+          <%= link_to "チームMTGの予定を追加", new_meeting_path, class: "btn btn-lg text-white mt-5" , style: "background-color: #8faadc; border-radius: 0;" %>
+          <%= link_to "その他の仕事の予定を追加", new_task_path, class: "btn btn-lg text-white mt-5" , style: "background-color: #8faadc; border-radius: 0;" %>
+        </div>
+      </div>
+    </div>
+  <div class="col-1 col-lg-1 my-5"></div>
+</div>
