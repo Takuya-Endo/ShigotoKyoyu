@@ -1,12 +1,15 @@
 <h3>【<%= current_user.last_name %>さん】が参加している<span>【<%= @team.team_name %>】チームの仕事</span></h3>
 
+<%= week_calendar(partial: 'simple_calendar/team_calendar_head', start_date_param: :main_date, number_of_weeks: 2) do |date| %>
+  <% date %>
+<% end %>
 
 <% @users.each do |user| %>
 
   <%= user.last_name %>
 
   <% @events = Event.where(user_id: user.id) %>
-  <%= week_calendar(partial: 'simple_calendar/team_calendar', start_date_param: :main_date, number_of_weeks: 2, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
+  <%= week_calendar(partial: 'simple_calendar/team_calendar_body', start_date_param: :main_date, number_of_weeks: 2, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
   <%#= week_calendar(start_date_param: :main_date, number_of_weeks: 2, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
     <% date %>
 
