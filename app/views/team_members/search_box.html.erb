@@ -1,8 +1,56 @@
-<h3>【<%= current_user.last_name %>さん】が参加中している<span>【<%= @team.team_name %>】チーム</span>に新しい参加者を招待</h3>
+<div class="row my-3">
+  <div class="col-8 col-lg-8 d-flex align-items-end">
+    <p class="text-secondary">
+      【<%= current_user.last_name %>さん】が参加している
+    </p>
+    <%= link_to team_path(@team.id), class: "btn mx-2 border border-primary", style: "text-decoration: none; border-radius: 0;" do %>
+      <h5 class="text-secondary text-center">【<%= @team.team_name %>】チーム</h5>
+    <% end %>
+    <p class="text-secondary">
+      に新しい参加者を招待
+    </p>
+  </div>
+  <div class="col-4 col-lg-4"></div>
+</div>
 
-<p>招待する参加者のメールアドレスで検索してください。</p>
 
-<%= form_with url: "/team_members/search/#{@team.id}", local: true do |f| %>
-  <%= f.label :search, "メールアドレス" %><%= f.email_field :search %>
-  <%= f.submit '新しい参加者を検索' %>
-<% end %>
+
+<div class="row">
+
+  <div class="col-12 col-lg-12 text-secondary">
+    招待する参加者のメールアドレスで検索してください。
+  </div>
+
+  <div class="col-1 col-lg-1"></div>
+  <div class="col-10 col-lg-10">
+
+    <%= form_with url: "/team_members/search/#{@team.id}", local: true do |f| %>
+
+      <div class="row my-4">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
+          <div class="row">
+            <%= f.label :search, "メールアドレス", class: "col-12 col-lg-12 pb-2 form-label", style: "background-color: #e7e6e6;" %>
+          </div>
+        </div>
+        <div class="col-7 col-lg-9">
+          <div class="row">
+            <div class="col-12 col-lg-12 form-inline">
+              <%= f.email_field :search, class: "col-6 col-lg-6 form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%= f.hidden_field :number_of_people, value: 1 %>
+
+      <div class="row">
+        <div class="d-flex justify-content-center mt-3 col-12 col-lg-12">
+          <%= f.submit '新しい参加者を検索', class: "btn btn-lg text-white col-5 col-lg-5" , style: "background-color: #8faadc; border-radius: 0;" %>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+  <div class="col-1 col-lg-1"></div>
+</div>

@@ -3,7 +3,7 @@
     <p class="text-secondary">
       【<%= current_user.last_name %>さん】が参加している
     </p>
-    <%= link_to teams_path, class: "btn mx-2 border border-primary", style: "text-decoration: none; border-radius: 0;" do %>
+    <%= link_to team_path(@team.id), class: "btn mx-2 border border-primary", style: "text-decoration: none; border-radius: 0;" do %>
       <h5 class="text-secondary text-center">【<%= @team.team_name %>】チーム</h5>
     <% end %>
     <p class="text-secondary">
