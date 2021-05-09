@@ -92,8 +92,8 @@
       <% end %>
 
       <div class="row my-4">
-        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
-          <%= f.label :team_id, "参加者", class: "col-12 col-lg-12 pb-2 form-label", style: "background-color: #e7e6e6;" %>
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+          <%= f.label :team_id, "参加者", class: "col-12 col-lg-12 form-label" %>
         </div>
         <div class="col-7 col-lg-9">
           <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
