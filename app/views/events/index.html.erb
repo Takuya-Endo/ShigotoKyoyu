@@ -2,6 +2,19 @@
 
 <%= link_to "新しい仕事の予定を追加", new_event_path %>
 
+
+<div class="dropdown">
+  <button class="btn dropdown-toggle text-secondary" data-toggle="dropdown" style="background-color: #dae3f3;">
+    Setting
+  </button>
+  <div class="dropdown-menu">
+    <%= link_to "ユーザ登録情報確認", user_path(current_user.id), class: "dropdown-item text-secondary"%>
+    <%= link_to "参加中のチーム一覧", teams_path, class: "dropdown-item text-secondary"%>
+    <%= link_to "\"仕事共有\"について", '/homes/about', class: "dropdown-item text-secondary"%>
+  </div>
+</div>
+
+
 <div>
   <%#= calendar(number_of_days: 1, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
   <%= calendar(start_date_param: :main_date, number_of_days: 1, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
