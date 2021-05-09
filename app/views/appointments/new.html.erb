@@ -33,8 +33,10 @@
         </div>
         <div class="col-7 col-lg-3">
           <div class="row">
-            <div class="d-col-none col-lg-1 p-0"></div>
-            <%= f.datetime_field :start_date, class: "col-11 col-lg-11 form-control" %>
+            <div class="col-12 col-lg-12">
+              <div class="col-1 col-lg-1 p-0"></div>
+              <%= f.datetime_field :start_date, class: "col-11 col-lg-11 form-control" %>
+            </div>
           </div>
         </div>
         <div class="col-12 my-2 d-lg-none"></div>
@@ -100,11 +102,12 @@
                   <%= g.radio_button :contact_means, "訪問", checked: true, class: "form-check-input" %>
                   <%= g.label :contact_means, "最寄り駅", class: "form-check-label text-secondary" %>
                 </div>
-                <%= g.text_field :nearest_station, class: "col-lg-7 form-control" %>
-                <div class="d-col-none col-lg-1"></div>
+                <%= g.text_field :nearest_station, class: "col-9 col-lg-7 form-control" %>
+                <div class="d-none col-lg-1"></div>
               </div>
-              <div class="col-2 col-lg-2"></div>
+              <div class="col-1 col-lg-2"></div>
               <%= g.label :travel_time, "移動時間", class: "form-label text-secondary" %>
+              <div class="col-1 d-lg-none"></div>
               <%= g.time_select :travel_time %>
             </div>
           </div>
@@ -112,11 +115,14 @@
           <div class="col-7 col-lg-4">
             <div class="row">
               <div class="col-12 col-lg-12 form-check form-check-inline">
+                <div class="col-1 d-lg-none"></div>
                 <%= g.radio_button :contact_means, "オンライン", class: "form-check-input" %>
                 <%= g.label :contact_means, "オンライン", class: "form-check-label text-secondary" %>
               </div>
               <div class="d-col-none col-lg-1"></div>
+              <div class="col-1 d-lg-none"></div>
               <%= g.label :preparation_time, "準備時間", class: "form-label text-secondary" %>
+              <div class="col-1 d-lg-none"></div>
               <%= g.time_select :preparation_time %>
             </div>
           </div>
@@ -132,7 +138,8 @@
         </div>
         <div class="col-7 col-lg-9">
           <div class="row">
-            <div class="d-flex justify-content-around col-12 col-lg-12">
+            <div class="d-flex justify-content-lg-around col-lg-12">
+            <div class="col-12 col-lg-12">
               <div class="form-check form-check-inline">
                 <%= f.radio_button :participant, :個人, checked: true, class: "form-check-input" %>
                 <%= f.label :participant, "自分のみ訪問", class: "form-check-label text-secondary" %>
@@ -142,6 +149,7 @@
                 <%= f.label :participant, "チームで訪問", class: "form-check-label text-secondary" %>
                 <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
               </div>
+            </div>
             </div>
           </div>
         </div>
