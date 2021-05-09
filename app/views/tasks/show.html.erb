@@ -1,18 +1,66 @@
-<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>の予定を確認</h3>
+<div class="row">
+  <div class="col-4 col-lg-4 my-3">
+    <div class="row">
+      <div class="col-2 col-lg-2"></div>
+      <%= link_to root_path, class: "btn col-10 col-lg-10 py-1 border border-primary", style: "text-decoration: none; border-radius: 0;" do %>
+        <h5 class="text-secondary text-center m-0">【<%= current_user.last_name %>さん】個人の仕事</h5>
+      <% end %>
+    </div>
+  </div>
+  <p class="col-8 col-lg-8 my-3 text-secondary d-flex align-items-center">
+    の予定を確認
+  </p>
+</div>
 
-<div>
-  <span>仕事の件名</span><%= @task.title %>
-</div>
-<div>
-  <span>仕事の内容</span><%= @task.introduction %>
-</div>
-<div>
-  <span>ステータス</span><%= @task.deadline_status %>
-  <% if @task.deadline_status == "締切あり" %>
-    <%= @event.end_date %>締切
-  <% end %>
-</div>
+<div class="row">
+  <div class="col-1 col-lg-1"></div>
+  <div class="col-10 col-lg-10">
 
-<%= link_to "編集", edit_task_path(@task.id) %>
-<%= link_to "完了", "/tasks/complete/#{@task.id}" %>
-<%= link_to "削除", "/tasks/#{@task.id}", method: :delete, "data-confirm" => "一度削除した予定は復元できません。この予定をカレンダーから削除しますか？" %>
+    <div class="row my-4">
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">仕事の件名</div>
+      <div class="col-7 col-lg-9 text-secondary"><%= @task.title %></div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">仕事の内容</div>
+      <div class="col-7 col-lg-9 text-secondary"><%= @task.introduction %></div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">ステータス</div>
+      <div class="col-7 col-lg-9 text-secondary">
+        <% if @task.deadline_status == "締切あり" %>
+          <%= @task.deadline_status %>　<%= @event.end_date %>締切
+        <% else %>
+          <%= @task.deadline_status %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">参加者</div>
+      <div class="col-7 col-lg-9 text-secondary">
+        <% if @event.team_id.present? %>
+          <% team = Team.find(@event.team_id) %>
+          【<%= team.team_name %>】チームの仕事</span>
+        <% else %>
+          【<%= current_user.last_name %>さん】個人の仕事（自分のみ）
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-lg-12 mb-5">
+        <div class="row">
+          <div class="d-flex flex-lg-row flex-column justify-content-around col-12 col-lg-12">
+            <%= link_to "編集", edit_task_path(@task.id), class: "btn btn-lg text-white mt-5 col-lg-3" , style: "background-color: #8faadc; border-radius: 0;" %>
+            <%= link_to "完了", "/tasks/complete/#{@task.id}", class: "btn btn-lg text-white mt-5 col-lg-3" , style: "background-color: #8faadc; border-radius: 0;" %>
+            <%= link_to "削除", "/tasks/#{@task.id}", method: :delete, "data-confirm" => "一度削除した予定は復元できません。この予定をカレンダーから削除しますか？", class: "btn btn-lg text-white mt-5 col-lg-3" , style: "background-color: #8faadc; border-radius: 0;" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-1 col-lg-1"></div>
+</div>
