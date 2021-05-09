@@ -1,18 +1,50 @@
-<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span>の完了処理</h3>
+<%= render 'events/complete_head' %>
 
-<div>
-  <span>日時</span><%= @event.start_date %><span>所要時間(目安)</span><%= @event.time_span %>
-</div>
-<div>
-  <span>チームMTGの件名</span><%= @meeting.title %>
-</div>
-<div>
-  <span>チームMTGの内容</span><%= @meeting.introduction %>
-</div>
+<div class="row">
+  <div class="col-1 col-lg-1"></div>
+  <div class="col-10 col-lg-10">
 
-<%= form_with model: @event, url: "/meetings/#{@meeting.id}", local: true do |f| %>
-  <%= f.hidden_field :completed, value: true %>
-  <%= f.submit '上記の仕事を対応完了済にする' %>
-<% end %>
+    <div class="row my-4">
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">日時</div>
+      <div class="col-7 col-lg-3 text-secondary"><%= @event.start_date %></div>
+      <div class="col-12 my-2 d-lg-none"></div>
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">所要時間(目安)</div>
+      <div class="col-7 col-lg-2 text-secondary"><%= @event.time_span %></div>
+    </div>
 
-<%= link_to "戻る", meeting_path(@meeting.id) %>
+    <div class="row my-4">
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">チームMTGの件名</div>
+      <div class="col-7 col-lg-9 text-secondary"><%= @meeting.title %></div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">チームMTGの内容</div>
+      <div class="col-7 col-lg-9 text-secondary"><%= @meeting.introduction %></div>
+    </div>
+
+    <div class="row my-4">
+      <% team = Team.find(@event.team_id) %>
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">参加者</div>
+      <div class="col-7 col-lg-9 text-secondary">【<%= team.team_name %>】チーム</div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-lg-12 my-4">
+        <div class="row">
+          <div class="d-flex flex-lg-row flex-column justify-content-around col-12 col-lg-12">
+            <div class="col-12 col-lg-5 d-flex justify-content-center" style="background-color: #8faadc; border-radius: 0;">
+              <%= form_with model: @event, url: "/meetings/#{@meeting.id}", local: true do |f| %>
+                <%= f.hidden_field :completed, value: true %>
+                <%= f.submit '上記の仕事を対応完了済にする', class: "btn btn-lg text-white" %>
+              <% end %>
+            </div>
+            <div class="col-12 my-2 d-lg-none"></div>
+            <%= link_to "戻る", meeting_path(@meeting.id), class: "btn btn-lg text-white col-lg-5" , style: "background-color: #8faadc; border-radius: 0;" %>
+           </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-1 col-lg-1"></div>
+</div>
