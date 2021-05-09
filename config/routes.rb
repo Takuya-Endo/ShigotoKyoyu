@@ -48,7 +48,7 @@ Rails.application.routes.draw do
                 #   PUT    /meetings/:id(.:format)       meetings#update
                 #   DELETE /meetings/:id(.:format)       meetings#destroy
 
-  get '/meetings/complete/:id' => 'meetings#complete'
+  get '/tasks/complete/:id' => 'tasks#complete'
   resources :tasks, except: [:index]
        #  tasks POST   /tasks(.:format)           tasks#create
     #  new_task GET    /tasks/new(.:format)       tasks#new
