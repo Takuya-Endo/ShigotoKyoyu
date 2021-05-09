@@ -94,13 +94,13 @@
         <div class="col-7 col-lg-6">
           <div class="row">
             <div class="col-1 col-lg-1 my-2"></div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <%= f.radio_button :email_is_published, true, checked: true, class: "custom-control-input" %>
-              <%= f.label :email_is_published, "同じチームの参加者に公開", class: "custom-control-label text-secondary" %>
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :email_is_published, true, checked: true, class: "form-check-input" %>
+              <%= f.label :email_is_published, "同じチームの参加者に公開", class: "form-check-label text-secondary" %>
             </div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <%= f.radio_button :email_is_published, false, class: "custom-control-input" %>
-              <%= f.label :email_is_published, "非公開", class: "custom-control-label text-secondary" %>
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :email_is_published, false, class: "form-check-input" %>
+              <%= f.label :email_is_published, "非公開", class: "form-check-label text-secondary" %>
             </div>
           </div>
         </div>
