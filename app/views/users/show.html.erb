@@ -63,7 +63,7 @@
     <div class="row">
       <div class="d-flex justify-content-center mt-3 col-12 col-lg-12">
         <% if current_user.id == @user.id %>
-          <%= link_to "編集する", "/users/:current_user/edit", class: "col-5 col-lg-5 btn btn-lg text-white" , style: "background-color: #8faadc; border-radius: 0;" %>
+          <%= link_to "編集する", edit_user_path(@user.id), class: "col-5 col-lg-5 btn btn-lg text-white" , style: "background-color: #8faadc; border-radius: 0;" %>
         <% end %>
       </div>
     </div>
