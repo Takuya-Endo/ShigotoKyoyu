@@ -1,69 +1,95 @@
-<h3><span>【<%= current_user.last_name %>さん】個人の仕事</span></h3>
+<div class="row">
+  <div class="col-4 col-lg-4 my-3">
+    <div class="row">
+      <div class="col-2 col-lg-2"></div>
+      <%= link_to root_path, class: "btn col-10 col-lg-10 py-1 border border-primary", style: "text-decoration: none; border-radius: 0;" do %>
+        <h5 class="text-secondary text-center m-0">【<%= current_user.last_name %>さん】個人の仕事</h5>
+      <% end %>
+    </div>
+  </div>
+  <p class="col-8 col-lg-8 my-3 text-secondary d-flex align-items-center">
+  </p>
+</div>
 
-<%= link_to "新しい仕事の予定を追加", new_event_path %>
+<div class="row m-3">
+  <div class="col-8 col-lg-8">
+    <%= calendar(start_date_param: :main_date, number_of_days: 1, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
+      <% date %>
 
+      <% events.each do |event| %>
 
-<div class="dropdown">
-  <button class="btn dropdown-toggle text-secondary" data-toggle="dropdown" style="background-color: #dae3f3;">
-    Setting
-  </button>
-  <div class="dropdown-menu">
-    <%= link_to "ユーザ登録情報確認", user_path(current_user.id), class: "dropdown-item text-secondary"%>
-    <%= link_to "参加中のチーム一覧", teams_path, class: "dropdown-item text-secondary"%>
-    <%= link_to "\"仕事共有\"について", '/homes/about', class: "dropdown-item text-secondary"%>
+        <% if event.appointment_id.present? %>
+          <% appointment = Appointment.find(event.appointment_id) %>
+          <%= link_to appointment.destination, appointment_path(appointment.id) %>
+        <% end %>
+
+        <% if event.meeting_id.present? %>
+          <% meeting = Meeting.find(event.meeting_id) %>
+          <%= link_to meeting.title, meeting_path(meeting.id) %>
+        <% end %>
+
+        <% if event.task_id.present? %>
+          <% task = Task.find(event.task_id) %>
+          <%= link_to task.title, task_path(task.id) %>
+        <% end %>
+
+      <% end %>
+
+    <% end %>
+
+  </div>
+  <div class="col-4 col-lg-4">
+    <div class="row">
+
+      <div class="dropdown d-flex flex-lg-row flex-column justify-content-end col-12 col-lg-12">
+        <button class="btn dropdown-toggle text-secondary" data-toggle="dropdown" style="background-color: #e7e6e6;">
+          Setting
+        </button>
+        <div class="dropdown-menu">
+          <%= link_to "ユーザ登録情報確認", user_path(current_user.id), class: "dropdown-item text-secondary"%>
+          <%= link_to "参加中のチーム一覧", teams_path, class: "dropdown-item text-secondary"%>
+          <%= link_to "\"仕事共有\"について", '/homes/about', class: "dropdown-item text-secondary"%>
+        </div>
+      </div>
+
+      <div class="d-flex flex-lg-row flex-column justify-content-end col-12 col-lg-12">
+        <%= link_to "新しい仕事の予定を追加", new_event_path, class: "btn btn-lg text-white mt-5" , style: "background-color: #8faadc; border-radius: 0;" %>
+      </div>
+
+    </div>
   </div>
 </div>
 
+<div class="row m-3">
 
-<div>
-  <%#= calendar(number_of_days: 1, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
-  <%= calendar(start_date_param: :main_date, number_of_days: 1, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
-    <% date %>
+  <div class="col-1 col-lg-1 text-secondary border border-secondary border-top border-bottom border-right-0 border-left-0 d-flex justify-content-center align-items-center">
+    <%= current_user.last_name %>
+  </div>
 
-    <% events.each do |event| %>
+  <div class="col-11 col-lg-11">
+    <%= week_calendar(start_date_param: :main_date, number_of_weeks: 2, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
+      <% date %>
 
-      <% if event.appointment_id.present? %>
-        <% appointment = Appointment.find(event.appointment_id) %>
-        <%= link_to appointment.destination, appointment_path(appointment.id) %>
-      <% end %>
+      <% events.each do |event| %>
 
-      <% if event.meeting_id.present? %>
-        <% meeting = Meeting.find(event.meeting_id) %>
-        <%= link_to meeting.title, meeting_path(meeting.id) %>
-      <% end %>
+        <% if event.appointment_id.present? %>
+          <% appointment = Appointment.find(event.appointment_id) %>
+          <%= appointment.destination %>
+        <% end %>
 
-      <% if event.task_id.present? %>
-        <% task = Task.find(event.task_id) %>
-        <%= link_to task.title, task_path(task.id) %>
-      <% end %>
+        <% if event.meeting_id.present? %>
+          <% meeting = Meeting.find(event.meeting_id) %>
+          <%= meeting.title %>
+        <% end %>
 
-    <% end %>
+        <% if event.task_id.present? %>
+          <% task = Task.find(event.task_id) %>
+          <%= task.title %>
+        <% end %>
 
-  <% end %>
-</div>
-
-<div>
-  <%= week_calendar(start_date_param: :main_date, number_of_weeks: 2, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
-    <% date %>
-
-    <% events.each do |event| %>
-
-      <% if event.appointment_id.present? %>
-        <% appointment = Appointment.find(event.appointment_id) %>
-        <%= appointment.destination %>
-      <% end %>
-
-      <% if event.meeting_id.present? %>
-        <% meeting = Meeting.find(event.meeting_id) %>
-        <%= meeting.title %>
-      <% end %>
-
-      <% if event.task_id.present? %>
-        <% task = Task.find(event.task_id) %>
-        <%= task.title %>
       <% end %>
 
     <% end %>
+  </div>
 
-  <% end %>
 </div>
