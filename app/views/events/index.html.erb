@@ -20,17 +20,31 @@
 
         <% if event.appointment_id.present? %>
           <% appointment = Appointment.find(event.appointment_id) %>
-          <%= link_to appointment.destination, appointment_path(appointment.id) %>
+          <%= link_to appointment_path(appointment.id) do %>
+            <div class="appointment-schedule text-secondary border border-white" style="background-color: #dae3f3; text-decoration: none;">
+              <div><%= event.start_date.strftime("%-R") %></div>
+              <div><%= appointment.destination %></div>
+            </div>
+          <% end %>
         <% end %>
 
         <% if event.meeting_id.present? %>
           <% meeting = Meeting.find(event.meeting_id) %>
-          <%= link_to meeting.title, meeting_path(meeting.id) %>
+          <%= link_to meeting_path(meeting.id) do %>
+            <div class="meeting-schedule text-secondary border border-white" style="background-color: #dae3f3; text-decoration: none;">
+              <div><%= event.start_date.strftime("%-R") %></div>
+              <div><%= meeting.title %></div>
+            </div>
+          <% end %>
         <% end %>
 
         <% if event.task_id.present? %>
           <% task = Task.find(event.task_id) %>
-          <%= link_to task.title, task_path(task.id) %>
+          <%= link_to task_path(task.id) do %>
+            <div class="task-schedule text-secondary border border-white" style="background-color: #dae3f3; text-decoration: none;">
+              <div><%= task.title %></div>
+            </div>
+          <% end %>
         <% end %>
 
       <% end %>
@@ -73,18 +87,26 @@
       <% events.each do |event| %>
 
         <% if event.appointment_id.present? %>
-          <% appointment = Appointment.find(event.appointment_id) %>
-          <%= appointment.destination %>
+          <div class="appointment-schedule border border-white" style="background-color: #dae3f3;">
+            <% appointment = Appointment.find(event.appointment_id) %>
+            <div><%= event.start_date.strftime("%-R") %></div>
+            <div><%= appointment.destination %></div>
+          </div>
         <% end %>
 
         <% if event.meeting_id.present? %>
-          <% meeting = Meeting.find(event.meeting_id) %>
-          <%= meeting.title %>
+          <div class="meeting-schedule border border-white" style="background-color: #dae3f3;">
+            <% meeting = Meeting.find(event.meeting_id) %>
+            <div><%= event.start_date.strftime("%-R") %></div>
+            <div><%= meeting.title %></div>
+          </div>
         <% end %>
 
         <% if event.task_id.present? %>
-          <% task = Task.find(event.task_id) %>
-          <%= task.title %>
+          <div class="task-schedule border border-white" style="background-color: #dae3f3;">
+            <% task = Task.find(event.task_id) %>
+            <div><%= task.title %></div>
+          </div>
         <% end %>
 
       <% end %>

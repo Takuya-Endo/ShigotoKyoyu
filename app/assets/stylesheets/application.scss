@@ -18,7 +18,9 @@
 @import "simple_calendar";
 
 .simple-calendar {
-  .day {}
+  .day {
+    background-color: #ffffff;
+  }
 
   .wday-0 {}
   .wday-1 {}
