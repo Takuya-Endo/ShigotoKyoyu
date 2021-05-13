@@ -34,7 +34,7 @@
 
   <div class="calendar-heading">
     <u><%= link_to t('simple_calendar.previous', default: '前週'), calendar.url_for_previous_view, class: "text-secondary" %></u>
-    <span><%= calendar.week_number %> - <%= calendar.end_week.d %></span>
+    <span><%= calendar.week_number %> - <%= calendar.end_week %></span>
     <u><%= link_to t('simple_calendar.next', default: '次週'), calendar.url_for_next_view, class: "text-secondary" %></u>
   </div>
 
