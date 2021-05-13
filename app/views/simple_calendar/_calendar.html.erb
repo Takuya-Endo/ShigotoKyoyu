@@ -27,11 +27,32 @@
                 <% passed_block.call day, sorted_events.fetch(day, []) %>
               <% end %>
             <% end %>
+            </tbody>
+             </table>
+
+
+<% if day.strftime("%a") == "Sun" %>
+<span>↓</span>
+<% elsif day.strftime("%a") == "Mon" %>
+<span>　　↓</span>
+<% elsif day.strftime("%a") == "Tue" %>
+<span>　　　　↓</span>
+<% elsif day.strftime("%a") == "Wed" %>
+<span>　　　　　　↓</span>
+<% elsif day.strftime("%a") == "Thu" %>
+<span>　　　　　　　　↓</span>
+<% elsif day.strftime("%a") == "Fri" %>
+<span>　　　　　　　　　　↓</span>
+<% elsif day.strftime("%a") == "Sat" %>
+<span>　　　　　　　　　　　　↓</span>
+<% end %>
+
+
           <% end %>
         <% end %>
       <% end %>
-    </tbody>
-  </table>
+
+
 </div>
 
 
