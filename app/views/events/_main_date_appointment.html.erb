@@ -3,7 +3,11 @@
     <div class="col-12 col-lg-1">
       <div class="row">
         <div class="col-12 col-lg-6 p-0" style="background-color: #dae3f3; text-decoration: none;">
-          <div><%= event.start_date.strftime("%-R") %></div>
+          <div><%= event.start_date.strftime("%-R") %>-<%= event.end_date.strftime("%-R") %></div>
+          <div>
+            (<%= (event.start_date - ((appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec))).strftime("%-R") %>
+            -<%= (event.end_date + (appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec)).strftime("%-R") %>)
+          </div>
           <div><%= appointment.destination %></div>
         </div>
       </div>
@@ -12,56 +16,88 @@
 <% elsif event.time_span.strftime("%-H") == "1" %>
   <div class="row px-3">
     <div class="col-12 col-lg-1 p-0" style="background-color: #dae3f3; text-decoration: none;">
-      <div><%= event.start_date.strftime("%-R") %></div>
+      <div><%= event.start_date.strftime("%-R") %>-<%= event.end_date.strftime("%-R") %></div>
+      <div>
+        (<%= (event.start_date - ((appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec))).strftime("%-R") %>
+        -<%= (event.end_date + (appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec)).strftime("%-R") %>)
+      </div>
       <div><%= appointment.destination %></div>
     </div>
   </div>
 <% elsif event.time_span.strftime("%-H") == "2" %>
   <div class="row px-3">
     <div class="col-12 col-lg-2 p-0" style="background-color: #dae3f3; text-decoration: none;">
-      <div><%= event.start_date.strftime("%-R") %></div>
+      <div><%= event.start_date.strftime("%-R") %>-<%= event.end_date.strftime("%-R") %></div>
+      <div>
+        (<%= (event.start_date - ((appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec))).strftime("%-R") %>
+        -<%= (event.end_date + (appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec)).strftime("%-R") %>)
+      </div>
       <div><%= appointment.destination %></div>
     </div>
   </div>
 <% elsif event.time_span.strftime("%-H") == "3" %>
   <div class="row px-3">
     <div class="col-12 col-lg-3 p-0" style="background-color: #dae3f3; text-decoration: none;">
-      <div><%= event.start_date.strftime("%-R") %></div>
+      <div><%= event.start_date.strftime("%-R") %>-<%= event.end_date.strftime("%-R") %></div>
+      <div>
+        (<%= (event.start_date - ((appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec))).strftime("%-R") %>
+        -<%= (event.end_date + (appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec)).strftime("%-R") %>)
+      </div>
       <div><%= appointment.destination %></div>
     </div>
   </div>
 <% elsif event.time_span.strftime("%-H") == "4" %>
   <div class="row px-3">
     <div class="col-12 col-lg-4 p-0" style="background-color: #dae3f3; text-decoration: none;">
-      <div><%= event.start_date.strftime("%-R") %></div>
+      <div><%= event.start_date.strftime("%-R") %>-<%= event.end_date.strftime("%-R") %></div>
+      <div>
+        (<%= (event.start_date - ((appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec))).strftime("%-R") %>
+        -<%= (event.end_date + (appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec)).strftime("%-R") %>)
+      </div>
       <div><%= appointment.destination %></div>
     </div>
   </div>
 <% elsif event.time_span.strftime("%-H") == "5" %>
   <div class="row px-3">
     <div class="col-12 col-lg-5 p-0" style="background-color: #dae3f3; text-decoration: none;">
-      <div><%= event.start_date.strftime("%-R") %></div>
+      <div><%= event.start_date.strftime("%-R") %>-<%= event.end_date.strftime("%-R") %></div>
+      <div>
+        (<%= (event.start_date - ((appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec))).strftime("%-R") %>
+        -<%= (event.end_date + (appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec)).strftime("%-R") %>)
+      </div>
       <div><%= appointment.destination %></div>
     </div>
   </div>
 <% elsif event.time_span.strftime("%-H") == "6" %>
   <div class="row px-3">
     <div class="col-12 col-lg-6 p-0" style="background-color: #dae3f3; text-decoration: none;">
-      <div><%= event.start_date.strftime("%-R") %></div>
+      <div><%= event.start_date.strftime("%-R") %>-<%= event.end_date.strftime("%-R") %></div>
+      <div>
+        (<%= (event.start_date - ((appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec))).strftime("%-R") %>
+        -<%= (event.end_date + (appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec)).strftime("%-R") %>)
+      </div>
       <div><%= appointment.destination %></div>
     </div>
   </div>
 <% elsif event.time_span.strftime("%-H") == "7" %>
   <div class="row px-3">
     <div class="col-12 col-lg-7 p-0" style="background-color: #dae3f3; text-decoration: none;">
-      <div><%= event.start_date.strftime("%-R") %></div>
+      <div><%= event.start_date.strftime("%-R") %>-<%= event.end_date.strftime("%-R") %></div>
+      <div>
+        (<%= (event.start_date - ((appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec))).strftime("%-R") %>
+        -<%= (event.end_date + (appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec)).strftime("%-R") %>)
+      </div>
       <div><%= appointment.destination %></div>
     </div>
   </div>
 <% elsif event.time_span.strftime("%-H") == "8" %>
   <div class="row px-3">
     <div class="col-12 col-lg-8 p-0" style="background-color: #dae3f3; text-decoration: none;">
-      <div><%= event.start_date.strftime("%-R") %></div>
+      <div><%= event.start_date.strftime("%-R") %>-<%= event.end_date.strftime("%-R") %></div>
+      <div>
+        (<%= (event.start_date - ((appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec))).strftime("%-R") %>
+        -<%= (event.end_date + (appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec)).strftime("%-R") %>)
+      </div>
       <div><%= appointment.destination %></div>
     </div>
   </div>
@@ -69,27 +105,43 @@
   <div class="row px-3">
     <div class="col-12 col-lg-9 p-0" style="background-color: #dae3f3; text-decoration: none;">
       <div><%= event.start_date.strftime("%-R") %></div>
+      <div>
+        (<%= (event.start_date - ((appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec))).strftime("%-R") %>
+        -<%= (event.end_date + (appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec)).strftime("%-R") %>)
+      </div>
       <div><%= appointment.destination %></div>
     </div>
   </div>
 <% elsif event.time_span.strftime("%-H") == "10" %>
   <div class="row px-3">
     <div class="col-12 col-lg-10 p-0" style="background-color: #dae3f3; text-decoration: none;">
-      <div><%= event.start_date.strftime("%-R") %></div>
+      <div><%= event.start_date.strftime("%-R") %>-<%= event.end_date.strftime("%-R") %></div>
+      <div>
+        (<%= (event.start_date - ((appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec))).strftime("%-R") %>
+        -<%= (event.end_date + (appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec)).strftime("%-R") %>)
+      </div>
       <div><%= appointment.destination %></div>
     </div>
   </div>
 <% elsif event.time_span.strftime("%-H") == "11" %>
   <div class="row px-3">
     <div class="col-12 col-lg-11 p-0" style="background-color: #dae3f3; text-decoration: none;">
-      <div><%= event.start_date.strftime("%-R") %></div>
+      <div><%= event.start_date.strftime("%-R") %>-<%= event.end_date.strftime("%-R") %></div>
+      <div>
+        (<%= (event.start_date - ((appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec))).strftime("%-R") %>
+        -<%= (event.end_date + (appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec)).strftime("%-R") %>)
+      </div>
       <div><%= appointment.destination %></div>
     </div>
   </div>
 <% elsif event.time_span.strftime("%-H") == "12" %>
   <div class="row px-3">
     <div class="col-12 col-lg-12 p-0" style="background-color: #dae3f3; text-decoration: none;">
-      <div><%= event.start_date.strftime("%-R") %></div>
+      <div><%= event.start_date.strftime("%-R") %>-<%= event.end_date.strftime("%-R") %></div>
+      <div>
+        (<%= (event.start_date - ((appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec))).strftime("%-R") %>
+        -<%= (event.end_date + (appointment.preparation_time.hour * 60 * 60) + (appointment.preparation_time.min * 60) + (appointment.preparation_time.sec)).strftime("%-R") %>)
+      </div>
       <div><%= appointment.destination %></div>
     </div>
   </div>
