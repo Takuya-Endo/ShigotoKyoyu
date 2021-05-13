@@ -26,13 +26,12 @@
             </div>
           <% end %>
         <% end %>
-        
+
         <% if event.meeting_id.present? %>
           <% meeting = Meeting.find(event.meeting_id) %>
           <%= link_to meeting_path(meeting.id) do %>
-            <div class="meeting-schedule text-secondary m-1" style="background-color: #dae3f3; text-decoration: none;">
-              <div><%= event.start_date.strftime("%-R") %></div>
-              <div><%= meeting.title %></div>
+            <div class="meeting-schedule text-secondary m-1">
+              <%= render 'events/main_date_meeting', event:event, meeting:meeting %>
             </div>
           <% end %>
         <% end %>
