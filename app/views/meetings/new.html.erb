@@ -28,32 +28,23 @@
 
       <div class="row my-4">
         <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
-          <%= f.label :start_date, "日時" %>
+          <%= f.label :start_date, "日時", class: "col-12 col-lg-12 pb-2 form-label" %>
         </div>
-        <div class="col-7 col-lg-3">
+        <div class="col-7 col-lg-9">
           <div class="row">
             <div class="col-12 col-lg-12">
-              <div class="col-1 col-lg-1 p-0"></div>
-              <%= f.datetime_field :start_date, class: "col-11 col-lg-11 form-control" %>
+              <%= f.datetime_field :start_date, class: "form-control" %>
             </div>
           </div>
         </div>
-        <div class="col-12 my-2 d-lg-none"></div>
-        <div class="col-5 col-lg-3">
-          <div class="row">
-            <div class="d-col-none col-lg-1 p-0"></div>
-            <div class="col-12 col-lg-11 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
-              <%= f.label :time_span, "所要時間(目安)" %>
-            </div>
-          </div>
+      </div>
+
+      <div class="row my-4 form-inline">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+          <%= f.label :time_span, "所要時間(目安)", class: "col-12 col-lg-12 pb-2 form-label" %>
         </div>
-        <div class="col-7 col-lg-3">
-          <div class="row">
-            <div class="col-12 col-lg-12">
-              <div class="col-1 col-lg-1 p-0"></div>
-              <%= f.time_select :time_span, class: "col-11 col-lg-11 form-control" %>
-            </div>
-          </div>
+        <div class="col-7 col-lg-9">
+              <%= f.time_select :time_span, {default: Date.today + 0.hours + 30.minutes, minute_step: 15}, class: "form-control" %>
         </div>
       </div>
 
@@ -96,7 +87,7 @@
           <%= f.label :team_id, "参加者", class: "col-12 col-lg-12 form-label" %>
         </div>
         <div class="col-7 col-lg-9">
-          <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
+          <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}, class: "form-control") %>
         </div>
       </div>
 

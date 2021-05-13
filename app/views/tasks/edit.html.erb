@@ -110,7 +110,7 @@
               <div class="form-check form-check-inline">
                 <%= f.radio_button :participant, :チーム, class: "form-check-input" %>
                 <%= f.label :participant, "チームの仕事", class: "form-check-label text-secondary" %>
-                <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
+                <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}, class: "form-control") %>
               </div>
             </div>
             </div>
