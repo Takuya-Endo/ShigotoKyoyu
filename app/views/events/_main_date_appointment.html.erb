@@ -1,5 +1,14 @@
 <div class="row px-3">
 
+  <% if (event.start_date.strftime("%-M") == "30") || (event.start_date.strftime("%-M") == "45") %>
+    <div class="col-12 col-lg-1">
+      <div class="row">
+        <div class="col-12 col-lg-6 p-0">
+        </div>
+      </div>
+    </div>
+  <% end %>
+
   <% if event.start_date.strftime("%-H") == "8" %>
   <% elsif event.start_date.strftime("%-H") == "9" %>
     <div class="col-12 col-lg-1 p-0"></div>
@@ -22,8 +31,6 @@
   <% elsif event.start_date.strftime("%-H") == "18" %>
     <div class="col-12 col-lg-10 p-0"></div>
   <% end %>
-
-
 
   <% if appointment.contact_means == "訪問" %>
 
