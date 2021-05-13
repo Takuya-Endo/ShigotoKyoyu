@@ -1,39 +1,31 @@
 <div class="row px-3">
 
-  <% if appointment.contact_means == "訪問" %>
+  <% if event.start_date.strftime("%-H") == "8" %>
+  <% elsif event.start_date.strftime("%-H") == "9" %>
+    <div class="col-12 col-lg-1 p-0"></div>
+  <% elsif event.start_date.strftime("%-H") == "10" %>
+    <div class="col-12 col-lg-2 p-0"></div>
+  <% elsif event.start_date.strftime("%-H") == "11" %>
+    <div class="col-12 col-lg-3 p-0"></div>
+  <% elsif event.start_date.strftime("%-H") == "12" %>
+    <div class="col-12 col-lg-4 p-0"></div>
+  <% elsif event.start_date.strftime("%-H") == "13" %>
+    <div class="col-12 col-lg-5 p-0"></div>
+  <% elsif event.start_date.strftime("%-H") == "14" %>
+    <div class="col-12 col-lg-6 p-0"></div>
+  <% elsif event.start_date.strftime("%-H") == "15" %>
+    <div class="col-12 col-lg-7 p-0"></div>
+  <% elsif event.start_date.strftime("%-H") == "16" %>
+    <div class="col-12 col-lg-8 p-0"></div>
+  <% elsif event.start_date.strftime("%-H") == "17" %>
+    <div class="col-12 col-lg-9 p-0"></div>
+  <% elsif event.start_date.strftime("%-H") == "18" %>
+    <div class="col-12 col-lg-10 p-0"></div>
+  <% end %>
 
-    <% if appointment.travel_time.strftime("%-H") == "0" %>
-        <div class="col-12 col-lg-1">
-          <div class="row">
-            <div class="col-12 col-lg-6 p-0">　</div>
-            <div class="col-12 col-lg-6 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-          </div>
-        </div>
-    <% elsif appointment.travel_time.strftime("%-H") == "1" %>
-        <div class="col-12 col-lg-1 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "2" %>
-        <div class="col-12 col-lg-2 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "3" %>
-        <div class="col-12 col-lg-3 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "4" %>
-        <div class="col-12 col-lg-4 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "5" %>
-        <div class="col-12 col-lg-5 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "6" %>
-        <div class="col-12 col-lg-6 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "7" %>
-        <div class="col-12 col-lg-7 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "8" %>
-        <div class="col-12 col-lg-8 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "9" %>
-        <div class="col-12 col-lg-9 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "10" %>
-        <div class="col-12 col-lg-10 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "11" %>
-        <div class="col-12 col-lg-11 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "12" %>
-        <div class="col-12 col-lg-12 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% end %>
+
+
+  <% if appointment.contact_means == "訪問" %>
 
     <% if event.time_span.strftime("%-H") == "0" %>
       <div class="col-12 col-lg-1">
@@ -46,7 +38,6 @@
             </div>
             <div><%= appointment.destination %></div>
           </div>
-          <div class="col-12 col-lg-6 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
         </div>
       </div>
     <% elsif event.time_span.strftime("%-H") == "1" %>
@@ -159,68 +150,7 @@
       </div>
     <% end %>
 
-    <% if appointment.travel_time.strftime("%-H") == "0" %>
-        <div class="col-12 col-lg-1 p-0"></div>
-    <% elsif appointment.travel_time.strftime("%-H") == "1" %>
-        <div class="col-12 col-lg-1 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "2" %>
-        <div class="col-12 col-lg-2 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "3" %>
-        <div class="col-12 col-lg-3 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "4" %>
-        <div class="col-12 col-lg-4 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "5" %>
-        <div class="col-12 col-lg-5 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "6" %>
-        <div class="col-12 col-lg-6 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "7" %>
-        <div class="col-12 col-lg-7 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "8" %>
-        <div class="col-12 col-lg-8 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "9" %>
-        <div class="col-12 col-lg-9 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "10" %>
-        <div class="col-12 col-lg-10 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "11" %>
-        <div class="col-12 col-lg-11 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.travel_time.strftime("%-H") == "12" %>
-        <div class="col-12 col-lg-12 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% end %>
-
   <% else %>
-
-    <% if appointment.preparation_time.strftime("%-H") == "0" %>
-        <div class="col-12 col-lg-1">
-          <div class="row">
-            <div class="col-12 col-lg-6 p-0">　</div>
-            <div class="col-12 col-lg-6 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-          </div>
-        </div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "1" %>
-        <div class="col-12 col-lg-1 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "2" %>
-        <div class="col-12 col-lg-2 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "3" %>
-        <div class="col-12 col-lg-3 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "4" %>
-        <div class="col-12 col-lg-4 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "5" %>
-        <div class="col-12 col-lg-5 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "6" %>
-        <div class="col-12 col-lg-6 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "7" %>
-        <div class="col-12 col-lg-7 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "8" %>
-        <div class="col-12 col-lg-8 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "9" %>
-        <div class="col-12 col-lg-9 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "10" %>
-        <div class="col-12 col-lg-10 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "11" %>
-        <div class="col-12 col-lg-11 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "12" %>
-        <div class="col-12 col-lg-12 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% end %>
 
     <% if event.time_span.strftime("%-H") == "0" %>
       <div class="col-12 col-lg-1">
@@ -233,7 +163,6 @@
             </div>
             <div><%= appointment.destination %></div>
           </div>
-          <div class="col-12 col-lg-6 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
         </div>
       </div>
     <% elsif event.time_span.strftime("%-H") == "1" %>
@@ -344,34 +273,6 @@
         </div>
         <div><%= appointment.destination %></div>
       </div>
-    <% end %>
-
-    <% if appointment.preparation_time.strftime("%-H") == "0" %>
-        <div class="col-12 col-lg-1 p-0"></div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "1" %>
-        <div class="col-12 col-lg-1 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "2" %>
-        <div class="col-12 col-lg-2 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "3" %>
-        <div class="col-12 col-lg-3 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "4" %>
-        <div class="col-12 col-lg-4 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "5" %>
-        <div class="col-12 col-lg-5 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "6" %>
-        <div class="col-12 col-lg-6 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "7" %>
-        <div class="col-12 col-lg-7 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "8" %>
-        <div class="col-12 col-lg-8 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "9" %>
-        <div class="col-12 col-lg-9 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "10" %>
-        <div class="col-12 col-lg-10 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "11" %>
-        <div class="col-12 col-lg-11 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
-    <% elsif appointment.preparation_time.strftime("%-H") == "12" %>
-        <div class="col-12 col-lg-12 p-0" style="background-color: #f0f4fa; text-decoration: none;">　</div>
     <% end %>
 
   <% end %>
