@@ -52,7 +52,7 @@
           <div class="row">
             <div class="col-12 col-lg-12">
               <div class="col-1 col-lg-1 p-0"></div>
-              <%= f.time_select :time_span, class: "col-11 col-lg-11 form-control" %>
+              <%= f.time_select :time_span, {default: Date.today + 0.hours + 30.minutes, minute_step: 15}, class: "col-11 col-lg-11 form-control" %>
             </div>
           </div>
         </div>
@@ -108,7 +108,7 @@
               <div class="col-1 col-lg-2"></div>
               <%= g.label :travel_time, "移動時間", class: "form-label text-secondary" %>
               <div class="col-1 d-lg-none"></div>
-              <%= g.time_select :travel_time %>
+              <%= g.time_select :travel_time, {default: Date.today + 0.hours + 30.minutes, minute_step: 15}, class: "form-control" %>
             </div>
           </div>
           <div class="col-12 my-2 d-lg-none"></div>
@@ -124,7 +124,7 @@
               <div class="col-1 d-lg-none"></div>
               <%= g.label :preparation_time, "準備時間", class: "form-label text-secondary" %>
               <div class="col-1 d-lg-none"></div>
-              <%= g.time_select :preparation_time %>
+              <%= g.time_select :preparation_time, {default: Date.today + 0.hours + 30.minutes, minute_step: 15}, class: "form-control" %>
             </div>
           </div>
         </div>
@@ -148,7 +148,7 @@
               <div class="form-check form-check-inline">
                 <%= f.radio_button :participant, :チーム, class: "form-check-input" %>
                 <%= f.label :participant, "チームで訪問", class: "form-check-label text-secondary" %>
-                <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}) %>
+                <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}, class: "form-control") %>
               </div>
             </div>
             </div>
