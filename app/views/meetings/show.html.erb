@@ -40,17 +40,19 @@
       <div class="col-7 col-lg-9 text-secondary">【<%= team.team_name %>】チーム</div>
     </div>
 
-    <div class="row">
-      <div class="col-12 col-lg-12 mb-5">
-        <div class="row">
-          <div class="d-flex flex-lg-row flex-column justify-content-around col-12 col-lg-12">
-            <%= link_to "編集", edit_meeting_path(@meeting.id), class: "btn btn-lg text-white mt-5 col-lg-3" , style: "background-color: #8faadc; border-radius: 0;" %>
-            <%= link_to "完了", "/meetings/complete/#{@meeting.id}", class: "btn btn-lg text-white mt-5 col-lg-3" , style: "background-color: #8faadc; border-radius: 0;" %>
-            <%= link_to "削除", "/meetings/#{@meeting.id}", method: :delete, "data-confirm" => "一度削除した予定は復元できません。この予定をカレンダーから削除しますか？", class: "btn btn-lg text-white mt-5 col-lg-3" , style: "background-color: #8faadc; border-radius: 0;" %>
+    <% if @event.completed == false %>
+      <div class="row">
+        <div class="col-12 col-lg-12 mb-5">
+          <div class="row">
+            <div class="d-flex flex-lg-row flex-column justify-content-around col-12 col-lg-12">
+              <%= link_to "編集", edit_meeting_path(@meeting.id), class: "btn btn-lg text-white mt-5 col-lg-3" , style: "background-color: #8faadc; border-radius: 0;" %>
+              <%= link_to "完了", "/meetings/complete/#{@meeting.id}", class: "btn btn-lg text-white mt-5 col-lg-3" , style: "background-color: #8faadc; border-radius: 0;" %>
+              <%= link_to "削除", "/meetings/#{@meeting.id}", method: :delete, "data-confirm" => "一度削除した予定は復元できません。この予定をカレンダーから削除しますか？", class: "btn btn-lg text-white mt-5 col-lg-3" , style: "background-color: #8faadc; border-radius: 0;" %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
 
   </div>
   <div class="col-1 col-lg-1"></div>
