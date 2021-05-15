@@ -44,6 +44,7 @@
             <div class="col-12 col-lg-5 d-flex justify-content-center" style="background-color: #8faadc; border-radius: 0;">
               <%= form_with model: @event, url: "/tasks/#{@task.id}", local: true do |f| %>
                 <%= f.hidden_field :completed, value: true %>
+                <%= f.hidden_field :end_date, value: Time.now %>
                 <%= f.submit '上記の仕事を対応完了済にする', class: "btn btn-lg text-white" %>
               <% end %>
             </div>
