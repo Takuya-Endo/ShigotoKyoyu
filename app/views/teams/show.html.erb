@@ -29,7 +29,7 @@
     </div>
 
     <div class="col-11 col-lg-11">
-      <% @events = Event.where(user_id: user.id) %>
+      <% @events = Event.where("(user_id = ?) OR (team_id = ?)", user.id, @team) %>
       <%= week_calendar(partial: 'simple_calendar/team_calendar_body', start_date_param: :main_date, number_of_weeks: 2, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
       <%#= week_calendar(start_date_param: :main_date, number_of_weeks: 2, attribute: :start_date, end_attribute: :end_date, events: @events) do |date, events| %>
         <% date %>
