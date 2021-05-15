@@ -7,13 +7,19 @@
 
   <table class="table text-secondary">
     <thead>
-      <tr>
-        <% week = ["月","火","水","木","金","土","日"] %>
-        <% date_range.slice(0, 14).each do |day| %>
-          <% weekday = day.strftime("%u").to_i %>
-          <th><%= day.strftime("%Y年%-m月%-d日(#{week[weekday - 1]})の仕事") %></th>
+      <% week = ["月","火","水","木","金","土","日"] %>
+      <% date_range.slice(0, 14).each do |day| %>
+        <% weekday = day.strftime("%u").to_i %>
+        <% if day.strftime("%Y%-m%-d") == Date.current.strftime("%Y%-m%-d") %>
+          <tr class="d-flex justify-content-center" style="background-color: #dae3f3;">
+            <th>本日の仕事</th>
+          </tr>
+        <% else %>
+          <tr class="d-flex justify-content-center" style="background-color: #e7e6e6;">
+            <th><%= day.strftime("%Y年%-m月%-d日(#{week[weekday - 1]})の仕事") %></th>
+          </tr>
         <% end %>
-      </tr>
+      <% end %>
     </thead>
 
     <tbody>
