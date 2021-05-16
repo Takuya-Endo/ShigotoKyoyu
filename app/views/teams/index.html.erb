@@ -1,49 +1,82 @@
-<h3><span>【<%= current_user.last_name %>さん】が参加中のチーム一覧</span></h3>
+<div class="row">
+  <div class="col-5 col-lg-5 my-3">
+    <div class="row">
+      <div class="col-1 col-lg-1"></div>
+      <%= link_to teams_path, class: "btn col-11 col-lg-11 py-1 border border-primary", style: "text-decoration: none; border-radius: 0;" do %>
+        <h5 class="text-secondary text-center m-0">【<%= current_user.last_name %>さん】が参加中のチーム一覧</h5>
+      <% end %>
+    </div>
+  </div>
+  <p class="col-7 col-lg-7 my-3 text-secondary d-flex align-items-center">
+  </p>
+</div>
 
-<table>
-  <tr>
-    <th>チーム名</th><th>参加人数</th><th>管理者権限</th><th></th><th></th><th></th>
-  </tr>
-  <% @teams.each do |team| %>
 
-    <% team_member = @team_members.find_by(team_id: team.id) %>
 
-    <% if team_member.join_status == "参加済" %>
+<div class="row">
+  <div class="col-1 col-lg-1"></div>
 
-      <tr>
-        <td><%= team.team_name %></td>
-        <td><%= team.number_of_people %></td>
-        <td><%= team_member.privilege %></td>
-        <td><%= link_to "表示", team_path(team.id) %></td>
-        <td>
-          <% if team_member.privilege == "○" %>
-            <%= link_to "編集", users_path(team_id: team.id) %>
-          <% else %>
-            <span>―</span>
-          <% end %>
-        </td>
-        <td><%= link_to "退出", "/team_members/#{team_member.id}", method: :delete, "data-confirm" => "このチームから退出しますか？" %></td>
-      </tr>
-
-    <% else %>
-
-      <tr>
-          <td><%= team.team_name %></td>
-          <td><%= team.number_of_people %></td>
-          <td>―（招待中）</td>
-          <td>―（招待中）</td>
-          <td>―（招待中）</td>
-          <td>
-            <%= form_with model: team_member, url: "/team_members/change_privilege_update/#{team_member.id}", local: true do |f| %>
-              <%= f.hidden_field :join_status, value: "参加済" %>
-              <%= f.submit '参加' %>
-            <% end %>
-          </td>
+    <table class="table col-10 col-lg-10 mt-4 text-secondary">
+      <thead style="background-color: #dae3f3;">
+        <tr>
+          <th>チーム名</th><th>参加人数</th><th>管理者権限</th><th></th><th></th><th></th>
         </tr>
+      </thead>
+      <% @teams.each do |team| %>
+
+        <% team_member = @team_members.find_by(team_id: team.id) %>
+
+        <% if team_member.join_status == "参加済" %>
+
+          <tbody>
+            <tr>
+              <td><%= team.team_name %></td>
+              <td><%= team.number_of_people %></td>
+              <td><%= team_member.privilege %></td>
+              <td><%= link_to "表示", team_path(team.id), class: "btn btn-sm text-secondary" , style: "background-color: #dae3f3; border-radius: 0;" %></td>
+              <td>
+                <% if team_member.privilege == "○" %>
+                  <%= link_to "編集", users_path(team_id: team.id), class: "btn btn-sm text-secondary" , style: "background-color: #dae3f3; border-radius: 0;" %>
+                <% else %>
+                  <span>―</span>
+                <% end %>
+              </td>
+              <td><%= link_to "退出", "/team_members/#{team_member.id}", method: :delete, "data-confirm" => "このチームから退出しますか？", class: "btn btn-sm text-secondary" , style: "background-color: #dae3f3; border-radius: 0;" %></td>
+            </tr>
+          </tbody>
+
+        <% else %>
+
+          <tbody>
+            <tr>
+              <td><%= team.team_name %></td>
+              <td><%= team.number_of_people %></td>
+              <td>―（招待中）</td>
+              <td>―（招待中）</td>
+              <td>―（招待中）</td>
+              <td>
+                <%= form_with model: team_member, url: "/team_members/change_privilege_update/#{team_member.id}", local: true do |f| %>
+                  <%= f.hidden_field :join_status, value: "参加済" %>
+                  <%= f.submit '参加', class: "btn btn-sm text-secondary" , style: "background-color: #dae3f3; border-radius: 0;" %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+
+        <% end %>
 
       <% end %>
+    </table>
 
-  <% end %>
-</table>
+  <div class="col-1 col-lg-1"></div>
+</div>
 
-<%= link_to "新しいチームを作成", new_team_path %>
+<div class="row">
+  <div class="col-12 col-lg-12 mb-3">
+    <div class="row">
+      <div class="d-flex justify-content-around col-12 col-lg-12">
+        <%= link_to "新しいチームを作成", new_team_path, class: "btn btn-lg text-white mt-5 col-5 col-lg-5" , style: "background-color: #8faadc; border-radius: 0;" %>
+      </div>
+    </div>
+  </div>
+</div>

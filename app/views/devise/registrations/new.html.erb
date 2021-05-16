@@ -1,80 +1,164 @@
-<h2 class="d-inline-block">新規登録</h2>
-
-<p class="d-inline-block">登録済みの場合は<%= render "devise/shared/links" %>からログイン</p>
-
-<%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="row my-3">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">氏名</div>
-    <div class="col-lg-3"><%= f.label :last_name, "姓", class: "text-secondary" %><%= f.text_field :last_name %></div>
-    <div class="col-lg-3"><%= f.label :first_name, "名", class: "text-secondary" %><%= f.text_field :first_name %></div>
-    <div class="col-lg-2"></div>
-    <div class="col-lg-1"></div>
-  </div>
-
-  <div class="row my-3">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">フリガナ</div>
-    <div class="col-lg-3"><%= f.label :last_name_kana, "セイ", class: "text-secondary" %><%= f.text_field :last_name_kana %></div>
-    <div class="col-lg-3"><%= f.label :first_name_kana, "メイ", class: "text-secondary" %><%= f.text_field :first_name_kana %></div>
-    <div class="col-lg-2"></div>
-    <div class="col-lg-1"></div>
-  </div>
-
-  <div class="row my-3">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;"><%= f.label :department, "所属" %></div>
-    <div class="col-lg-3"><%= f.text_field :department, placeholder: "空欄可" %></div>
-    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;"><%= f.label :position, "役職" %></div>
-    <div class="col-lg-3"><%= f.text_field :position, placeholder: "空欄可" %></div>
-    <div class="col-lg-1"></div>
-  </div>
-
-  <div class="row my-3">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;"><%= f.label :email, "メールアドレス" %></div>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    <div class="col-lg-1"></div>
-  </div>
-
-  <div class="row my-3">
-    <div class="col-lg-1"></div>
-    <%= f.radio_button :email_is_published, true, checked: true %>同じチームの参加者に公開 <%= f.radio_button :email_is_published, false %>非公開
-    <div class="col-lg-1"></div>
-  </div>
-
-  <div class="row my-3">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;"><%= f.label :introduction, "その他" %></div>
-    <%= f.text_area :introduction, placeholder: "空欄可" %>
-    <div class="col-lg-1"></div>
-  </div>
-
-  <div class="row my-3">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
-      <% if @minimum_password_length %>
-        <%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %>
-      <% end %>
+<div class="row">
+  <div class="col-4 col-lg-4 my-3">
+    <div class="row">
+      <div class="col-2 col-lg-2"></div>
+      <h5 class="col-10 col-lg-10 py-1 text-secondary text-center border border-primary">新規登録</h5>
     </div>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <div class="col-lg-1"></div>
   </div>
+  <p class="col-8 col-lg-8 my-3 text-secondary d-flex align-items-center">
+    登録済みの場合は<%= render "devise/shared/links" %>からログイン
+  </p>
+</div>
 
-  <div class="row my-3">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-2 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
-      <%= f.label :password_confirmation, "パスワード(確認用)" %>
-    </div>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    <div class="col-lg-1"></div>
-  </div>
+<div class="row">
+  <div class="col-1 col-lg-1"></div>
+  <div class="col-10 col-lg-10">
 
-  <div class="row my-3">
-    <div class="col-lg-1"></div>
-    <%= f.submit "上記内容で新規登録" %>
-    <div class="col-lg-1"></div>
+    <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="row my-3">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">氏名</div>
+        <div class="col-7 col-lg-3">
+          <div class="form-inline row">
+            <%= f.label :last_name, "姓", class: "col-4 col-lg-4 form-label text-secondary" %>
+            <%= f.text_field :last_name, class: "col-8 col-lg-8 form-control" %>
+          </div>
+        </div>
+        <div class="col-5 d-lg-none"></div>
+        <div class="col-7 col-lg-3">
+          <div class="form-inline row">
+            <%= f.label :first_name, "名", class: "col-4 col-lg-4 form-label text-secondary" %>
+            <%= f.text_field :first_name, class: "col-8 col-lg-8 form-control" %>
+          </div>
+        </div>
+        <div class="d-none col-lg-3"></div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">フリガナ</div>
+        <div class="col-7 col-lg-3">
+          <div class="form-inline row">
+            <%= f.label :last_name_kana, "セイ", class: "col-4 col-lg-4 form-label text-secondary" %>
+            <%= f.text_field :last_name_kana, class: "col-8 col-lg-8 form-control" %>
+          </div>
+        </div>
+        <div class="col-5 d-lg-none"></div>
+        <div class="col-7 col-lg-3">
+          <div class="form-inline row">
+            <%= f.label :first_name_kana, "メイ", class: "col-4 col-lg-4 form-label text-secondary" %>
+            <%= f.text_field :first_name_kana, class: "col-8 col-lg-8 form-control" %>
+          </div>
+        </div>
+        <div class="d-none col-lg-3"></div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+          <%= f.label :department, "所属" %>
+        </div>
+        <div class="col-7 col-lg-3">
+          <div class="row">
+            <div class="col-1 col-lg-1 p-0"></div>
+            <%= f.text_field :department, placeholder: "空欄可", class: "col-11 col-lg-11 form-control" %>
+          </div>
+        </div>
+        <div class="col-12 my-2 d-lg-none"></div>
+        <div class="col-5 col-lg-3">
+          <div class="row">
+            <div class="d-col-none col-lg-1 p-0"></div>
+            <div class="col-12 col-lg-11 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+              <%= f.label :position, "役職" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-7 col-lg-3">
+          <div class="row">
+            <div class="col-1 col-lg-1 p-0"></div>
+            <%= f.text_field :position, placeholder: "空欄可", class: "col-11 col-lg-11 form-control" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+          <%= f.label :email, "メールアドレス" %>
+        </div>
+        <div class="col-7 col-lg-3">
+          <div class="row">
+            <div class="col-1 col-lg-1 p-0"></div>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-11 col-lg-11 form-control" %>
+          </div>
+        </div>
+        <div class="col-5 d-lg-none"></div>
+        <div class="col-7 col-lg-6">
+          <div class="row">
+            <div class="col-1 col-lg-1 my-2"></div>
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :email_is_published, true, checked: true, class: "form-check-input" %>
+              <%= f.label :email_is_published, "同じチームの参加者に公開", class: "form-check-label text-secondary" %>
+            </div>
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :email_is_published, false, class: "form-check-input" %>
+              <%= f.label :email_is_published, "非公開", class: "form-check-label text-secondary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
+          <div class="row">
+            <%= f.label :introduction, "その他", class: "col-12 col-lg-12 pb-2 form-label", style: "background-color: #e7e6e6;" %>
+            <div class="col-12 col-lg-12 my-2"></div>
+          </div>
+        </div>
+        <div class="col-7 col-lg-9">
+          <div class="row">
+            <div class="col-12 col-lg-12">
+              <%= f.text_area :introduction, placeholder: "空欄可", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+          <% if @minimum_password_length %>
+            <%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)", class: "form-label text-secondary" %>
+          <% end %>
+
+        </div>
+        <div class="col-7 col-lg-3">
+          <div class="row">
+            <div class="col-1 col-lg-1 p-0"></div>
+            <%= f.password_field :password, autocomplete: "new-password", class: "col-11 col-lg-11 form-control" %>
+          </div>
+        </div>
+        <div class="col-12 my-2 d-lg-none"></div>
+        <div class="col-5 col-lg-3">
+          <div class="row">
+            <div class="d-col-none col-lg-1 p-0"></div>
+            <div class="col-12 col-lg-11 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+              <%= f.label :password_confirmation, "パスワード(確認用)" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-7 col-lg-3">
+          <div class="row">
+            <div class="col-1 col-lg-1 p-0"></div>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-11 col-lg-11 form-control" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="d-flex justify-content-center mt-3 col-12 col-lg-12">
+          <%= f.submit "上記内容で新規登録", class: "btn btn-lg text-white" , style: "background-color: #8faadc; border-radius: 0;"%>
+        </div>
+      </div>
+    <% end %>
+
   </div>
-<% end %>
+  <div class="col-1 col-lg-1"></div>
+</div>

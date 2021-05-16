@@ -1,9 +1,53 @@
-<h3>【<%= current_user.last_name %>さん】が参加している<span>【<%= @team.team_name %>】チーム</span>の編集</h3>
+<div class="row my-3">
+  <div class="col-8 col-lg-8 d-flex align-items-end">
+    <p class="text-secondary">
+      【<%= current_user.last_name %>さん】が参加している
+    </p>
+    <%= link_to team_path(@team.id), class: "btn mx-2 border border-primary", style: "text-decoration: none; border-radius: 0;" do %>
+      <h5 class="text-secondary text-center">【<%= @team.team_name %>】チーム</h5>
+    <% end %>
+    <p class="text-secondary">
+      の編集
+    </p>
+  </div>
+  <div class="col-4 col-lg-4"></div>
+</div>
 
-<%= form_with model: @team, url: "/teams/#{@team.id}", local: true do |f| %>
-  <span>チーム名を　　<%= f.text_field :team_name %>　　に変更</span>
-  <%= f.submit '変更する' %>
-<% end %>
+<div class="row">
+  <div class="col-1 col-lg-1"></div>
+  <div class="col-10 col-lg-10">
 
-<span>【<%= @team.team_name %>】チーム　　を削除する</span>
-<%= link_to "削除する", "/teams/#{@team.id}", method: :delete, "data-confirm" => "参加者全員からこのチームを削除します。一度削除したチームは復元できません。削除しますか。" %>
+    <%= form_with model: @team, url: "/teams/#{@team.id}", local: true do |f| %>
+      <div class="row my-5">
+        <div class="col-8 col-lg-8">
+          <div class="row">
+            <div class="col-12 col-lg-12 form-inline">
+              <div class="col-3 col-lg-3 text-secondary">チーム名を</div>
+              <%= f.text_field :team_name, class: "col-6 col-lg-6 form-control" %>
+              <div class="col-3 col-lg-3 text-secondary">に変更</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 col-lg-4 aline-items-center text-center text-secondary">
+          <%= f.submit '変更する', class: "btn btn-lg text-white col-12 col-lg-12", style: "background-color: #8faadc; border-radius: 0;" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row my-5">
+      <div class="col-8 col-lg-8">
+        <div class="row">
+          <div class="col-12 col-lg-12 form-inline d-flex justify-content-center">
+            <div class="py-2 text-center text-secondary border border-secondary">　【<%= @team.team_name %>】チーム　</div>
+            <div class="text-secondary">　を削除する</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 col-lg-4 aline-items-center text-center text-secondary">
+        <%= link_to "削除する", "/teams/#{@team.id}", method: :delete, "data-confirm" => "参加者全員からこのチームを削除します。一度削除したチームは復元できません。削除しますか。", class: "btn btn-lg text-white col-12 col-lg-12", style: "background-color: #8faadc; border-radius: 0;" %>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-1 col-lg-1"></div>
+</div>
