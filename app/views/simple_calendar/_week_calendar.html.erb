@@ -7,13 +7,13 @@
         <% date_range.slice(0, 14).each do |day| %>
           <% weekday = day.strftime("%u").to_i %>
           <% if day.strftime("%Y%-m%-d") == Date.current.strftime("%Y%-m%-d") %>
-            <th style="background-color: #dae3f3;">
-              <%= link_to day.strftime("%-m/%-d(#{week[weekday - 1]})"), root_path(main_date: day), class: "btn text-secondary p-0" %>
-            </th>
+            <td style="background-color: #dae3f3;">
+              <%= link_to day.strftime("%-m/%-d(#{week[weekday - 1]})"), root_path(main_date: day), class: "text-secondary p-0" %>
+            </td>
           <% else %>
-            <th style="background-color: #e7e6e6;">
-              <%= link_to day.strftime("%-m/%-d(#{week[weekday - 1]})"), root_path(main_date: day), class: "btn text-secondary p-0" %>
-            </th>
+            <td style="background-color: #e7e6e6;">
+              <%= link_to day.strftime("%-m/%-d(#{week[weekday - 1]})"), root_path(main_date: day), class: "text-secondary p-0" %>
+            </td>
           <% end %>
         <% end %>
       </tr>
