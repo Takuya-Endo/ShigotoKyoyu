@@ -33,11 +33,11 @@ class AppointmentsController < ApplicationController
   end
 
   def update
-    appointment = Appointment.find(params[:id])
-    event = Event.find(appointment.event_id)
-    if event.update(update_event_params)
-      event.end_date = event.start_date + (event.time_span.hour * 60 * 60) + (event.time_span.min * 60) + (event.time_span.sec)
-      event.update(update_event_params)
+    @appointment = Appointment.find(params[:id])
+    @event = Event.find(@appointment.event_id)
+    if @event.update(update_event_params)
+      @event.end_date = @event.start_date + (@event.time_span.hour * 60 * 60) + (@event.time_span.min * 60) + (@event.time_span.sec)
+      @event.update(update_event_params)
       redirect_to root_path
     else
       user = User.find(current_user.id)

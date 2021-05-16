@@ -33,9 +33,9 @@ class TasksController < ApplicationController
   end
 
   def update
-    task = Task.find(params[:id])
-    event = Event.find(task.event_id)
-    if event.update(update_event_params)
+    @task = Task.find(params[:id])
+    @event = Event.find(@task.event_id)
+    if @event.update(update_event_params)
       redirect_to root_path
     else
       user = User.find(current_user.id)
