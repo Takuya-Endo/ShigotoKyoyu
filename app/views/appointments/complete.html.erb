@@ -6,10 +6,11 @@
 
     <div class="row my-4">
       <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">日時</div>
-      <div class="col-7 col-lg-3 text-secondary"><%= @event.start_date %></div>
+      <% week = ["月","火","水","木","金","土","日"] %><% weekday = @event.start_date.strftime("%u").to_i %>
+      <div class="col-7 col-lg-3 text-secondary"><%= @event.start_date.strftime("%Y年%-m月%-d日(#{week[weekday - 1]})　%R") %></div>
       <div class="col-12 my-2 d-lg-none"></div>
       <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">所要時間(目安)</div>
-      <div class="col-7 col-lg-2 text-secondary"><%= @event.time_span %></div>
+      <div class="col-7 col-lg-2 text-secondary"><%= @event.time_span.strftime("%-H時間%M分") %></div>
     </div>
 
     <div class="row my-4">
@@ -31,9 +32,9 @@
       </div>
       <div class="col-7 col-lg-9 text-secondary">
         <% if @appointment.contact_means == "訪問" %>
-          最寄り駅は、<%= @appointment.nearest_station %>です。</br>移動にかかる前後<%= @appointment.travel_time %>の予定もおさえています。
+          最寄り駅は、<%= @appointment.nearest_station %>です。</br>移動にかかる前後<%= @appointment.travel_time.strftime("%-H時間%M分") %>の予定もおさえています。
         <% else %>
-          オンラインで行います。</br>機材準備と片付けにかかる前後<%= @appointment.preparation_time %>の予定もおさえています。
+          オンラインで行います。</br>機材準備と片付けにかかる前後<%= @appointment.preparation_time.strftime("%-H時間%M分") %>の予定もおさえています。
         <% end %>
       </div>
     </div>

@@ -60,12 +60,15 @@
               <%= link_to appointment_path(appointment.id) do %>
                 <% if event.completed == false %>
                   <div class="appointment-schedule text-secondary m-1" style="background-color: #dae3f3;">
-                    <div><%= event.start_date.strftime("%-R") %></div>
-                    <div><%= appointment.destination %></div>
+                    <div>
+                      <%= (event.start_date - ((appointment.travel_time.hour * 60 * 60) + (appointment.travel_time.min * 60) + (appointment.travel_time.sec))).strftime("%-R") %>
+                      -<%= (event.end_date + (appointment.travel_time.hour * 60 * 60) + (appointment.travel_time.min * 60) + (appointment.travel_time.sec)).strftime("%-R") %>
+                    </div>
+                    <div><%= appointment.destination.truncate(13) %></div>
                   </div>
                 <% else %>
                   <div class="appointment-schedule text-secondary m-1" style="background-color: #f2f2f2;">
-                    <div>【済】<%= appointment.destination %></div>
+                    <div>【済】<%= appointment.destination.truncate(13) %></div>
                   </div>
                 <% end %>
               <% end %>
@@ -76,12 +79,12 @@
               <%= link_to meeting_path(meeting.id) do %>
                 <% if event.completed == false %>
                   <div class="meeting-schedule text-secondary m-1" style="background-color: #dae3f3;">
-                    <div><%= event.start_date.strftime("%-R") %></div>
-                    <div><%= meeting.title %></div>
+                    <div><%= event.start_date.strftime("%-R") %>-<%= event.end_date.strftime("%-R") %></div>
+                    <div><%= meeting.title.truncate(13) %></div>
                   </div>
                 <% else %>
                   <div class="meeting-schedule text-secondary m-1" style="background-color: #f2f2f2;">
-                    <div>【済】<%= meeting.title %></div>
+                    <div>【済】<%= meeting.title.truncate(13) %></div>
                   </div>
                 <% end %>
               <% end %>
@@ -94,7 +97,7 @@
                   <% if task.deadline_status == "締切あり" %>
                     <div class="task-schedule text-secondary my-1" style="background-color: #fbe5d6; text-decoration: none;">
                       <% if event.start_date.strftime("%Y/%-m/%-d") == date.strftime("%Y/%-m/%-d") %>
-                        <div><%= task.title %></div>
+                        <div><%= task.title.truncate(13) %></div>
                       <% else %>
                         <div>　</div>
                       <% end %>
@@ -102,7 +105,7 @@
                   <% elsif task.deadline_status == "早急に対応" %>
                     <div class="task-schedule text-secondary my-1" style="background-color: #fff2cc; text-decoration: none;">
                       <% if event.start_date.strftime("%Y/%-m/%-d") == date.strftime("%Y/%-m/%-d") %>
-                        <div><%= task.title %></div>
+                        <div><%= task.title.truncate(13) %></div>
                       <% else %>
                         <div>　</div>
                       <% end %>
@@ -110,7 +113,7 @@
                   <% elsif task.deadline_status == "なるべく早めに" %>
                     <div class="task-schedule text-secondary my-1" style="background-color: #e2f0d9; text-decoration: none;">
                       <% if event.start_date.strftime("%Y/%-m/%-d") == date.strftime("%Y/%-m/%-d") %>
-                        <div><%= task.title %></div>
+                        <div><%= task.title.truncate(13) %></div>
                       <% else %>
                         <div>　</div>
                       <% end %>
@@ -118,7 +121,7 @@
                   <% elsif task.deadline_status == "手が空いたら" %>
                     <div class="task-schedule text-secondary my-1" style="background-color: #e7e6e6; text-decoration: none;">
                       <% if event.start_date.strftime("%Y/%-m/%-d") == date.strftime("%Y/%-m/%-d") %>
-                        <div><%= task.title %></div>
+                        <div><%= task.title.truncate(13) %></div>
                       <% else %>
                         <div>　</div>
                       <% end %>
@@ -127,7 +130,7 @@
                 <% else %>
                   <div class="task-schedule text-secondary my-1" style="background-color: #f2f2f2; text-decoration: none;">
                     <% if event.end_date.strftime("%Y/%-m/%-d") == date.strftime("%Y/%-m/%-d") %>
-                      <div>【済】<%= task.title %></div>
+                      <div>【済】<%= task.title.truncate(13) %></div>
                     <% else %>
                       <div>　</div>
                     <% end %>

@@ -111,11 +111,11 @@
           <% if event.completed == false %>
             <div class="appointment-schedule m-1" style="background-color: #dae3f3;">
               <div><%= event.start_date.strftime("%-R") %></div>
-              <div><%= appointment.destination %></div>
+              <div><%= appointment.destination.truncate(13) %></div>
             </div>
           <% else %>
             <div class="appointment-schedule m-1" style="background-color: #f2f2f2;">
-              <div>【済】<%= appointment.destination %></div>
+              <div>【済】<%= appointment.destination.truncate(13) %></div>
             </div>
           <% end %>
         <% end %>
@@ -125,11 +125,11 @@
           <% if event.completed == false %>
             <div class="meeting-schedule m-1" style="background-color: #dae3f3;">
               <div><%= event.start_date.strftime("%-R") %></div>
-              <div><%= meeting.title %></div>
+              <div><%= meeting.title.truncate(13) %></div>
             </div>
           <% else %>
             <div class="meeting-schedule m-1" style="background-color: #f2f2f2;">
-              <div>【済】<%= meeting.title %></div>
+              <div>【済】<%= meeting.title.truncate(13) %></div>
             </div>
           <% end %>
         <% end %>
@@ -140,7 +140,7 @@
             <% if task.deadline_status == "締切あり" %>
               <div class="task-schedule my-1" style="background-color: #fbe5d6;">
                 <% if event.start_date.strftime("%Y/%-m/%-d") == date.strftime("%Y/%-m/%-d") %>
-                  <div><%= task.title %></div>
+                  <div><%= task.title.truncate(13) %></div>
                 <% else %>
                   <div>　</div>
                 <% end %>
@@ -148,7 +148,7 @@
             <% elsif task.deadline_status == "早急に対応" %>
               <div class="task-schedule my-1" style="background-color: #fff2cc;">
                 <% if event.start_date.strftime("%Y/%-m/%-d") == date.strftime("%Y/%-m/%-d") %>
-                  <div><%= task.title %></div>
+                  <div><%= task.title.truncate(13) %></div>
                 <% else %>
                   <div>　</div>
                 <% end %>
@@ -156,7 +156,7 @@
             <% elsif task.deadline_status == "なるべく早めに" %>
               <div class="task-schedule my-1" style="background-color: #e2f0d9;">
                 <% if event.start_date.strftime("%Y/%-m/%-d") == date.strftime("%Y/%-m/%-d") %>
-                  <div><%= task.title %></div>
+                  <div><%= task.title.truncate(13) %></div>
                 <% else %>
                   <div>　</div>
                 <% end %>
@@ -164,7 +164,7 @@
             <% elsif task.deadline_status == "手が空いたら" %>
               <div class="task-schedule my-1" style="background-color: #e7e6e6;">
                 <% if event.start_date.strftime("%Y/%-m/%-d") == date.strftime("%Y/%-m/%-d") %>
-                  <div><%= task.title %></div>
+                  <div><%= task.title.truncate(13) %></div>
                 <% else %>
                   <div>　</div>
                 <% end %>
@@ -173,7 +173,7 @@
           <% else %>
             <div class="task-schedule my-1" style="background-color: #f2f2f2;">
               <% if event.end_date.strftime("%Y/%-m/%-d") == date.strftime("%Y/%-m/%-d") %>
-                <div>【済】<%= task.title %></div>
+                <div>【済】<%= task.title.truncate(13) %></div>
               <% else %>
                 <div>　</div>
               <% end %>

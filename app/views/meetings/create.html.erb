@@ -22,7 +22,7 @@
       <div class="col-7 col-lg-3 text-secondary"><%= @event.start_date.strftime("%Y年%-m月%-d日(#{week[weekday - 1]})　%R") %></div>
       <div class="col-12 my-2 d-lg-none"></div>
       <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">所要時間(目安)</div>
-      <div class="col-7 col-lg-2 text-secondary"><%= @event.time_span.strftime("%-H時間%-M分") %></div>
+      <div class="col-7 col-lg-2 text-secondary"><%= @event.time_span.strftime("%-H時間%M分") %></div>
     </div>
 
     <div class="row my-4">
