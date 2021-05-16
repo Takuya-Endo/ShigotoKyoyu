@@ -40,8 +40,8 @@
 
   <% @users.each do |user| %>
 
-    <div class="col-1 col-lg-1 text-secondary border border-secondary border-bottom border-top-0 border-right-0 border-left-0 d-flex justify-content-center align-items-center">
-      <%= user.last_name %>
+    <div class="col-1 col-lg-1 border border-secondary border-bottom border-top-0 border-right-0 border-left-0 d-flex justify-content-center align-items-center">
+      <%= link_to user.last_name, user_path(user.id), class: "btn text-secondary" %>
     </div>
 
     <div class="col-11 col-lg-11">
