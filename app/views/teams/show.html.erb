@@ -10,7 +10,23 @@
       の仕事
     </p>
   </div>
-  <div class="col-4 col-lg-4"></div>
+  <div class="col-2 col-lg-2"></div>
+  <div class="dropdown d-flex justify-content-center col-2 col-lg-2">
+    <button class="btn btn-sm dropdown-toggle text-secondary" data-toggle="dropdown" style="background-color: #e7e6e6; border-radius: 0;">
+      Menu
+    </button>
+    <div class="dropdown-menu">
+      <%= link_to "表示するチームの変更", teams_path, class: "dropdown-item text-secondary"%>
+      <%= link_to "チームの仕事の予定を追加", new_team_path, class: "dropdown-item text-secondary"%>
+      <%= link_to "新しいチームを作成", new_team_path, class: "dropdown-item text-secondary"%>
+      <% team_members = TeamMember.where(team_id: @team.id) %>
+      <% team_member = team_members.find_by(user_id: current_user) %>
+      <% if team_member.privilege == "○" %>
+        <%= link_to "新しい参加者を招待", "/team_members/search_box/#{@team.id}", class: "dropdown-item text-secondary"%>
+      <% end %>
+    </div>
+  </div>
+
 </div>
 
 <div class="row m-3">
