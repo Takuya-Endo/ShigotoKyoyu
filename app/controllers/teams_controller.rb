@@ -45,6 +45,10 @@ class TeamsController < ApplicationController
     redirect_to teams_path
   end
 
+  def new_team_task
+    @team = Team.find(params[:id])
+  end
+
   private
 
   def team_params

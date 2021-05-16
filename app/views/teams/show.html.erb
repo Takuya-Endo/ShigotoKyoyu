@@ -17,7 +17,7 @@
     </button>
     <div class="dropdown-menu">
       <%= link_to "表示するチームの変更", teams_path, class: "dropdown-item text-secondary"%>
-      <%= link_to "チームの仕事の予定を追加", new_team_path, class: "dropdown-item text-secondary"%>
+      <%= link_to "チームの仕事の予定を追加", "/new_team_task/#{@team.id}", class: "dropdown-item text-secondary"%>
       <%= link_to "新しいチームを作成", new_team_path, class: "dropdown-item text-secondary"%>
       <% team_members = TeamMember.where(team_id: @team.id) %>
       <% team_member = team_members.find_by(user_id: current_user) %>

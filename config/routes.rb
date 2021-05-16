@@ -60,6 +60,7 @@ Rails.application.routes.draw do
 
   get 'homes/about'
 
+  get '/new_team_task/:id' => 'teams#new_team_task'
   resources :teams
         # teams GET    /teams(.:format)           teams#index
             #   POST   /teams(.:format)           teams#create
