@@ -9,6 +9,13 @@
   </p>
 </div>
 
+<% if @team.errors.any? %>
+  <%= @team.errors.count %>件のエラーが発生しました。
+  <% @team.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
 <div class="row">
   <div class="col-1 col-lg-1"></div>
   <div class="col-10 col-lg-10">

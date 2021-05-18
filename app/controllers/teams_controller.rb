@@ -16,17 +16,18 @@ class TeamsController < ApplicationController
   end
 
   def create
-    team = Team.new(team_params)
-    team.save
-
-    team_member = TeamMember.new
-    team_member.user_id = current_user.id
-    team_member.team_id = team.id
-    team_member.privilege = 1
-    team_member.join_status = 1
-    team_member.save
-
-    redirect_to teams_path
+    @team = Team.new(team_params)
+    if @team.save
+      team_member = TeamMember.new
+      team_member.user_id = current_user.id
+      team_member.team_id = @team.id
+      team_member.privilege = 1
+      team_member.join_status = 1
+      team_member.save
+      redirect_to teams_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -34,9 +35,12 @@ class TeamsController < ApplicationController
   end
 
   def update
-    team = Team.find(params[:id])
-    team.update(team_params)
-    redirect_to teams_path
+    @team = Team.find(params[:id])
+    if @team.update(team_params)
+      redirect_to teams_path
+    else
+      render :edit
+    end
   end
 
   def destroy

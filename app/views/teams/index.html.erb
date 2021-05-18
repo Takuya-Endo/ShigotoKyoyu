@@ -24,6 +24,9 @@
       </thead>
       <% @teams.each do |team| %>
 
+        <% join_members = TeamMember.where(join_status: "参加済") %>
+        <% team.number_of_people = join_members.where(team_id: team.id).count %>
+
         <% team_member = @team_members.find_by(team_id: team.id) %>
 
         <% if team_member.join_status == "参加済" %>
