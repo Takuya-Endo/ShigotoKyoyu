@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-4 col-lg-4 my-3">
+    <div class="row">
+      <div class="col-2 col-lg-2"></div>
+      <%= link_to root_path, class: "btn col-10 col-lg-10 py-1 border border-primary", style: "text-decoration: none; border-radius: 0;" do %>
+        <h5 class="text-secondary text-center m-0">【<%= current_user.last_name %>さん】個人の仕事</h5>
+      <% end %>
+    </div>
+  </div>
+  <p class="col-8 col-lg-8 my-3 text-secondary d-flex align-items-center">
+    にアポイントの予定を追加
+  </p>
+</div>
+
+<div class="row">
+  <div class="col-1 col-lg-1"></div>
+  <div class="col-10 col-lg-10">
+
+    <div class="row my-4">
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">日時</div>
+      <% week = ["月","火","水","木","金","土","日"] %><% weekday = @event.start_date.strftime("%u").to_i %>
+      <div class="col-7 col-lg-3 text-secondary"><%= @event.start_date.strftime("%Y年%-m月%-d日(#{week[weekday - 1]})　%R") %></div>
+      <div class="col-12 my-2 d-lg-none"></div>
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">所要時間(目安)</div>
+      <div class="col-7 col-lg-2 text-secondary"><%= @event.time_span.strftime("%-H時間%M分") %></div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">訪問先</div>
+      <div class="col-7 col-lg-9 text-secondary"><%= @appointment.destination %></div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">担当者</div>
+      <div class="col-7 col-lg-9 text-secondary"><%= @appointment.person_in_charge %></div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-5 col-lg-3">
+        <div class="row">
+          <div class="col-12 col-lg-12 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">前後の予定</div>
+          <div class="col-12 col-lg-12"></div>
+        </div>
+      </div>
+      <div class="col-7 col-lg-9 text-secondary">
+        <% if @appointment.contact_means == "訪問" %>
+          最寄り駅は、<%= @appointment.nearest_station %>です。</br>移動にかかる前後 <%= @appointment.travel_time.strftime("%-H時間%M分") %> の予定もおさえます。
+        <% else %>
+          オンラインで行います。</br>機材準備と片付けにかかる前後 <%= @appointment.preparation_time.strftime("%-H時間%M分") %> の予定もおさえます。
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">参加者</div>
+      <div class="col-7 col-lg-9 text-secondary">
+        <% if @event.team_id.present? %>
+          <% team = Team.find(@event.team_id) %>
+          【<%= team.team_name %>】チームで訪問</span>
+        <% else %>
+          自分のみ
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-lg-12 my-4">
+        <div class="row">
+          <div class="d-flex flex-lg-row flex-column justify-content-around col-12 col-lg-12">
+            <div class="col-12 col-lg-5 d-flex justify-content-center" style="background-color: #8faadc; border-radius: 0;">
+              <%= form_with model: @event, url: "/appointments/#{@appointment.id}", local: true do |f| %>
+                <%= f.hidden_field :appointment_id, value: @appointment.id %>
+                <%= f.hidden_field :end_date, value: @event.start_date + (@event.time_span.hour * 60 * 60) + (@event.time_span.min * 60) + (@event.time_span.sec) %>
+                <%= f.submit '上記内容の仕事を追加', class: "btn btn-lg text-white" %>
+              <% end %>
+            </div>
+            <div class="col-12 my-2 d-lg-none"></div>
+            <%= link_to "仕事の追加をキャンセル", "/appointments/#{@appointment.id}", method: :delete, class: "btn btn-lg text-white col-lg-5" , style: "background-color: #8faadc; border-radius: 0;" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-1 col-lg-1"></div>
+</div>

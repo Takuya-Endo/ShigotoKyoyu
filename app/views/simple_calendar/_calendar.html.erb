@@ -1,0 +1,64 @@
+<div class="simple-calendar">
+  <div class="calendar-heading">
+    <%#= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
+    <span class="calendar-title"><%#= t('date.month_names')[start_date.month] %> <%#= start_date.year %></span>
+    <%#= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+  </div>
+
+  <table class="table text-secondary">
+    <thead>
+      <% week = ["月","火","水","木","金","土","日"] %>
+      <% date_range.slice(0, 14).each do |day| %>
+        <% weekday = day.strftime("%u").to_i %>
+        <% if day.strftime("%Y%-m%-d") == Date.current.strftime("%Y%-m%-d") %>
+          <tr class="d-flex justify-content-center" style="background-color: #dae3f3;">
+            <th>本日の仕事</th>
+          </tr>
+        <% else %>
+          <tr class="d-flex justify-content-center" style="background-color: #e7e6e6;">
+            <th><%= day.strftime("%Y年%-m月%-d日(#{week[weekday - 1]})の仕事") %></th>
+          </tr>
+        <% end %>
+      <% end %>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(1) do |week| %>
+        <%= content_tag :tr, class: calendar.tr_classes_for(week) do %>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
+                <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
+              <% else %>
+                <% passed_block.call day, sorted_events.fetch(day, []) %>
+              <% end %>
+            <% end %>
+    </tbody>
+  </table>
+            <div class="row">
+              <div class="col-12 col-lg-12">
+                <div class="row">
+                  <% if day.strftime("%a") == "Sun" %>
+                    <div class="col-1 col-lg-1"></div><%= image_tag('arrow.jpg') %>
+                  <% elsif day.strftime("%a") == "Mon" %>
+                    <div class="col-2 col-lg-2"></div><%= image_tag('arrow.jpg') %>
+                  <% elsif day.strftime("%a") == "Tue" %>
+                    <div class="col-3 col-lg-3"></div><%= image_tag('arrow.jpg') %>
+                  <% elsif day.strftime("%a") == "Wed" %>
+                    <div class="col-4 col-lg-4"></div><%= image_tag('arrow.jpg') %>
+                  <% elsif day.strftime("%a") == "Thu" %>
+                    <div class="col-5 col-lg-5"></div><%= image_tag('arrow.jpg') %>
+                  <% elsif day.strftime("%a") == "Fri" %>
+                    <div class="col-6 col-lg-6"></div><%= image_tag('arrow.jpg') %>
+                  <% elsif day.strftime("%a") == "Sat" %>
+                    <div class="col-7 col-lg-7"></div><%= image_tag('arrow.jpg') %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+          <% end %>
+        <% end %>
+      <% end %>
+
+</div>

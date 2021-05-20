@@ -1,0 +1,131 @@
+<div class="row">
+  <div class="col-4 col-lg-4 my-3">
+    <div class="row">
+      <div class="col-2 col-lg-2"></div>
+      <%= link_to root_path, class: "btn col-10 col-lg-10 py-1 border border-primary", style: "text-decoration: none; border-radius: 0;" do %>
+        <h5 class="text-secondary text-center m-0">【<%= current_user.last_name %>さん】個人の仕事</h5>
+      <% end %>
+    </div>
+  </div>
+  <p class="col-8 col-lg-8 my-3 text-secondary d-flex align-items-center">
+    の予定を編集
+  </p>
+</div>
+
+<% if @event.errors.any? %>
+  <%= @event.errors.count %>件のエラーが発生しました。
+  <% @event.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<div class="row">
+  <div class="col-1 col-lg-1"></div>
+  <div class="col-10 col-lg-10">
+
+    <%= form_with model: @event, url: "/tasks/#{@task.id}", local: true do |f| %>
+
+      <%= f.fields_for :task do |g| %>
+
+        <div class="row my-4">
+          <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
+            <div class="row">
+              <%= g.label :title, "仕事の件名", class: "col-12 col-lg-12 pb-2 form-label", style: "background-color: #e7e6e6;" %>
+            </div>
+          </div>
+          <div class="col-7 col-lg-9">
+            <div class="row">
+              <div class="col-12 col-lg-12">
+                <%= g.text_field :title, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-4">
+          <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
+            <div class="row">
+              <%= g.label :introduction, "仕事の内容", class: "col-12 col-lg-12 pb-2 form-label", style: "background-color: #e7e6e6;" %>
+            </div>
+          </div>
+          <div class="col-7 col-lg-9">
+            <div class="row">
+              <div class="col-12 col-lg-12">
+                <%= g.text_area :introduction, placeholder: "空欄可", class: "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-4">
+          <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
+            <div class="row">
+              <%= g.label :deadline_status, "ステータス", class: "col-12 col-lg-12 pb-2 form-check-label", style: "background-color: #e7e6e6;" %>
+              <div class="col-12 col-lg-12"></div>
+            </div>
+          </div>
+          <div class="col-7 col-lg-9">
+            <div class="row">
+              <div class="d-flex flex-xl-row flex-column justify-content-around col-12 col-lg-12">
+                <div class=" form form-inline form-check form-check-inline">
+                  <%= g.radio_button :deadline_status, :締切あり, checked: true, class: "form-check-input" %>
+                  <% end %>
+                  <%= f.datetime_field :end_date, class: "form-control" %>
+                  <%= f.label :end_date, "締切", class: "form-label text-secondary" %>
+                </div>
+                <%= f.fields_for :task do |g| %>
+                <div class=" form form-inline form-check form-check-inline">
+                  <%= g.radio_button :deadline_status, :早急に対応, class: "form-check-input" %>
+                  <%= g.label :contact_means, "早急に対応", class: "form-check-label text-secondary" %>
+                </div>
+                <div class=" form form-inline form-check form-check-inline">
+                  <%= g.radio_button :deadline_status, :なるべく早めに, class: "form-check-input" %>
+                  <%= g.label :contact_means, "なるべく早めに", class: "form-check-label text-secondary" %>
+                </div>
+                <div class=" form form-inline form-check form-check-inline">
+                  <%= g.radio_button :deadline_status, :手が空いたら, class: "form-check-input" %>
+                  <%= g.label :contact_means, "手が空いたら", class: "form-check-label text-secondary" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+
+      <div class="row my-4">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
+          <div class="row">
+            <%= f.label :participant, "参加者", class: "col-12 col-lg-12 pb-2 form-label", style: "background-color: #e7e6e6;" %>
+          </div>
+        </div>
+        <div class="col-7 col-lg-9">
+          <div class="row">
+            <div class="d-flex justify-content-lg-around col-lg-12">
+            <div class="col-12 col-lg-12">
+              <div class="form-check form-check-inline">
+                <%= f.radio_button :participant, :個人, checked: true, class: "form-check-input" %>
+                <%= f.label :participant, "個人の仕事（自分のみ）", class: "form-check-label text-secondary" %>
+              </div>
+              <div class="form-check form-check-inline">
+                <%= f.radio_button :participant, :チーム, class: "form-check-input" %>
+                <%= f.label :participant, "チームの仕事", class: "form-check-label text-secondary" %>
+                <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}, class: "form-control") %>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="d-flex justify-content-center mt-3 col-12 col-lg-12">
+          <%= f.submit "更新", class: "btn btn-lg text-white col-5 col-lg-5" , style: "background-color: #8faadc; border-radius: 0;"%>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+  <div class="col-1 col-lg-1"></div>
+</div>

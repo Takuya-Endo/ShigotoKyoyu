@@ -1,0 +1,29 @@
+<div class="row my-3">
+  <div class="col-8 col-lg-8 d-flex align-items-end">
+    <p class="text-secondary">
+      【<%= current_user.last_name %>さん】が参加している
+    </p>
+    <%= link_to team_path(@team.id), class: "btn mx-2 border border-primary", style: "text-decoration: none; border-radius: 0;" do %>
+      <h5 class="text-secondary text-center">【<%= @team.team_name %>】チーム</h5>
+    <% end %>
+    <p class="text-secondary">
+      の仕事に新しい予定を追加
+    </p>
+  </div>
+  <div class="col-4 col-lg-4"></div>
+</div>
+
+<div class="row">
+  <div class="col-1 col-lg-1"></div>
+  <div class="col-10 col-lg-10 my-5 p-5 border border-secondary text-secondary">
+
+    チームの仕事の追加は、［<u><%= link_to "個人の仕事", root_path, class: "text-secondary" %></u>］
+    →［<u><%= link_to "新しい仕事の予定を追加", new_event_path, class: "text-secondary" %></u>］から行ってください。</br>
+    個人の仕事を追加するときに参加者を選択することでチームの仕事として登録ができます。</br>
+    主導する人や予定を組み込んだ人など、各々がその仕事に対して責任を持って遂行できるよう、</br>
+    チームの仕事として入力するのではなく、個人の仕事として入力し、</br>
+    それを同じチームの参加者の個人カレンダーにも表示するという形をとっています。
+
+  </div>
+  <div class="col-1 col-lg-1"></div>
+</div>

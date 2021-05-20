@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-4 col-lg-4 my-3">
+    <div class="row">
+      <div class="col-2 col-lg-2"></div>
+      <h5 class="col-10 col-lg-10 py-1 text-secondary text-center border border-primary">新しいチームを作成</h5>
+    </div>
+  </div>
+  <p class="col-8 col-lg-8 my-3 text-secondary d-flex align-items-center">
+  </p>
+</div>
+
+<% if @team.errors.any? %>
+  <%= @team.errors.count %>件のエラーが発生しました。
+  <% @team.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<div class="row">
+  <div class="col-1 col-lg-1"></div>
+  <div class="col-10 col-lg-10">
+
+    <%= form_with model: @team, url: '/teams', local: true do |f| %>
+
+      <div class="row my-4">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
+          <div class="row">
+            <%= f.label :team_name, "チーム名", class: "col-12 col-lg-12 pb-2 form-label", style: "background-color: #e7e6e6;" %>
+          </div>
+        </div>
+        <div class="col-7 col-lg-9">
+          <div class="row">
+            <div class="col-12 col-lg-12 form-inline">
+              <%= f.text_field :team_name, class: "col-6 col-lg-6 form-control" %>
+              <div class="text-secondary">チーム</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%= f.hidden_field :number_of_people, value: 1 %>
+
+      <div class="row">
+        <div class="d-flex justify-content-center mt-3 col-12 col-lg-12">
+          <%= f.submit "チーム作成", class: "btn btn-lg text-white col-5 col-lg-5" , style: "background-color: #8faadc; border-radius: 0;"%>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+  <div class="col-1 col-lg-1"></div>
+</div>

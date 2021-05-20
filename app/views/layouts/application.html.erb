@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ShigotoKyoyu</title>
+    <title>仕事共有</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,49 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #dae3f3;">
+        <a class="navbar-brand ml-3 p-2 text-white font-weight-bold" style="background-color: #8faadc;" href="/">仕事共有</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav my-2 ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <u><%= link_to "個人の仕事", root_path, class: "mr-3 text-secondary" %></u>
+              </li>
+              <li class="nav-item">
+                <u><%= link_to "チームの仕事", teams_path, class: "mr-3 text-secondary" %></u>
+              </li>
+              <li class="nav-item">
+                <u><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "mr-3 text-secondary" %></u>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <u><%= link_to "\"仕事共有\"について", '/homes/about', class: "mr-3 text-secondary" %></u>
+              </li>
+              <li class="nav-item">
+                <u><%= link_to "新規登録", new_user_registration_path, class: "mr-3 text-secondary" %></u>
+              </li>
+              <li class="nav-item">
+                <u><%= link_to "ログイン", new_user_session_path, class: "mr-3 text-secondary" %></u>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
+
+    <footer>
+      <div class="p-4 mt-5" style="background-color: #e7e6e6;"></div>
+    </footer>
+
   </body>
 </html>

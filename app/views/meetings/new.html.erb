@@ -1,0 +1,104 @@
+<div class="row">
+  <div class="col-4 col-lg-4 my-3">
+    <div class="row">
+      <div class="col-2 col-lg-2"></div>
+      <%= link_to root_path, class: "btn col-10 col-lg-10 py-1 border border-primary", style: "text-decoration: none; border-radius: 0;" do %>
+        <h5 class="text-secondary text-center m-0">【<%= current_user.last_name %>さん】個人の仕事</h5>
+      <% end %>
+    </div>
+  </div>
+  <p class="col-8 col-lg-8 my-3 text-secondary d-flex align-items-center">
+    にチームMTGの予定を追加
+  </p>
+</div>
+
+<% if @event.errors.any? %>
+  <%= @event.errors.count %>件のエラーが発生しました。
+  <% @event.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<div class="row">
+  <div class="col-1 col-lg-1"></div>
+  <div class="col-10 col-lg-10">
+
+    <%= form_with model: @event, url: meetings_path, local: true do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <div class="row my-4">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+          <%= f.label :start_date, "日時", class: "col-12 col-lg-12 pb-2 form-label" %>
+        </div>
+        <div class="col-7 col-lg-9">
+          <div class="row">
+            <div class="col-12 col-lg-12">
+              <%= f.datetime_field :start_date, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row my-4 form-inline">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+          <%= f.label :time_span, "所要時間(目安)", class: "col-12 col-lg-12 pb-2 form-label" %>
+        </div>
+        <div class="col-7 col-lg-9">
+              <%= f.time_select :time_span, {default: Date.today + 0.hours + 30.minutes, minute_step: 15}, class: "form-control" %>
+        </div>
+      </div>
+
+      <%= f.fields_for :meeting, @event.build_meeting do |g| %>
+
+        <div class="row my-4">
+          <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
+            <div class="row">
+              <%= g.label :title, "チームMTGの件名", class: "col-12 col-lg-12 pb-2 form-label", style: "background-color: #e7e6e6;" %>
+            </div>
+          </div>
+          <div class="col-7 col-lg-9">
+            <div class="row">
+              <div class="col-12 col-lg-12">
+                <%= g.text_field :title, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-4">
+          <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
+            <div class="row">
+              <%= g.label :introduction, "チームMTGの内容", class: "col-12 col-lg-12 pb-2 form-label", style: "background-color: #e7e6e6;" %>
+            </div>
+          </div>
+          <div class="col-7 col-lg-9">
+            <div class="row">
+              <div class="col-12 col-lg-12">
+                <%= g.text_area :introduction, placeholder: "空欄可", class: "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+
+      <div class="row my-4">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+          <%= f.label :team_id, "参加者", class: "col-12 col-lg-12 form-label" %>
+        </div>
+        <div class="col-7 col-lg-9">
+          <%= f.collection_select(:team_id, @teams, :id, :team_name, {prompt: "--自分が参加中のチームから選択--"}, class: "form-control") %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="d-flex justify-content-center mt-3 col-12 col-lg-12">
+          <%= f.submit "入力内容の確認", class: "btn btn-lg text-white col-5 col-lg-5" , style: "background-color: #8faadc; border-radius: 0;"%>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+  <div class="col-1 col-lg-1"></div>
+</div>
