@@ -85,6 +85,18 @@ describe 'ユーザログイン後のテスト' do
   #   end
   # end
 
+  describe "meeting新規登録画面のテスト" do
+    before do
+      visit new_meeting_path
+    end
+    context '表示の確認' do
+      it '入力フォーム・登録ボタンが表示されているか' do
+        expect(page).to have_field 'event[start_date]'
+        expect(page).to have_button '入力内容の確認'
+      end
+    end
+  end
+
   # describe "meeting詳細画面のテスト" do
   #   before do
   #     visit root_path
@@ -118,6 +130,17 @@ describe 'ユーザログイン後のテスト' do
   #     end
   #   end
   # end
+
+  describe "task新規登録画面のテスト" do
+    before do
+      visit new_task_path
+    end
+    context '表示の確認' do
+      it '入力フォーム・登録ボタンが表示されているか' do
+        expect(page).to have_button '入力内容の確認'
+      end
+    end
+  end
 
   # describe "task詳細画面のテスト" do
   #   before do
