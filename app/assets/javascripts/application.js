@@ -19,3 +19,16 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+
+/*global $*/
+document.addEventListener("turbolinks:load", function () {
+  $(function(){
+    $('.event-add-btn-css').mouseover(function(){
+      $('.event-add-btn-css').addClass('event-add-btn-hover');
+    });
+    $('.event-add-btn-css').mouseout(function(){
+      $('.event-add-btn-css').removeClass('event-add-btn-hover');
+    });
+  });
+});
