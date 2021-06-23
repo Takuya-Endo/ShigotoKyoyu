@@ -24,44 +24,11 @@
 /*global $*/
 document.addEventListener("turbolinks:load", function () {
   $(function(){
-    $('.event-add-btn-css').mouseover(function(){
-      $('.event-add-btn-css').addClass('event-add-btn-hover');
+    $('.apply-btn-css').mouseover(function(){
+      $(this).addClass('apply-btn-hover');
     });
-    $('.event-add-btn-css').mouseout(function(){
-      $('.event-add-btn-css').removeClass('event-add-btn-hover');
-    });
-  });
-});
-
-document.addEventListener("turbolinks:load", function () {
-  $(function(){
-    $('.new-appointment-btn-css').mouseover(function(){
-      $('.new-appointment-btn-css').addClass('new-appointment-btn-hover');
-    });
-    $('.new-appointment-btn-css').mouseout(function(){
-      $('.new-appointment-btn-css').removeClass('new-appointment-btn-hover');
-    });
-  });
-});
-
-document.addEventListener("turbolinks:load", function () {
-  $(function(){
-    $('.new-meeting-btn-css').mouseover(function(){
-      $('.new-meeting-btn-css').addClass('new-meeting-btn-hover');
-    });
-    $('.new-meeting-btn-css').mouseout(function(){
-      $('.new-meeting-btn-css').removeClass('new-meeting-btn-hover');
-    });
-  });
-});
-
-document.addEventListener("turbolinks:load", function () {
-  $(function(){
-    $('.new-task-btn-css').mouseover(function(){
-      $('.new-task-btn-css').addClass('new-task-btn-hover');
-    });
-    $('.new-task-btn-css').mouseout(function(){
-      $('.new-task-btn-css').removeClass('new-task-btn-hover');
+    $('.apply-btn-css').mouseout(function(){
+      $(this).removeClass('apply-btn-hover');
     });
   });
 });
