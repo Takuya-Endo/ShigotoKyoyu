@@ -32,3 +32,14 @@ document.addEventListener("turbolinks:load", function () {
     });
   });
 });
+
+document.addEventListener("turbolinks:load", function () {
+  $(function(){
+    $('.cancel-btn-css').mouseover(function(){
+      $(this).addClass('cancel-btn-hover');
+    });
+    $('.cancel-btn-css').mouseout(function(){
+      $(this).removeClass('cancel-btn-hover');
+    });
+  });
+});

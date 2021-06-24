@@ -46,11 +46,6 @@
   .has-events {}
 }
 
-.cancel-button-css {
-  background-color: #7f7f7f;
-  border-radius: 0;
-}
-
 .apply-btn-css {
   background-color: #8faadc;
   border-radius: 0;
@@ -58,5 +53,15 @@
 
 .apply-btn-hover {
   background-color: #dae3f3;
+  border-radius: 0;
+}
+
+.cancel-btn-css {
+  background-color: #7f7f7f;
+  border-radius: 0;
+}
+
+.cancel-btn-hover {
+  background-color: #e7e6e6;
   border-radius: 0;
 }
