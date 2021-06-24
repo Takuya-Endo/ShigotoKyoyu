@@ -71,11 +71,11 @@
               <%= form_with model: @event, url: "/appointments/#{@appointment.id}", local: true do |f| %>
                 <%= f.hidden_field :appointment_id, value: @appointment.id %>
                 <%= f.hidden_field :end_date, value: @event.start_date + (@event.time_span.hour * 60 * 60) + (@event.time_span.min * 60) + (@event.time_span.sec) %>
-                <%= f.submit '上記内容の仕事を追加', class: "btn btn-lg text-white" %>
+                <%= f.submit '上記内容の仕事を追加', class: "btn btn-lg apply-btn-css" %>
               <% end %>
             </div>
             <div class="col-12 my-2 d-lg-none"></div>
-            <%= link_to "仕事の追加をキャンセル", "/appointments/#{@appointment.id}", method: :delete, class: "btn btn-lg text-white col-lg-5 cancel-btn-css" %>
+            <%= link_to "仕事の追加をキャンセル", "/appointments/#{@appointment.id}", method: :delete, class: "btn btn-lg col-lg-5 cancel-btn-css" %>
           </div>
         </div>
       </div>
