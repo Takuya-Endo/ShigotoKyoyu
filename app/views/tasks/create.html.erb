@@ -53,7 +53,7 @@
       <div class="col-12 col-lg-12 my-4">
         <div class="row">
           <div class="d-flex flex-lg-row flex-column justify-content-around col-12 col-lg-12">
-            <div class="col-12 col-lg-5 d-flex justify-content-center" style="background-color: #8faadc; border-radius: 0;">
+            <div class="col-12 col-lg-5 d-flex justify-content-center apply-btn-css"><!--FIXME:mouseoverが↓と別々に適用される-->
               <%= form_with model: @event, url: "/tasks/#{@task.id}", local: true do |f| %>
                 <%= f.hidden_field :task_id, value: @task.id %>
 
@@ -61,11 +61,11 @@
                   <%= f.hidden_field :end_date, value: @event.start_date.since(3.years) %>
                 <% end %>
 
-                <%= f.submit '上記内容の仕事を追加', class: "btn btn-lg text-white" %>
+                <%= f.submit '上記内容の仕事を追加', class: "btn btn-lg apply-btn-css" %><!--FIXME:mouseoverが↑と別々に適用される-->
               <% end %>
             </div>
             <div class="col-12 my-2 d-lg-none"></div>
-            <%= link_to "仕事の追加をキャンセル", "/tasks/#{@task.id}", method: :delete, class: "btn btn-lg text-white col-lg-5 cancel-btn-css" %>
+            <%= link_to "仕事の追加をキャンセル", "/tasks/#{@task.id}", method: :delete, class: "btn btn-lg col-lg-5 cancel-btn-css" %>
           </div>
         </div>
       </div>
