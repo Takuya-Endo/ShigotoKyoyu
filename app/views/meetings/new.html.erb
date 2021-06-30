@@ -27,7 +27,7 @@
       <%= f.hidden_field :user_id, value: current_user.id %>
 
       <div class="row my-4">
-        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary f-label-css">
           <%= f.label :start_date, "日時", class: "col-12 col-lg-12 pb-2 form-label" %>
         </div>
         <div class="col-7 col-lg-9">
@@ -40,7 +40,7 @@
       </div>
 
       <div class="row my-4 form-inline">
-        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary f-label-css">
           <%= f.label :time_span, "所要時間(目安)", class: "col-12 col-lg-12 pb-2 form-label" %>
         </div>
         <div class="col-7 col-lg-9">
@@ -53,7 +53,7 @@
         <div class="row my-4">
           <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
             <div class="row">
-              <%= g.label :title, "チームMTGの件名", class: "col-12 col-lg-12 pb-2 form-label", style: "background-color: #e7e6e6;" %>
+              <%= g.label :title, "チームMTGの件名", class: "col-12 col-lg-12 pb-2 form-label f-label-css" %>
             </div>
           </div>
           <div class="col-7 col-lg-9">
@@ -68,7 +68,7 @@
         <div class="row my-4">
           <div class="col-5 col-lg-3 aline-items-center text-center text-secondary">
             <div class="row">
-              <%= g.label :introduction, "チームMTGの内容", class: "col-12 col-lg-12 pb-2 form-label", style: "background-color: #e7e6e6;" %>
+              <%= g.label :introduction, "チームMTGの内容", class: "col-12 col-lg-12 pb-2 form-label f-label-css" %>
             </div>
           </div>
           <div class="col-7 col-lg-9">
@@ -83,7 +83,7 @@
       <% end %>
 
       <div class="row my-4">
-        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary" style="background-color: #e7e6e6;">
+        <div class="col-5 col-lg-3 aline-items-center text-center text-secondary f-label-css">
           <%= f.label :team_id, "参加者", class: "col-12 col-lg-12 form-label" %>
         </div>
         <div class="col-7 col-lg-9">
