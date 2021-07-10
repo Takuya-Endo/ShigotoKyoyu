@@ -17,27 +17,27 @@
   <div class="col-10 col-lg-10">
 
     <div class="row my-4">
-      <div class="col-5 col-lg-3 text-center text-secondary" style="background-color: #e7e6e6;">氏名</div>
+      <div class="col-5 col-lg-3 text-center text-secondary f-label-css">氏名</div>
       <div class="col-7 col-lg-9 text-secondary"><%= @user.last_name %>　<%= @user.first_name %></div>
     </div>
 
     <div class="row my-4">
-      <div class="col-5 col-lg-3 text-center text-secondary" style="background-color: #e7e6e6;">フリガナ</div>
+      <div class="col-5 col-lg-3 text-center text-secondary f-label-css">フリガナ</div>
       <div class="col-7 col-lg-9 text-secondary"><%= @user.last_name_kana %>　<%= @user.first_name_kana %></div>
     </div>
 
     <div class="row my-4">
-      <div class="col-5 col-lg-3 text-center text-secondary" style="background-color: #e7e6e6;">所属</div>
+      <div class="col-5 col-lg-3 text-center text-secondary f-label-css">所属</div>
       <div class="col-7 col-lg-9 text-secondary"><%= @user.department %></div>
     </div>
 
     <div class="row my-4">
-      <div class="col-5 col-lg-3 text-center text-secondary" style="background-color: #e7e6e6;">役職</div>
+      <div class="col-5 col-lg-3 text-center text-secondary f-label-css">役職</div>
       <div class="col-7 col-lg-9 text-secondary"><%= @user.position %></div>
     </div>
 
     <div class="row my-4">
-      <div class="col-5 col-lg-3 text-center text-secondary" style="background-color: #e7e6e6;">メールアドレス</div>
+      <div class="col-5 col-lg-3 text-center text-secondary f-label-css">メールアドレス</div>
       <div class="col-7 col-lg-9 text-secondary">
         <% if @user.id == current_user.id %>
           <% if @user.email_is_published == true %>
@@ -56,7 +56,7 @@
     </div>
 
     <div class="row my-4">
-      <div class="col-5 col-lg-3 text-center text-secondary" style="background-color: #e7e6e6;">その他</div>
+      <div class="col-5 col-lg-3 text-center text-secondary f-label-css">その他</div>
       <div class="col-7 col-lg-9 text-secondary"><%= @user.introduction %></div>
     </div>
 
